@@ -37,18 +37,18 @@
                         ?>
                         <tbody>
                             <tr>
-                                <td><?php echo $v->title ?></td>
-                                <td><?php echo $v->descritpiton ?></td>
-                                <td><?php echo $v->date_added ?></td>
+                                <td><?php echo $v['title'] ?></td>
+                                <td><?php echo $v['description'] ?></td>
+                                <td><?php echo $v['date_added'] ?></td>
                                 <td><?php
-                                    if ($v->status == 1) {
+                                    if ($v['status'] == 1) {
                                         print("Active");
                                     }
-                                    if ($v->status == 0) {
+                                    if ($v['status'] == 0) {
                                         print("Deactive");
                                     }
                                     ?></td>
-                                <td><?php echo $v->attachment ?></td>
+                                <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment']?>"><i class="icon-file"></i></a></td>
                             </tr>
                         </tbody>
 

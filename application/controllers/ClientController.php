@@ -25,7 +25,6 @@ class ClientController extends Zend_Controller_Action {
         }
         if ($auth != Zend_Auth::getInstance()->hasIdentity()) {
             Zend_Auth::getInstance()->clearIdentity();
-            $this->view->errors = $form->getMessages();
         }
         if (Zend_Auth::getInstance()->hasIdentity()) {
             $this->_redirect('/client/task');
@@ -38,14 +37,18 @@ class ClientController extends Zend_Controller_Action {
     }
 
     public function taskAction() {
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
+            $this->_redirect('/client');
+        }
         $form = new Application_Form_ClientForm();
-        $model = new Application_Model_task();
         $auth = Zend_auth::getInstance()->hasIdentity();
         $user = Zend_auth::getInstance()->getIdentity($auth);
-        if ($this->_request->isPost() && $form->isValid($_POST)) {
-            $show = $model->fetchAll("name='$user'");
-            $this->view->show = $show;
-        }
+        $db = Zend_Db_Table::getDefaultAdapter();
+        $select = $db->select()->from(array('task' => 'task'), array('task.title', 'task.description', 'task.date_added', 'task.status', 'task.attachment'))
+                        ->join(array('client' => 'client'), 'client.id=task.client_id', array())->where("client.name='$user'");
+        $show = $db->fetchAll($select);
+        $this->view->show = $show;
+        $this->view->form = $form;
     }
 
 }
