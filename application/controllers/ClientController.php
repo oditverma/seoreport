@@ -51,6 +51,11 @@ class ClientController extends Zend_Controller_Action {
         $this->view->form = $form;
     }
 
+    public function reportAction() {
+        $form = new Application_Form_ReportForm();
+        $this->view->form = $form;
+    }
+
 }
 
 ?>

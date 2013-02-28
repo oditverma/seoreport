@@ -9,6 +9,8 @@
         <link href="<?php echo $this->baseUrl(); ?>/Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->baseUrl(); ?>/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->baseUrl(); ?>/Bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="<?php echo $this->baseUrl(); ?>/Bootstrap/css/jquery-ui-1.10.1.custom.css" rel="stylesheet" type="text/css" media="screen">
+        
         <link href="<?php echo $this->baseUrl(); ?>/Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" media="screen">
         <link rel="icon" href="<?php echo $this->baseUrl(); ?>/Bootstrap/img/glyphicons-halflings-white.png" type="image/png"/>
         <link rel="icon" href="<?php echo $this->baseUrl(); ?>/Bootstrap/img/glyphicons-halflings.png" type="image/png"/>
@@ -32,6 +34,14 @@
         <script src="<?php echo $this->baseUrl(); ?>/Bootstrap/js/jquery.validate.js"></script>
         <script src="<?php echo $this->baseUrl(); ?>/Bootstrap/js/jquery-1.7.1.min.js"></script>
          <script src="<?php echo $this->baseUrl(); ?>/Bootstrap/js/jquery-1.9.1.js"></script>
+         
+         <script src="<?php echo $this->baseUrl(); ?>/Bootstrap/js/jquery-1.9.1_1.js"></script>
+         <script src="<?php echo $this->baseUrl(); ?>/Bootstrap/js/jquery-ui-1.10.1.custom.js"></script>
+         <script>
+	    $(function() {$( ".selectdate" ).datepicker({
+		    inline: true});
+	    });
+	</script>
         <style type="text/css">
             body {
                 padding-top: 40px;
@@ -70,6 +80,7 @@
     </head>
 
     <body>
+        <input type="text" class="selectdate">
         <?php echo $this->layout()->content; ?>
     </body>
 </html>
