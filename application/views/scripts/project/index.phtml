@@ -1,0 +1,40 @@
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">SEO Reports</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="<?php echo $this->baseurl(); ?>/project/edit">New Project</a></li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/admin/">User</a></li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/user/">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+if (isset($this->data)) {
+    ?>
+    <table style="width: 50%;margin-top: 50px;" class="table table-bordered" align="center">
+        <thead><tr><th>ID</th><th>Title</th><th>Settings</th></tr></thead>       
+        <?php
+        foreach ($this->data as $v) {
+            ?>
+
+            <tbody><tr>
+                    <td><?php echo $v->id ?></td><td><?php echo $v->title ?></td>
+                    <td><a href="<?php echo $this->baseurl(); ?>/project/update/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a>|                    
+                        <a href="<?php echo $this->baseurl(); ?>/project/delete/id/<?php echo $v['id'] ?>"><i class='icon-trash'></i></a>|
+                        <a href="<?php echo $this->baseurl(); ?>/project/status/id/<?php echo $v['id'] ?>"><i class='icon-ban-circle'></i></a></td>
+            </tbody>
+
+            <?php
+        }
+    }
+    ?>    
+</table>  

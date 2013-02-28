@@ -1,0 +1,5 @@
+$file = new Zend_Form_Element_File('file');
+	$file->setDestination(APPLICATION_PATH . '/../public/uploads')
+		->setDecorators($this->elementfileDecorators)
+		->setLabel('Select File')
+		->setRequired(true);
