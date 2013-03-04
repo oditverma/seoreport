@@ -16,12 +16,6 @@
     </div>
 </div>
 <div class="container">
-    <div class="hero-unit">
-        <h2></h2>
-
-    </div>
-
-    <!-- Example row of columns -->
     <div class="row">
         <div class="span4" style="width:45%;">
             <h3>View Task</h3>
@@ -29,24 +23,17 @@
             if (isset($this->show)) {
                 ?>
                 <table style="width:auto;" class="table table-bordered">
-                    <thead><tr><th>Name</th><th>Description</th><th>Date added</th><th>Status</th><th>File</th></tr></thead>   
+                    <thead><tr><th>Name</th><th>Date added</th><th>Added by</th><th>Assigned to</th><th>File</th></tr></thead>   
                     <?php
                     foreach ($this->show as $v) {
                         ?>
                         <tbody>
                             <tr>
                                 <td><?php echo $v['title'] ?></td>
-                                <td><?php echo $v['description'] ?></td>
                                 <td><?php echo $v['date_added'] ?></td>
-                                <td><?php
-                                    if ($v['status'] == 1) {
-                                        print("Active");
-                                    }
-                                    if ($v['status'] == 0) {
-                                        print("Deactive");
-                                    }
-                                    ?></td>
-                                <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>"><i class="icon-file"></i></a></td>
+                                <td><?php echo $v['added_by'] ?></td>
+                                <td><?php echo $v['assigned_to'] ?></td>
+                                <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
                             </tr>
                         </tbody>
 

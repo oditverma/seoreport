@@ -18,7 +18,7 @@ class ClientController extends Zend_Controller_Action {
             $username = $form->getValue('Cname');
             $password = $form->getValue('pass');
             $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
-            $authAdapter->setTableName('client')->setIdentityColumn('name')->setCredentialColumn('pass');
+            $authAdapter->setTableName('client_login')->setIdentityColumn('email')->setCredentialColumn('pass');
             $authAdapter->setIdentity($username)->setCredential($password);
             $auth = Zend_Auth::getInstance();
             $auth->authenticate($authAdapter);
@@ -27,16 +27,12 @@ class ClientController extends Zend_Controller_Action {
             Zend_Auth::getInstance()->clearIdentity();
         }
         if (Zend_Auth::getInstance()->hasIdentity()) {
-            $this->_redirect('/client/task');
+            $this->_redirect('/client/project');
         }
         $this->view->form = $form;
     }
 
-    public function dashAction() {
-        
-    }
-
-    public function taskAction() {
+    public function projectAction() {
         if (!Zend_Auth::getInstance()->hasIdentity()) {
             $this->_redirect('/client');
         }
@@ -44,15 +40,41 @@ class ClientController extends Zend_Controller_Action {
         $auth = Zend_auth::getInstance()->hasIdentity();
         $user = Zend_auth::getInstance()->getIdentity($auth);
         $db = Zend_Db_Table::getDefaultAdapter();
-        $select = $db->select()->from(array('task' => 'task'), array('task.title', 'task.description', 'task.date_added', 'task.status', 'task.attachment'))
-                        ->join(array('client' => 'client'), 'client.id=task.client_id', array())->where("client.name='$user'");
+        $select = $db->select()->from(array('report' => 'report'), array('report.title', 'report.date_added', 'report.added_by', 'report.assigned_to', 'report.attachment'))
+                ->join(array('client_login' => 'client_login'), 'client_login.id=report.client_id', array())
+                ->where("client_login.email='$user'");
         $show = $db->fetchAll($select);
         $this->view->show = $show;
         $this->view->form = $form;
     }
 
+    public function taskAction() {
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
+            $this->_redirect('/client');
+        }
+    }
+
     public function reportAction() {
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
+            $this->_redirect('/client');
+        }
         $form = new Application_Form_ReportForm();
+        $auth = Zend_auth::getInstance()->hasIdentity();
+        $user = Zend_auth::getInstance()->getIdentity($auth);
+        $db = Zend_Db_Table::getDefaultAdapter();
+        if ($this->_request->isPost() && $form->isValid($_POST)) {
+            $data = $form->getValue('from');
+            $db = Zend_Db_Table::getDefaultAdapter();
+            $start = date('Y-m-d', strtotime($data));
+            $data1 = $form->getValue('upto');
+            $end = date('Y-m-d', strtotime($data1));
+            $select = $db->select()
+                    ->from(array('report' => 'report'), array('report.title', 'report.description', 'report.attachment'))
+                    ->join(array('client_login' => 'client_login'), 'client_login.id=report.client_id', array())->where("client_login.email='$user'")
+                    ->where("report.date_added>='$start' and report.date_added<='$end'");
+            $show = $db->fetchAll($select);
+            $this->view->show = $show;
+        }
         $this->view->form = $form;
     }
 
