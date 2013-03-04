@@ -9,11 +9,11 @@ class Application_Form_ReportForm extends Zend_Form {
 
     public function init() {
         $this->setAttrib('class', 'form-inline');
-        $type = $this->createElement('select', 'report', array('decorators' => $this->elementDecorators))->addMultiOptions(array('Date wise' => 'Date wise', 'Year wise' => 'Year wise', 'Month wise' => 'Month wise', 'Week wise' => 'Week wise'))->setAttrib('class', 'span2');
+        // $type = $this->createElement('select', 'report', array('decorators' => $this->elementDecorators))->addMultiOptions(array('Date wise' => 'Date wise', 'Year wise' => 'Year wise', 'Month wise' => 'Month wise', 'Week wise' => 'Week wise'))->setAttrib('class', 'span2');
         $from = $this->createElement('text', 'from', array('decorators' => $this->elementDecorators))->setAttrib('class', 'selectdate')->setAttrib('placeholder', 'From');
         $upto = $this->createElement('text', 'upto', array('decorators' => $this->elementDecorators))->setAttrib('class', 'selectdate')->setAttrib('placeholder', 'Upto');
         $submit = $this->createElement('submit', 'submit', array('decorators' => $this->buttonDecorators))->setAttrib('class', 'btn btn-info');
-        $this->addElements(array($type, $from, $upto, $submit));
+        $this->addElements(array($from, $upto, $submit));
     }
 
 }
