@@ -21,8 +21,12 @@ class ClientController extends Zend_Controller_Action {
             $authAdapter->setTableName('client_login')->setIdentityColumn('email')->setCredentialColumn('pass');
             $authAdapter->setIdentity($username)->setCredential($password);
             $auth = Zend_Auth::getInstance();
+            try{
             $auth->authenticate($authAdapter);
-        }
+            }catch(Exception $e){
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+            }
+            }
         if ($auth != Zend_Auth::getInstance()->hasIdentity()) {
             Zend_Auth::getInstance()->clearIdentity();
         }
