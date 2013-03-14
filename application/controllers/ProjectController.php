@@ -92,7 +92,7 @@ class ProjectController extends Zend_Controller_Action {
             $this->_redirect('/project/keyword');
         }
         $row = new Application_Model_keyword();
-        $select = $row->fetchAll();
+        $select = $row->fetchAll('1=1', 'pos');
         $this->view->select = $select;
         $this->view->form = $form;
     }
@@ -115,14 +115,47 @@ class ProjectController extends Zend_Controller_Action {
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $result = $model->fetchrow("id='$id'");
             $form->populate($result->toArray());
-            
+
             $this->_redirect('/project/keyword');
         }
         $this->view->form = $form;
     }
 
-    public function resourceAction() {
-        
+    public function keyupAction() {
+        $this->_helper->viewRenderer->setNoRender();
+        $id = $this->_request->getParam('id');
+        $model = new Application_Model_keyword();
+        if (empty($id)) {
+            throw new Zend_Exception('Id not provided!');
+        }
+        $row = $model->fetchRow("id='$id'");
+        if (!$row) {
+            echo "<script>bootbox.alert( 'Requested page not found!');</script>";
+            $this->_redirect('project/keyword');
+        }
+        $currentDisplayOrder = $row->pos;
+        $lesserRow = $model->fetchRow(" pos< $currentDisplayOrder ", "pos desc limit 1");
+        if ($currentDisplayOrder == $lesserRow->pos) {
+            echo "<script>bootbox.alert( 'Requested page not found!');</script>";
+            $this->_redirect('project/keyword');
+        }
+        if (!$lesserRow) {
+            $newDisplayOrder = ($currentDisplayOrder - 1 > 1) ? $currentDisplayOrder - 1 : $currentDisplayOrder;
+        } else {
+            $newDisplayOrder = $lesserRow->pos;
+            $lesserRow->pos = $currentDisplayOrder;
+            $lesserRow->save();
+        }
+        try {
+            $row->pos = $newDisplayOrder;
+            $row->save();
+            echo "<script>bootbox.alert( 'Order changed!');</script>";
+            $this->_redirect('project/keyword');
+        } catch (Zend_Exception $e) {
+            $error = $e->getMessage();
+            echo"<script>bootbox.alert('$error');</script>";
+            $this->_redirect('project/keyword');
+        }
     }
 
 }
