@@ -1,6 +1,10 @@
 <?php
 
 class AdminController extends Zend_Controller_Action {
+    /* Instance created for protected Function */
+
+    protected $_adminModel = Null;
+    protected $_adminForm = Null;
 
     public function init() {
         $auth = Zend_auth::getInstance();
@@ -11,21 +15,24 @@ class AdminController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        $form = new Application_Form_AdminForm();
-        $row = new Application_Model_admin();
-        $data = $row->fetchAll('status=1');
+        $form = $this->_getAdminForm();
+        $data = $this->_getAdminModel()->fetchAll('status=1');
         $this->view->data = $data;
         $this->view->form = $form;
     }
 
     public function editAction() {
-        $form = new Application_Form_AdminForm();
+        $form = $this->_getAdminForm();
         if ($this->_request->isPost() && $form->isValid($_POST)) {
-            $row = new Application_Model_admin();
             $data = $form->getValues();
-            $row->insert($data);
+            $value = $this->_getAdminModel()->insert(array('name' => $data['name'],
+                'pass' => sha1($data['pass']),
+                'email' => $data['email'],
+                'account_type' => $data['account_type'],
+                'address' => $data['address'],
+                'contact' => $data['contact']));
             $this->_redirect('/admin/index');
-            $this->view->data = $data;
+            $this->view->value = $value;
         }
         $this->view->form = $form;
     }
@@ -37,9 +44,9 @@ class AdminController extends Zend_Controller_Action {
         if (empty($id)) {
             throw new Exception('ID not provided');
         }
-        $form = new Application_Form_AdminForm();
+        $form = $this->_getAdminForm();
         if (!empty($id)) {
-            $row = new Application_Model_admin();
+            $row = $this->_getAdminModel();
             $row->delete("id='$id'");
         }
         $this->view->form = $form;
@@ -48,8 +55,8 @@ class AdminController extends Zend_Controller_Action {
 
     public function updateAction() {
         $id = $this->_getParam('id');
-        $form = new Application_Form_AdminForm();
-        $model = new Application_Model_admin();
+        $form = $this->_getAdminForm();
+        $model = $this->_getAdminModel();
         $result = $model->fetchrow("id='$id'");
         $form->populate($result->toArray());
         if ($this->_request->isPost() && $form->isValid($_POST)) {
@@ -59,13 +66,39 @@ class AdminController extends Zend_Controller_Action {
         }
         $this->view->form = $form;
     }
-    
+
     public function statusAction() {
         $id = $this->_getParam('id');
-        $model = new Application_Model_admin();
-               $arr = array('status' => '0');
-        $model->update($arr,'id='.$id);
+        $model = $this->_getAdminModel();
+        $arr = array('status' => '0');
+        $model->update($arr, 'id=' . $id);
         $this->_redirect('/admin/index');
+    }
+
+    public function reportAction() {
+        $form = new Application_Form_CheckForm();
+        /* $model = new Application_Model_report();
+          $select = $model->select()->from(array('report' => 'report'), array('report.id', 'report.task', 'report.added_by', 'report.assigned_to', 'report.time_added', 'report.attachment'))
+          ->join(array('project' => 'project'), 'project.id=report.project_id', array());
+          $show = $model->fetchAll($select);
+          $this->view->show = $show; */
+        $this->view->form = $form;
+    }
+
+    /* Function created for Model and Form */
+
+    protected function _getAdminModel() {
+        if (!$this->_adminModel instanceof Application_Model_admin) {
+            $this->_adminModel = new Application_Model_admin();
+        }
+        return $this->_adminModel;
+    }
+
+    protected function _getAdminForm() {
+        if (!$this->_adminForm instanceof Application_Form_AdminForm) {
+            $this->_adminForm = new Application_Form_AdminForm();
+        }
+        return $this->_adminForm;
     }
 
     /* $row = new Application_Model_admin();

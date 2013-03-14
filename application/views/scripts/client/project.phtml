@@ -1,51 +1,30 @@
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="brand" href="#">SEO Reports</a>
-            <div class="nav-collapse collapse">
-                <ul class="nav" style="float: right">
-                    <li><a href="<?php echo $this->baseurl(); ?>/client/index">Logout</a></li>
-                </ul>
+<?php
+echo $this->render('/navigation/clientNav.phtml');
+if (isset($this->show)) {
+    foreach ($this->show as $v) {
+        ?>    
+      
+<div class="container">
+      <div class="container-narrow" style="float: top">
+            <div class="masthead">
+                <h3 style="text-transform: capitalize;"><?php echo $v['title']; ?></h3>
+                <hr>
             </div>
         </div>
-    </div>
-</div>
-<div class="container">
+    <?php
+    }
+}
+?>
     <div class="row">
         <div class="span4" style="width:45%;">
-            <h3>View Task</h3>
-            <?php
-            if (isset($this->show)) {
-                ?>
-                <table style="width:auto;" class="table table-bordered">
-                    <thead><tr><th>Name</th><th>Date added</th><th>Added by</th><th>Assigned to</th><th>File</th></tr></thead>   
-                    <?php
-                    foreach ($this->show as $v) {
-                        ?>
-                        <tbody>
-                            <tr>
-                                <td><?php echo $v['title'] ?></td>
-                                <td><?php echo $v['date_added'] ?></td>
-                                <td><?php echo $v['added_by'] ?></td>
-                                <td><?php echo $v['assigned_to'] ?></td>
-                                <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
-                            </tr>
-                        </tbody>
-
-                        <?php
-                    }
-                }
-                ?>    
-            </table>   
+            <h2>View Task</h2>
+            View the tasks ,check their status either it is active or De-active. 
+            <p></p>
+            <p><a class="btn" href="<?php echo $this->baseurl(); ?>/client/task">View Reports »</a></p>
         </div>
         <div class="span4">
             <h2>Reports</h2>
-            <p>It consists of analysis of the client's website with respect to the on-site, on-page, off-page factors, proposed list of keywords, proposed changes, proposed plan of action, SEO pricing and features.</p>
+            <p>It consists of analysis of the website with respect to the on-site, on-page, off-page factors, proposed list of keywords, proposed changes, proposed plan of action, SEO pricing and features.</p>
             <p><a class="btn" href="<?php echo $this->baseurl(); ?>/client/report">View Reports »</a></p>
         </div>
 
@@ -56,7 +35,7 @@
     <footer>
         <div id="footer">
             <div class="container">
-                <p class="muted credit">Example courtesy <a href="#">Bootstrap</a> and <a href="#">Odit Verma</a>.</p>
+                <p class="muted credit">Example courtesy <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="https://www.facebook.com/odit.verma">Odit Verma</a>.</p>
             </div>
         </div>
     </footer>

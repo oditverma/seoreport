@@ -1,76 +1,25 @@
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="brand" href="#">SEO Reports</a>
-            <div class="nav-collapse collapse">
-                <ul class="nav" style="float: right">
-                    <li><a href="<?php echo $this->baseurl(); ?>/client/index">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="hero-unit">
-        <h2></h2>
+<?php echo $this->render('/navigation/clientNav.phtml') ?>
+<?php
+if (isset($this->show)) {
+    ?>
+    <table style="width:auto;" class="table table-bordered">
+        <thead><tr><th>ID</th><th>Title</th><th>Time Added</th><th>Added by</th><th>Assigned to</th><th>File</th></tr></thead>   
+        <?php
+        foreach ($this->show as $v) {
+            ?>
+            <tbody>
+                <tr>
+                    <td><?php echo $v['id'] ?></td>
+                    <td><?php echo $v['task'] ?></td>
+                    <td><?php echo $v['time_added'] ?></td>
+                    <td><?php echo $v['added_by'] ?></td>
+                    <td><?php echo $v['assigned_to'] ?></td>
+                    <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                </tr>
+            </tbody>
 
-    </div>
-
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="span4" style="width:45%;">
-            <h3>View Task</h3>
             <?php
-            if (isset($this->show)) {
-                ?>
-                <table style="width:auto;" class="table table-bordered">
-                    <thead><tr><th>Name</th><th>Description</th><th>Date added</th><th>Status</th><th>File</th></tr></thead>   
-                    <?php
-                    foreach ($this->show as $v) {
-                        ?>
-                        <tbody>
-                            <tr>
-                                <td><?php echo $v['title'] ?></td>
-                                <td><?php echo $v['description'] ?></td>
-                                <td><?php echo $v['date_added'] ?></td>
-                                <td><?php
-                                    if ($v['status'] == 1) {
-                                        print("Active");
-                                    }
-                                    if ($v['status'] == 0) {
-                                        print("Deactive");
-                                    }
-                                    ?></td>
-                                <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>"><i class="icon-file"></i></a></td>
-                            </tr>
-                        </tbody>
-
-                        <?php
-                    }
-                }
-                ?>    
-            </table>   
-        </div>
-        <div class="span4">
-            <h2>Reports</h2>
-            <p>It consists of analysis of the client's website with respect to the on-site, on-page, off-page factors, proposed list of keywords, proposed changes, proposed plan of action, SEO pricing and features.</p>
-            <p><a class="btn" href="<?php echo $this->baseurl(); ?>/client/report">View Reports »</a></p>
-        </div>
-
-    </div>
-
-    <hr>
-
-    <footer>
-        <div id="footer">
-            <div class="container">
-                <p class="muted credit">Example courtesy <a href="#">Bootstrap</a> and <a href="#">Odit Verma</a>.</p>
-            </div>
-        </div>
-    </footer>
-</div>
+        }
+    }
+    ?>    
+</table>   

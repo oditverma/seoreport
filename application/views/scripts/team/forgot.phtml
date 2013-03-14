@@ -1,21 +1,10 @@
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="brand" href="#">SEO Reports</a>
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li class="active"><a href="#">View Task</a></li>
-                    <li><a href="#about">View Reports</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<?php echo $this->render('navigation/teamNav.phtml') ?>
+<div style="margin-top: 10px;">
+    <form class="form-signin" method="post">
+        <h3>Change Password</h3>
+        <?php echo $this->form->getElement('code'); ?>
+        <?php echo $this->form->getElement('confirmpass'); ?>
+        <?php echo $this->form->getElement('pass'); ?>
+        <?php echo $this->form->getElement('submit'); ?>
+    </form>
 </div>
-<?php
-echo $this->form;
-?>

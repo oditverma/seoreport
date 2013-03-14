@@ -1,2 +1,27 @@
-<h2 align="center">Client Login</h2>
-            <?php echo $this->form; ?>
+<?php echo $this->render('navigation/clientNav.phtml'); ?>
+<div class="container-fluid" style="padding-right: 20px;padding-left: 20px;margin-top: 20px">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Report</li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/client/report">View Report(s)</a></li>
+                    <li class="nav-header">Task</li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/client/task">View Task(s)</a></li>
+                    <li class="nav-header">Project</li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/client/project">View Project(s)</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="span9">
+            <div class="hero-unit">
+                <h1>Client Section!</h1>
+                <h3>Welcome <?php
+                    $auth = Zend_Auth::getInstance();
+                    $name = $auth->getIdentity()->name;
+                    echo $name;
+                    ?></h3>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,30 @@
-<?php
-echo $this->form;
-print("<div class='container'> <div style='width: 380px;margin:0 auto; border: 1px solid #ccc;'> ");
-?>
-<a href='<?php echo $this->baseUrl() ?>/team/recover'>Forgot Password !</a>
-<?php print("</div></div>") ?>
+<?php echo $this->render('navigation/teamNav.phtml') ?>
+<div class="container-fluid" style="padding-right: 20px;padding-left: 20px;margin-top: 20px">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header">My Profile</li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/team/profile">Edit Profile</a></li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/team/forgot">Change Password</a></li>
+                    <li class="nav-header">Project</li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/team/project">View Projects</a></li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/project/keyword">Allocate Keyword(s)</a></li>
+                    <li class="nav-header">Task & Report</li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/team/edit">Add task</a></li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/team/team">View task(s)</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="span9">
+            <div class="hero-unit">
+                <h1>Team Section!</h1>
+                <h3 style="text-transform: capitalize;">Welcome <?php
+                    $auth = Zend_Auth::getInstance();
+                    $name = $auth->getIdentity()->name;
+                    echo $name;
+                    ?></h3>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,11 +3,15 @@
 class Application_Form_ProjectForm extends Zend_Form {
 
     public function init() {
-       // $id = $this->createElement('text', 'id')->setRequired(true)->setAttrib('Placeholder', 'id')->addValidator('int');
-        $title = $this->createElement('text', 'title')->setRequired(true)->setAttrib('Placeholder', 'Project Title')->addValidator('alnum');
-       $status=$this->createElement('select','status')->setAttrib('class','span1')->setLabel('Current Status : ')->setRequired(TRUE)->addMultiOption('0','0')->addMultiOption('1','1');
+        $this->setAttrib('class','form-signin');
+        $title = $this->createElement('text', 'title')->setRequired(true)->setAttrib('Placeholder', 'Project Title');
+        $description = $this->createElement('text', 'description')->setRequired(true)->setAttrib('Placeholder', 'Description');
+        $date_added = $this->createElement('text', 'date_added')->setAttrib('class', 'selectdate')->setRequired(true)->setAttrib('Placeholder', 'YYYY/MM/DD');
+        $attachment = $this->createElement('file','attachment')->setAttrib('Placeholder', 'Choose a file');
+        $attachment->setDestination(APPLICATION_PATH . '/../public/uploads')->setRequired(true);
+        $user_id = $this->createElement('text', 'user_id')->setRequired(TRUE)->setAttrib('class','span1')->setAttrib('Placeholder', 'User ID');
         $submit = $this->createElement('submit', 'insert')->setRequired(true)->setAttrib('class', 'btn btn-primary');
-        $this->addElements(array($title,$status,$submit));
+        $this->addElements(array($title, $description, $date_added, $attachment, $user_id, $submit));
     }
 
 }
