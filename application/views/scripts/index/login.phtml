@@ -1,0 +1,11 @@
+<div class="container" style="margin-top: 20px">
+<form method="post" class="form-signin">
+    <h3 class="form-signin-heading">Sign in</h3>  
+    <?php
+    echo $this->form->getElement('name');
+    echo $this->form->getElement('pass');
+    echo $this->form->getElement('submit');
+    ?>
+    <br><a href="<?php echo $this->baseurl(); ?>/team/recover">Forgot Password !</a>
+</form>
+    </div>

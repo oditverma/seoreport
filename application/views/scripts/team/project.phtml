@@ -1,0 +1,20 @@
+<h2 align="center"><u>Project Section</u></h2>
+<?php
+echo $this->render('/navigation/teamNav.phtml');
+if (isset($this->row)) {
+    ?>
+    <table style="width: 50%;margin-top: 50px;" class="table table-bordered" align="center">
+        <thead><tr><th>ID</th><th>Project Title</th><th>Description</th><th>Date Added</th><th>Attachment</th></tr></thead>       
+        <?php
+        foreach ($this->row as $v) {
+            ?>
+            <tbody><tr>
+                    <td><?php echo $v->id ?></td><td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
+                    <td><?php echo $v->date_added ?></td><td><?php echo $v->attachment ?></td>
+            </tbody>
+
+            <?php
+        }
+    }
+    ?>    
+</table>  

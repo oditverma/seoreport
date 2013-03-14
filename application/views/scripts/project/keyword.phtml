@@ -1,0 +1,32 @@
+<?php echo $this->render('navigation/nav.phtml'); ?>
+<div class="container">
+    <h3>Keyword Allocation</h3>
+    <div class="front">
+
+        <?php
+        echo $this->form;
+        if (isset($this->select)) {
+            ?>
+        </div>
+
+        <table  class="table table-bordered">
+            <thead><tr><th>Keyword</th><th>Date Added</th><th>Priority</th><th>Settings</th></tr></thead>       
+            <?php
+            foreach ($this->select as $v) {
+                ?>
+                <tbody><tr>
+                        <td><?php echo $v->Keyword ?></td>
+                        <td><?php echo $v->time_added ?></td>
+                        <td><a href="<?php echo $this->baseurl(); ?>/project/updtpos/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>|                    
+                            <a href="<?php echo $this->baseurl(); ?>/project/delete/id/<?php echo $v['id'] ?>"><i class='icon-arrow-down'></i></a>
+                        </td>
+                        <td><a href="<?php echo $this->baseurl(); ?>/project/keyupdt/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a>|                    
+                            <a href="<?php echo $this->baseurl(); ?>/project/keydel/id/<?php echo $v['id'] ?>"><i class='icon-trash'></i></a>
+                        </td></tr>
+                </tbody>
+                <?php
+            }
+        }
+        ?>    
+    </table>
+</div>

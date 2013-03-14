@@ -1,0 +1,37 @@
+<?php echo $this->render('/navigation/editNav.phtml') ?>
+<div class="container-narrow" style="margin-top:20px;">
+    <div class="front">
+        <form method="post">
+            <h3>View Reports</h3>
+            <?php echo $this->form->getElement('account_type'); ?>    
+            <?php echo $this->form->getElement('dateWise') ?>
+            <?php echo $this->form->getElement('submit'); ?>
+        </form>
+    </div>
+</div>
+<?php
+if (isset($this->model)) {
+    ?>
+    <table class="table table-bordered" align="center">
+
+        <thead><tr><th>ID</th><th>Task</th><th>Time Added</th><th>Added By</th><th>Assigned To</th><th>Attachment</th></tr></thead>   
+
+        <?php
+        foreach ($this->model as $v) {
+            ?>
+            <tbody>
+                <tr>
+                    <td><?php echo $v->id ?></td>
+                    <td><?php echo $v->task ?></td>
+                    <td><?php echo $v->time_added ?></td>
+                    <td><?php echo $v->added_by ?></td>
+                    <td><?php echo $v->assigned_to ?></td>
+                    <td><?php echo $v->attachment ?></td>
+                </tr>
+            </tbody>
+
+            <?php
+        }
+    }
+    ?>    
+</table>
