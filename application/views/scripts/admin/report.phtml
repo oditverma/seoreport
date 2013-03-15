@@ -1,37 +1,32 @@
-<?php echo $this->render('/navigation/editNav.phtml') ?>
-<div class="container-narrow" style="margin-top:20px;">
-    <div class="front">
-        <form method="post">
-            <h3>View Reports</h3>
-            <?php echo $this->form->getElement('account_type'); ?>    
-            <?php echo $this->form->getElement('dateWise') ?>
-            <?php echo $this->form->getElement('submit'); ?>
-        </form>
+<?php echo $this->render('/navigation/nav.phtml') ?>
+<div class="container">
+    <div class="hero-unit">
+        <h2>View Reports</h2>
     </div>
-</div>
-<?php
-if (isset($this->model)) {
-    ?>
-    <table class="table table-bordered" align="center">
+    <form class="form-signin" method="post" style="float: left">
+        <?php echo $this->form->getElement('pickDate'); ?>
+        <?php echo $this->form->getElement('submit'); ?>
+    </form>
 
-        <thead><tr><th>ID</th><th>Task</th><th>Time Added</th><th>Added By</th><th>Assigned To</th><th>Attachment</th></tr></thead>   
-
-        <?php
-        foreach ($this->model as $v) {
-            ?>
-            <tbody>
-                <tr>
-                    <td><?php echo $v->id ?></td>
-                    <td><?php echo $v->task ?></td>
-                    <td><?php echo $v->time_added ?></td>
-                    <td><?php echo $v->added_by ?></td>
-                    <td><?php echo $v->assigned_to ?></td>
-                    <td><?php echo $v->attachment ?></td>
-                </tr>
-            </tbody>
-
+    <?php
+    if (isset($this->show)) {
+        ?>
+        <table class="table table-bordered">
+            <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
             <?php
+            foreach ($this->show as $v) {
+                ?>
+                <tbody>
+                    <tr>
+                        <td><?php echo $v['task'] ?></td>
+                        <td><?php echo $v['description'] ?></td>
+                        <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                    </tr>
+                </tbody>
+
+                <?php
+            }
         }
-    }
-    ?>    
-</table>
+        ?>
+    </table>
+</div>

@@ -8,11 +8,10 @@
                     <li><a href="<?php echo $this->baseurl(); ?>/project/edit">Add Project</a></li>
                     <li><a href="<?php echo $this->baseurl(); ?>/project/index">View Projects</a></li>
                     <li><a href="<?php echo $this->baseurl(); ?>/project/keyword">Allocate Keywords</a></li>
-                    <li><a href="<?php echo $this->baseurl(); ?>/project/resource">Assigning Resources</a></li>
                     <li class="nav-header">Reports</li>
                     <li><a href="<?php echo $this->baseurl(); ?>/admin/report">View Report</a></li>
                     <li class="nav-header">User</li>
-                    <li><a href="<?php echo $this->baseurl(); ?>/admin/index">View User(s)</a></li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/admin/index">View Profile(s)</a></li>
                     <li><a href="<?php echo $this->baseurl(); ?>/admin/edit">Add User</a></li>
                     <!--<li><a href="#">Link</a></li>-->                    
                 </ul>
@@ -29,19 +28,30 @@
                 if (isset($this->data)) {
                     ?>
                     <table class="table table-bordered" align="center">
-
-                        <thead><tr><th>Name</th><th>Email</th><th>Account Type</th><th>Address</th><th>Contact</th><th>Setting</th></tr></thead>   
-
+                        <thead><tr><th>Name</th><th>Email</th><th>Account Type</th><th>Address</th><th>Status</th><th>Contact</th><th>Setting</th></tr></thead>   
                         <?php
                         foreach ($this->data as $v) {
                             ?>
                             <tbody>
                                 <tr>
-                                    <td><?php echo $v->name ?></td><td><?php echo $v->email ?></td>
-                                    <td><?php echo $v->account_type ?></td><td><?php echo $v->address ?></td><td><?php echo $v->contact ?></td>
+                                    <td><?php echo $v->name ?></td>
+                                    <td><?php echo $v->email ?></td>
+                                    <td><?php echo $v->account_type ?></td>
+                                    <td><?php echo $v->address ?></td>
+                                    <td><?php
+                                        if ($v->status == 0) {
+                                            echo '<u style="color: red;">De-active</u>';
+                                        } else {
+                                            echo '<u style="color: green;">Active</u>';
+                                        }
+                                        ?></td>
+                                    <td><?php echo $v->contact ?></td>
                                     <td><a href="<?php echo $this->baseurl(); ?>/admin/update/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a>|
                                         <a href="<?php echo $this->baseurl(); ?>/admin/delete/id/<?php echo $v['id'] ?>"><i class='icon-trash'></i></a>|
-                                        <a href="<?php echo $this->baseurl(); ?>/admin/status/id/<?php echo $v['id'] ?>"><i class='icon-ban-circle'></i></a></td>
+                                        <?php if ($v->status == 1) { ?>  <a href="<?php echo $this->baseurl(); ?>/admin/status/id/<?php echo $v['id'] ?>"><img src="<?php echo $this->baseurl(); ?>/public/Bootstrap/img/valid.png"></a><?php } else { ?>
+                                            <a href="<?php echo $this->baseurl(); ?>/admin/status/id/<?php echo $v['id'] ?>"><img src="<?php echo $this->baseurl(); ?>/public/Bootstrap/img/error.png"></a> 
+                                        <?php } ?>
+                                    </td>
                                 </tr>
                             </tbody>
 

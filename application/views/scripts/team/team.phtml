@@ -1,22 +1,31 @@
 <h2 align="center"><u>Team Panel</u></h2>
 <?php
 echo $this->render('/navigation/teamNav.phtml');
-if (isset($this->data)) {
-    ?>
-    <table style="width: 75%;margin-top: 50px;" class="table table-bordered" align="center">
+?>
+<div class="container-fluid" align="center">
 
-        <thead><tr><th>Name</th><th>E-Mail</th><th>Address</th><th>Settings</th></tr></thead>   
-        <?php
-        foreach ($this->data as $v) {
-            ?>
-            <tbody>
-                <tr>
-                    <td><?php echo $v->name ?></td><td><?php echo $v->email ?></td><td><?php echo $v->address ?></td>
-                    
-                </tr>
-            </tbody>
+    <?php
+    if (isset($this->show)) {
+        ?>
+        <table class="table table-bordered">
+            <thead><tr><th>Title</th><th>Time Added</th><th>Added by</th><th>Assigned to</th><th>File</th></tr></thead>   
             <?php
+            foreach ($this->show as $v) {
+                ?>
+                <tbody>
+                    <tr>
+
+                        <td><?php echo $v['task'] ?></td>
+                        <td><?php echo $v['time_added'] ?></td>
+                        <td><?php echo $v['added_by'] ?></td>
+                        <td><?php echo $v['assigned_to'] ?></td>
+                        <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                    </tr>
+                </tbody>
+
+                <?php
+            }
         }
-    }
-    ?>    
-</table>
+        ?>    
+    </table> 
+</div>

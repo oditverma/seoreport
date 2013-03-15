@@ -16,7 +16,7 @@ class AdminController extends Zend_Controller_Action {
 
     public function indexAction() {
         $form = $this->_getAdminForm();
-        $data = $this->_getAdminModel()->fetchAll('status=1');
+        $data = $this->_getAdminModel()->fetchAll();
         $this->view->data = $data;
         $this->view->form = $form;
     }
@@ -70,18 +70,45 @@ class AdminController extends Zend_Controller_Action {
     public function statusAction() {
         $id = $this->_getParam('id');
         $model = $this->_getAdminModel();
-        $arr = array('status' => '0');
+        $status = $model->fetchRow("id='$id' ");
+        if ($status['status'] == 1) {
+            $arr = array('status' => '0');
+        } if ($status['status'] == 0) {
+            $arr = array('status' => '1');
+        }
         $model->update($arr, 'id=' . $id);
         $this->_redirect('/admin/index');
     }
 
     public function reportAction() {
-        $form = new Application_Form_CheckForm();
-        /* $model = new Application_Model_report();
-          $select = $model->select()->from(array('report' => 'report'), array('report.id', 'report.task', 'report.added_by', 'report.assigned_to', 'report.time_added', 'report.attachment'))
-          ->join(array('project' => 'project'), 'project.id=report.project_id', array());
-          $show = $model->fetchAll($select);
-          $this->view->show = $show; */
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
+            Zend_Auth::getInstance()->clearIdentity();
+            $this->_redirect('/index');
+        }
+        $form = new Application_Form_ReportForm();
+        $auth = Zend_Auth::getInstance();
+        $id = $auth->getIdentity()->id;
+        if ($this->_request->isPost() && $form->isValid($_POST)) {
+            $data = $form->getValue('pickDate');
+            $db = Zend_Db_Table::getDefaultAdapter();
+            $date = explode(' - ', $data);
+            if (!empty($date[1])) {
+                $select = $db->select()
+                        ->from(array('report' => 'report'), array('report.task', 'report.description', 'report.attachment'))
+                        ->join(array('project' => 'project'), 'project.id=report.project_id', array())
+                        ->where("project.user_id='$id' and report.date_added='$date[0]'")
+                        ->orWhere("report.date_added between '$date[0]' and '$date[1]'");
+            } else {
+                $select = $db->select()
+                        ->from(array('report' => 'report'), array('report.task', 'report.description', 'report.attachment'))
+                        ->join(array('project' => 'project'), 'project.id=report.project_id', array())
+                        ->where("project.user_id='$id' and report.date_added='$date[0]'");
+            }
+            /* echo $select;
+              die(); */
+            $show = $db->fetchAll($select);
+            $this->view->show = $show;
+        }
         $this->view->form = $form;
     }
 

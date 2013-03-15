@@ -1,0 +1,9 @@
+Action action = new AbstractAction() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            jMenu1.doClick();
+        }
+    };
+    jPanel1.getActionMap().put("myAction", action);
+    jPanel1.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ALT, KeyEvent.ALT_DOWN_MASK), "myAction");

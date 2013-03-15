@@ -69,7 +69,7 @@ class ProjectController extends Zend_Controller_Action {
                 'date_added' => $start,
                 'attachment' => $data['attachment'],
                 'user_id' => $data['user_id']));
-            $this->_redirect('/project/index');
+            $this->_redirect('/admin/index');
             $this->view->row = $row;
         }
         $this->view->form = $form;
@@ -191,6 +191,10 @@ class ProjectController extends Zend_Controller_Action {
         }
     }
 
+    public function resourceAction(){
+        
+    }
+    
 }
 
 ?>
