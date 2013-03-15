@@ -3,7 +3,7 @@
 class Application_Form_ProjectForm extends Zend_Form {
 
     public function init() {
-        $this->setAttrib('class','form-signin');
+        //$this->setAttrib('class','form-signin');
         $title = $this->createElement('text', 'title')->setRequired(true)->setAttrib('Placeholder', 'Project Title');
         $description = $this->createElement('text', 'description')->setRequired(true)->setAttrib('Placeholder', 'Description');
         $date_added = $this->createElement('text', 'date_added')->setAttrib('class', 'selectdate')->setRequired(true)->setAttrib('Placeholder', 'YYYY/MM/DD');

@@ -158,6 +158,39 @@ class ProjectController extends Zend_Controller_Action {
         }
     }
 
+    public function keydownAction() {
+        $this->_helper->viewRenderer->setNoRender();
+        $id = $this->_request->getParam('id');
+        $model = new Application_Model_keyword();
+        if (empty($id)) {
+            throw new Zend_Exception('Id not provided!');
+        }
+        $row = $model->fetchRow("id='$id'");
+        if (!$row) {
+            $this->_redirect('project/keyword');
+        }
+        $currentDisplayOrder = $row->pos;
+        $lesserRow = $model->fetchRow(" pos> $currentDisplayOrder ", " pos ASC limit 1");
+        if ($currentDisplayOrder == $lesserRow->pos) {
+            $this->_redirect('project/keyword');
+        }
+        if (!$lesserRow) {
+            $newDisplayOrder = $currentDisplayOrder + 1;
+        } else {
+            $newDisplayOrder = $lesserRow->pos;
+            $lesserRow->pos = $currentDisplayOrder;
+            $lesserRow->save();
+        }
+        try {
+            $row->pos = $newDisplayOrder;
+            $row->save();
+            $this->_redirect('project/keyword');
+        } catch (Zend_Exception $e) {
+            echo $e->getMessage();
+            $this->_redirect('project/kecyword');
+        }
+    }
+
 }
 
 ?>
