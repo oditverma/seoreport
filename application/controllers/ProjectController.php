@@ -29,7 +29,7 @@ class ProjectController extends Zend_Controller_Action {
 
     public function indexAction() {
         $row = $this->_getProjectModel();
-        $data = $row->fetchAll('status=1');
+        $data = $row->fetchAll();
         $this->view->data = $data;
     }
 
@@ -78,20 +78,38 @@ class ProjectController extends Zend_Controller_Action {
     public function statusAction() {
         $id = $this->_getParam('id');
         $model = $this->_getProjectModel();
-        $arr = array('status' => '0');
+        $status = $model->fetchRow("id='$id' ");
+        if ($status['status'] == 1) {
+            $arr = array('status' => '0');
+        } if ($status['status'] == 0) {
+            $arr = array('status' => '1');
+        }
         $model->update($arr, 'id=' . $id);
         $this->_redirect('/project/index');
     }
 
     public function keywordAction() {
+
+
+        $row = new Application_Model_keyword();
+        $last_pos = $row->getAdapter()->lastInsertId();
+        $pos = $row->select()
+                ->from($row, array(new Zend_Db_Expr('max(id) as maxId')));
+        echo $pos;
+        die();
         $form = new Application_Form_KeywordForm();
+        $form->removeElement("update");
         if ($this->_request->isPost() && $form->isValid($_POST)) {
-            $row = new Application_Model_keyword();
+            // $row = new Application_Model_keyword();
             $data = $form->getValues();
+
             $row->insert($data);
+
+
+            $row->update(array('pos' => $last_pos('pos' + 1)));
             $this->_redirect('/project/keyword');
         }
-        $row = new Application_Model_keyword();
+        //$row = new Application_Model_keyword();
         $select = $row->fetchAll('1=1', 'pos');
         $this->view->select = $select;
         $this->view->form = $form;
@@ -110,13 +128,16 @@ class ProjectController extends Zend_Controller_Action {
 
     public function keyupdtAction() {
         $id = $this->_getParam('id');
-        $model = new Application_Model_keyword();
         $form = new Application_Form_KeywordForm();
+        $model = new Application_Model_keyword();
+        $result = $model->fetchrow("id='$id'");
+        $form->populate($result->toArray());
         if ($this->_request->isPost() && $form->isValid($_POST)) {
-            $result = $model->fetchrow("id='$id'");
-            $form->populate($result->toArray());
-
-            $this->_redirect('/project/keyword');
+            $data = $form->getValues();
+            $select = $model->update($data, "id='$id'");
+            print_r($select);
+            die();
+            $this->_redirect('/project/index');
         }
         $this->view->form = $form;
     }
@@ -191,10 +212,10 @@ class ProjectController extends Zend_Controller_Action {
         }
     }
 
-    public function resourceAction(){
+    public function resourceAction() {
         
     }
-    
+
 }
 
 ?>

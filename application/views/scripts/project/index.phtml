@@ -4,17 +4,28 @@ echo $this->render('/navigation/nav.phtml');
 if (isset($this->data)) {
     ?>
     <table style="width:auto;" class="table table-bordered" align="center">
-        <thead><tr><th>ID</th><th>Project Title</th><th>Description</th><th>Date Added</th><th>Attachment</th><th>Settings</th></tr></thead>       
+        <thead><tr><th>ID</th><th>Project Title</th><th>Description</th><th>Date Added</th><th>Attachment</th><th></th><th>Settings</th></tr></thead>       
         <?php
         foreach ($this->data as $v) {
             ?>
             <tbody><tr>
                     <td><?php echo $v->id ?></td><td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
-                    <td><?php echo $v->date_added ?></td><td><?php echo $v->attachment ?></td>
+                    <td><?php echo $v->date_added ?></td><td><?php
+                        if ($v->status == 0) {
+                            echo '<u style="color: red;">De-active</u>';
+                        } else {
+                            echo '<u style="color: green;">Active</u>';
+                        }
+                        ?></td><td><?php echo $v->attachment ?></td>
                     <td><a href="<?php echo $this->baseurl(); ?>/project/update/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a>|                    
                         <a href="<?php echo $this->baseurl(); ?>/project/delete/id/<?php echo $v['id'] ?>"><i class='icon-trash'></i></a>|
-                        <a href="<?php echo $this->baseurl(); ?>/project/status/id/<?php echo $v['id'] ?>"><i class='icon-ban-circle'></i></a></td>
+                        <?php if ($v->status == 1) { ?>   <a href="<?php echo $this->baseurl(); ?>/project/status/id/<?php echo $v['id'] ?>"><img src="<?php echo $this->baseurl(); ?>/public/Bootstrap/img/valid.png"></a>
+                        <?php } else { ?>
+                            <a href="<?php echo $this->baseurl(); ?>/project/status/id/<?php echo $v['id'] ?>"><img src="<?php echo $this->baseurl(); ?>/public/Bootstrap/img/error.png"></a>
+                        <?php } ?>
+                    </td></tr>
             </tbody>
+
             <?php
         }
     }

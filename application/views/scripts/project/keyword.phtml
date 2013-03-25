@@ -2,9 +2,12 @@
 <div class="container">
     <h3>Keyword Allocation</h3>
     <div class="front">
-
+        <form method="post">
+            <?php echo $this->form->getElement('keyword'); ?>
+            <?php echo $this->form->getElement('project_name'); ?>
+            <?php echo $this->form->getElement('submit'); ?>
+        </form>
         <?php
-        echo $this->form;
         if (isset($this->select)) {
             ?>
         </div>

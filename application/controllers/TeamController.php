@@ -174,7 +174,7 @@ class TeamController extends Zend_Controller_Action {
         $id = $this->_getParam('id');
         $model = new Application_Model_keyword();
         $form = new Application_Form_KeywordForm();
-        $form->clearElements(array('pos'=>'pos','time_added'=>'time_added','id'=>'id'));
+        $form->clearElements(array('pos' => 'pos', 'time_added' => 'time_added', 'id' => 'id'));
         $result = $model->fetchrow("id=" . $id);
         $form->populate($result->toArray());
         if ($this->_request->isPost() && $form->isValid($_POST)) {
