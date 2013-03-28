@@ -1,7 +1,6 @@
 <?php
 
 class AdminController extends Zend_Controller_Action {
-    /* Instance created for protected Function */
 
     protected $_adminModel = Null;
     protected $_adminForm = Null;

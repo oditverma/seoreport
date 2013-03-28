@@ -35,7 +35,7 @@ class IndexController extends Zend_Controller_Action {
             if ($type == 'team' && $status == TRUE) {
                 $this->_redirect('/team/index');
             } else {
-                echo "<script>bootbox.alert('incorrect');</script>";
+                echo "<script>bootbox.alert('Incorrect Username or Password');</script>";
             }
         }
     }

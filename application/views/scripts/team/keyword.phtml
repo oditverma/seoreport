@@ -15,8 +15,8 @@
             foreach ($this->select as $v) {
                 ?>
                 <tbody><tr>
-                        <td><?php echo $v->Keyword ?></td>
-                        <td><?php echo $v->time_added ?></td>
+                        <td><?php echo $v->keyname ?></td>
+                        <td><?php echo $v->timeadded ?></td>
                         <td><?php echo $v->pos ?></td>
                         <td><?php if ($v->pos == 1) { ?>  
                                 <a style="visibility:hidden;" href="<?php echo $this->baseurl(); ?>/team/keyup/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>|

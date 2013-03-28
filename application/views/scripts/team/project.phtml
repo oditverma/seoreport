@@ -4,17 +4,22 @@ echo $this->render('/navigation/teamNav.phtml');
 if (isset($this->row)) {
     ?>
     <table style="width: auto;margin-top: 50px;" class="table table-bordered" align="center">
-        <thead><tr><th>ID</th><th>Project Title</th><th>Description</th><th>Date Added</th><th>Attachment</th></tr></thead>       
-        <?php
-        foreach ($this->row as $v) {
-            ?>
-            <tbody><tr>
-                    <td><?php echo $v->id ?></td><td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
-                    <td><?php echo $v->date_added ?></td><td><?php echo $v->attachment ?></td>
-            </tbody>
-
+        <thead><tr><th>ID</th><th>Project Title</th><th>Description</th><th>Date Added</th><th>Attachment</th><th>Manage Tasks</th></tr></thead><tbody>       
             <?php
+            foreach ($this->row as $v) {
+                ?>
+                <tr>
+                    <td><?php echo $v->id ?></td><td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
+                    <td><?php echo $v->date_added ?></td><td><?php echo $v->attachment ?></td><td>
+                        <a href="<?php echo $this->baseurl(); ?>/team/edit/id/<?php echo $v['id'] ?>"><i class="icon-plus"></i></a> |
+                        <a href="<?php echo $this->baseurl(); ?>/team/updt/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a> |
+                        <a href="<?php echo $this->baseurl(); ?>/team/del/id/<?php echo $v['id'] ?>"><i class="icon-trash"></i></a> 
+
+                    </td>
+                </tr>
+                <?php
+            }
         }
-    }
-    ?>    
+        ?>    
+    </tbody>
 </table>  

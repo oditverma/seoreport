@@ -2,24 +2,18 @@
 <div class="container">
     <h3>Keyword Allocation</h3>
     <div class="front">
-        <form method="post">
-            <?php echo $this->form->getElement('keyword'); ?>
-            <?php echo $this->form->getElement('project_name'); ?>
-            <?php echo $this->form->getElement('submit'); ?>
-        </form>
         <?php
         if (isset($this->select)) {
             ?>
         </div>
-
         <table  class="table table-bordered">
             <thead><tr><th>Keyword</th><th>Date Added</th><th>Keyword Order</th><th>Priority</th><th>Settings</th></tr></thead>       
             <?php
             foreach ($this->select as $v) {
                 ?>
                 <tbody><tr>
-                        <td><?php echo $v->Keyword ?></td>
-                        <td><?php echo $v->time_added ?></td>
+                        <td><?php echo $v->Keyname ?></td>
+                        <td><?php echo $v->timeadded ?></td>
                         <td><?php echo $v->pos ?></td>
                         <td><?php if ($v->pos == 1) { ?>  
                                 <a style="visibility:hidden;" href="<?php echo $this->baseurl(); ?>/project/keyup/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>|

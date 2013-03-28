@@ -63,9 +63,11 @@ class ProjectController extends Zend_Controller_Action {
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $row = $this->_getProjectModel();
             $data = $form->getValues();
+            print_r($data);
+            die();
             $start = date('Y-m-d', strtotime($data['date_added']));
             $this->_getProjectModel()->insert(array('title' => $data['title'],
-                'description' => sha1($data['description']),
+                'description' => $data,
                 'date_added' => $start,
                 'attachment' => $data['attachment'],
                 'user_id' => $data['user_id']));
@@ -89,28 +91,22 @@ class ProjectController extends Zend_Controller_Action {
     }
 
     public function keywordAction() {
-
-
-        $row = new Application_Model_keyword();
-        $last_pos = $row->getAdapter()->lastInsertId();
-        $pos = $row->select()
-                ->from($row, array(new Zend_Db_Expr('max(id) as maxId')));
-        echo $pos;
-        die();
+        $db = new Application_Model_keyword();
         $form = new Application_Form_KeywordForm();
         $form->removeElement("update");
         if ($this->_request->isPost() && $form->isValid($_POST)) {
-            // $row = new Application_Model_keyword();
             $data = $form->getValues();
-
-            $row->insert($data);
-
-
-            $row->update(array('pos' => $last_pos('pos' + 1)));
+            $inc = $db->select()->from($db, array(new Zend_Db_Expr('max(pos)+1 as pos')));
+            $rs = $db->fetchRow($inc);
+            $array = $rs->toArray();
+            $db->insert($data);
+            $pos = $db->fetchRow(null, 'id desc');
+            $arr = $pos->toArray();
+            $id = $arr['id'];
+            $db->update($array, "id='$id'");
             $this->_redirect('/project/keyword');
         }
-        //$row = new Application_Model_keyword();
-        $select = $row->fetchAll('1=1', 'pos');
+        $select = $db->fetchAll('1=1', 'pos');
         $this->view->select = $select;
         $this->view->form = $form;
     }

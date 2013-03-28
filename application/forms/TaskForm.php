@@ -5,6 +5,7 @@ class Application_Form_TaskForm extends Zend_Form {
     public function init() {
         $this->setAttrib('class','form-signin');
         $name = $this->createElement('text', 'task')->setAttrib('Placeholder', 'name')->setLabel('Name : ')->setRequired(true);
+       
         $add = $this->createElement('text', 'added_by')->setAttrib('placeholder', 'Added by')->setLabel('Added By: ')->setRequired(true);
         $assign = $this->createElement('text', 'assign_to')->setAttrib('placeholder', 'Assign to')->setLabel('Assign To: ')->setRequired(true);
         $time = $this->createElement('text', 'time_added')->setAttrib('placeholder', 'Time added')
