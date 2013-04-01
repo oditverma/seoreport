@@ -20,8 +20,7 @@ class ProjectController extends Zend_Controller_Action {
     }
 
     public function init() {
-        $auth = Zend_auth::getInstance();
-        if ($auth != Zend_Auth::getInstance()->hasIdentity()) {
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
             Zend_Auth::getInstance()->clearIdentity();
             $this->_redirect('/index');
         }
