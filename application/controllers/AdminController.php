@@ -6,10 +6,14 @@ class AdminController extends Zend_Controller_Action {
     protected $_adminForm = Null;
 
     public function init() {
-        $auth = Zend_auth::getInstance();
-        if ($auth != Zend_Auth::getInstance()->hasIdentity()) {
+        $auth = Zend_Auth::getInstance();
+        $type = $auth->getIdentity()->account_type;
+        if (!$auth->hasIdentity()) {
             Zend_Auth::getInstance()->clearIdentity();
-            $this->_redirect('/user');
+            $this->_redirect('/index');
+        } else if ($type == 'team' || $type == 'client') {
+            Zend_Auth::getInstance()->clearIdentity();
+            $this->_redirect('/index');
         }
     }
 

@@ -1,33 +1,44 @@
-<h2 align="center"><u>Project Section</u></h2>
-<?php
-echo $this->render('/navigation/nav.phtml');
-if (isset($this->data)) {
-    ?>
-    <table style="width:auto;" class="table table-bordered" align="center">
-        <thead><tr><th>ID</th><th>Project Title</th><th>Description</th><th>Date Added</th><th>Attachment</th><th></th><th>Settings</th></tr></thead>       
-        <?php
-        foreach ($this->data as $v) {
-            ?>
-            <tbody><tr>
-                    <td><?php echo $v->id ?></td><td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
-                    <td><?php echo $v->date_added ?></td><td><?php
-                        if ($v->status == 0) {
-                            echo '<u style="color: red;">De-active</u>';
-                        } else {
-                            echo '<u style="color: green;">Active</u>';
-                        }
-                        ?></td><td><?php echo $v->attachment ?></td>
-                    <td><a href="<?php echo $this->baseurl(); ?>/project/update/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a>|                    
-                        <a href="<?php echo $this->baseurl(); ?>/project/delete/id/<?php echo $v['id'] ?>"><i class='icon-trash'></i></a>|
-                        <?php if ($v->status == 1) { ?>   <a href="<?php echo $this->baseurl(); ?>/project/status/id/<?php echo $v['id'] ?>"><img src="<?php echo $this->baseurl(); ?>/public/Bootstrap/img/valid.png"></a>
-                        <?php } else { ?>
-                            <a href="<?php echo $this->baseurl(); ?>/project/status/id/<?php echo $v['id'] ?>"><img src="<?php echo $this->baseurl(); ?>/public/Bootstrap/img/error.png"></a>
-                        <?php } ?>
-                    </td></tr>
-            </tbody>
+<?php echo $this->render('/navigation/nav.phtml'); ?>
+<div class="container" style="margin-top: 20px;">
+    <div class="row-fluid">
+        <div class="hero-unit">
+            <h2>Project Section</h2>
+        </div>
 
+        <div class="row-fluid">
             <?php
-        }
-    }
-    ?>    
-</table>
+            if (isset($this->data)) {
+                ?>
+                <table  class="table table-bordered" align="center">
+                    <thead><tr><th>Project Title</th><th>Description</th><th>Date Added</th><th>Status</th><th>File</th><th>Settings</th></tr></thead>       
+                    <?php
+                    foreach ($this->data as $v) {
+                        ?>
+                        <tbody><tr>
+                                <td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
+                                <td><?php echo $v->date_added ?></td><td><?php
+                                    if ($v->status == 0) {
+                                        echo '<span class="badge badge-important">De-active</span>';
+                                    } else {
+                                        echo '<span class="badge badge-success">Active</span>';
+                                    }
+                                    ?></td><td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v->attachment ?>"><i class="icon-file"></i></a></td>
+                                <td>        
+                                    <a href="<?php echo $this->baseurl(); ?>/project/keyword/id/<?php echo $v['id'] ?>" data-toggle="tooltip" rel="tooltip" title="Manage keyword" ><i class="icon-tags"></i></a>|
+                                    <a href="<?php echo $this->baseurl(); ?>/project/update/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Update Project" ><i class="icon-cog"></i></a>|                    
+                                    <a href="<?php echo $this->baseurl(); ?>/project/delete/id/<?php echo $v['id'] ?>" data-toggle="tooltip"  rel="tooltip" title="Delete Project"><i class='icon-trash'></i></a>|
+                                    <?php if ($v->status == 1) { ?>   <a href="<?php echo $this->baseurl(); ?>/project/status/id/<?php echo $v['id'] ?>" data-toggle="tooltip" rel="tooltip" title="Active"><i class="icon-ok-sign"></i></a>
+                                    <?php } else { ?>
+                                        <a href="<?php echo $this->baseurl(); ?>/project/status/id/<?php echo $v['id'] ?>" data-toggle="tooltip" rel="tooltip" title="Unactive"><i class="icon-ban-circle"></i></a>
+                                        <?php } ?>                                          
+                                </td></tr>
+                        </tbody>
+
+                        <?php
+                    }
+                }
+                ?>    
+            </table>
+        </div>
+    </div>
+</div>

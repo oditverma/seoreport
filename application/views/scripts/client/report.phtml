@@ -1,24 +1,28 @@
-<?php echo $this->render('/navigation/clientNav.phtml');?>
-<?php
-echo $this->form;
-if (isset($this->show)) {
-    ?>
-
-    <table style="width:50%;" class="table table-bordered">
-        <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
-        <?php
-        foreach ($this->show as $v) {
+<?php echo $this->render('/navigation/clientNav.phtml'); ?>
+<div class="container">
+    <div class="hero-unit">
+        <h2>View Reports</h2>
+    </div>
+    <?php echo $this->form; ?>
+    <?php
+    if (isset($this->show)) {
+        ?>
+        <table class="table table-bordered">
+            <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
+            <tbody>        
+                <?php
+                foreach ($this->show as $v) {
+                    ?>
+                    <tr>
+                        <td><?php echo $v['task'] ?></td>
+                        <td><?php echo $v['description'] ?></td>
+                        <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                    </tr>
+                    <?php
+                }
+            }
             ?>
-            <tbody>
-                <tr>
-                    <td><?php echo $v['task'] ?></td>
-                    <td><?php echo $v['description'] ?></td>
-                    <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
-                </tr>
-            </tbody>
+        </tbody>
 
-            <?php
-        }
-    }
-    ?>
-</table>
+    </table>
+</div>

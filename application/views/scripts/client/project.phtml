@@ -1,35 +1,35 @@
 <?php
 echo $this->render('/navigation/clientNav.phtml');
-if (isset($this->show)) {
-    foreach ($this->show as $v) {
-        ?>    
-      
-<div class="container">
-      <div class="container-narrow" style="float: top">
-            <div class="masthead">
-                <h3 style="text-transform: capitalize;"><?php echo $v['title']; ?></h3>
-                <hr>
-            </div>
+?>    
+<div class="container" style="margin-top: 20px;">
+    <div class="row-fluid">
+        <div class="hero-unit">
+            <h2>Project Section</h2>
         </div>
-    <?php
-    }
-}
-?>
-    <div class="row">
-        <div class="span4" style="width:45%;">
-            <h2>View Task</h2>
-            View the tasks ,check their status either it is active or De-active. 
-            <p></p>
-            <p><a class="btn" href="<?php echo $this->baseurl(); ?>/client/task">View Reports »</a></p>
+        <div class="row-fluid">
+            <?php
+            if (isset($this->show)) {
+                ?>
+                <table class="table table-bordered">
+                    <thead><tr><th>Project Title</th><th>Description</th><th>Date Added</th><th>file</th></tr></thead>       
+                    <tbody>
+                        <?php
+                        foreach ($this->show as $v) {
+                            ?>
+                            <tr>
+                                <td><?php echo $v['title'] ?></td>
+                                <td><?php echo $v['description'] ?></td>
+                                <td><?php echo $v['date_added'] ?></td>
+                                <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    ?>   
+                </tbody>
+            </table>
         </div>
-        <div class="span4">
-            <h2>Reports</h2>
-            <p>It consists of analysis of the website with respect to the on-site, on-page, off-page factors, proposed list of keywords, proposed changes, proposed plan of action, SEO pricing and features.</p>
-            <p><a class="btn" href="<?php echo $this->baseurl(); ?>/client/report">View Reports »</a></p>
-        </div>
-
     </div>
-
     <hr>
 
     <footer>

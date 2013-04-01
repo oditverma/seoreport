@@ -1,25 +1,30 @@
 <?php echo $this->render('/navigation/clientNav.phtml') ?>
-<?php
-if (isset($this->show)) {
-    ?>
-    <table style="width:auto;" class="table table-bordered">
-        <thead><tr><th>ID</th><th>Title</th><th>Time Added</th><th>Added by</th><th>Assigned to</th><th>File</th></tr></thead>   
-        <?php
-        foreach ($this->show as $v) {
-            ?>
-            <tbody>
-                <tr>
-                    <td><?php echo $v['id'] ?></td>
-                    <td><?php echo $v['task'] ?></td>
-                    <td><?php echo $v['time_added'] ?></td>
-                    <td><?php echo $v['added_by'] ?></td>
-                    <td><?php echo $v['assigned_to'] ?></td>
-                    <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
-                </tr>
-            </tbody>
-
+<div class="container">
+    <div class="hero-unit">
+        <h2>View Tasks</h2>
+    </div>
+    <?php
+    if (isset($this->show)) {
+        ?>
+        <table class="table table-bordered">
+            <thead><tr><th>ID</th><th>Title</th><th>Time Added</th><th>Added by</th><th>Assigned to</th><th>File</th></tr></thead>   
             <?php
+            foreach ($this->show as $v) {
+                ?>
+                <tbody>
+                    <tr>
+                        <td><?php echo $v['id'] ?></td>
+                        <td><?php echo $v['task'] ?></td>
+                        <td><?php echo $v['time_added'] ?></td>
+                        <td><?php echo $v['added_by'] ?></td>
+                        <td><?php echo $v['assigned_to'] ?></td>
+                        <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                    </tr>
+                </tbody>
+
+                <?php
+            }
         }
-    }
-    ?>    
-</table>   
+        ?>    
+    </table>   
+</div>

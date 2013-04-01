@@ -1,18 +1,23 @@
-<?php echo $this->render('navigation/nav.phtml') ?>
-<div class="container-fluid" style="padding-right: 20px;padding-left: 20px;margin-top: 20px">
+<?php
+echo $this->render('navigation/nav.phtml')
+?>
+<?php 
+$auth=  Zend_Auth::getInstance();
+$name = $auth->getIdentity()->name;
+?>
+<div class="container-fluid" style="padding-right: 20px;padding-left: 20px;margin-top: 20px;">
     <div class="row-fluid">
         <div class="span3">
             <div class="well sidebar-nav">
                 <ul class="nav nav-list">
                     <li class="nav-header">Project</li>
-                    <li><a href="<?php echo $this->baseurl(); ?>/project/edit"><i class="icon-plus-sign"></i>Add Project</a></li>
-                    <li><a href="<?php echo $this->baseurl(); ?>/project/index"><i class="icon-tasks"></i>Manage Projects</a></li>
-                    <li><a href="<?php echo $this->baseurl(); ?>/project/keyword"><i class="icon-plus"></i>Allocate Keywords</a></li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/project/edit"><i class="icon-edit"></i>Add Project</a></li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/project/index"><i class="icon-tasks"></i>View & Manage Projects</a></li>
                     <li class="nav-header">Reports</li>
                     <li><a href="<?php echo $this->baseurl(); ?>/admin/report"><i class="icon-eye-open"></i>View Report</a></li>
                     <li class="nav-header">User</li>
                     <li><a href="<?php echo $this->baseurl(); ?>/admin/index"><i class="icon-share"></i>View Profile(s)</a></li>
-                    <li><a href="<?php echo $this->baseurl(); ?>/admin/edit">Add User</a></li>
+                    <li><a href="<?php echo $this->baseurl(); ?>/admin/edit"><i class="icon-plus-sign"></i>Add User</a></li>
                     <!--<li><a href="#">Link</a></li>-->                    
                 </ul>
             </div>
@@ -20,7 +25,7 @@
         <div class="span9">
             <div class="hero-unit">
                 <h1>Admin Section!</h1>
-                <h3>Welcome </h3>
+                <h3>Welcome <span style=" text-transform:capitalize;"><?php echo $name;?></span></h3>
             </div>
             <div class="row-fluid">
 
@@ -40,17 +45,17 @@
                                     <td><?php echo $v->address ?></td>
                                     <td><?php
                                         if ($v->status == 0) {
-                                            echo '<u style="color: red;">De-active</u>';
+                                            echo '<span class="badge badge-important">De-active</span>';
                                         } else {
-                                            echo '<u style="color: green;">Active</u>';
+                                            echo '<span class="badge badge-success">Active</span>';
                                         }
                                         ?></td>
                                     <td><?php echo $v->contact ?></td>
-                                    <td><a href="<?php echo $this->baseurl(); ?>/admin/update/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a>|
-                                        <a href="<?php echo $this->baseurl(); ?>/admin/delete/id/<?php echo $v['id'] ?>"><i class='icon-trash'></i></a>|
-                                        <?php if ($v->status == 1) { ?>  <a href="<?php echo $this->baseurl(); ?>/admin/status/id/<?php echo $v['id'] ?>"><img src="<?php echo $this->baseurl(); ?>/public/Bootstrap/img/valid.png"></a><?php } else { ?>
-                                            <a href="<?php echo $this->baseurl(); ?>/admin/status/id/<?php echo $v['id'] ?>"><img src='<?php echo $this->baseurl(); ?>/public/Bootstrap/img/error.png'></a> 
-                                        <?php } ?>
+                                    <td><a href="<?php echo $this->baseurl(); ?>/admin/update/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Update Info" ><i class="icon-cog"></i></a>|
+                                        <a href="<?php echo $this->baseurl(); ?>/admin/delete/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Delete User" ><i class='icon-trash'></i></a>|
+                                        <?php if ($v->status == 1) { ?>  <a href="<?php echo $this->baseurl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Active" ><i class="icon-ok-circle"></i></a><?php } else { ?>
+                                            <a href="<?php echo $this->baseurl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Unactive" ><i class="icon-ban-circle"></i></a> 
+                                            <?php } ?>
                                     </td>
                                 </tr>
                             </tbody>

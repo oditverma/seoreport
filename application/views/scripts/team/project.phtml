@@ -1,25 +1,40 @@
-<h2 align="center"><u>Project Section</u></h2>
-<?php
-echo $this->render('/navigation/teamNav.phtml');
-if (isset($this->row)) {
-    ?>
-    <table style="width: auto;margin-top: 50px;" class="table table-bordered" align="center">
-        <thead><tr><th>ID</th><th>Project Title</th><th>Description</th><th>Date Added</th><th>Attachment</th><th>Manage Tasks</th></tr></thead><tbody>       
-            <?php
-            foreach ($this->row as $v) {
-                ?>
-                <tr>
-                    <td><?php echo $v->id ?></td><td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
-                    <td><?php echo $v->date_added ?></td><td><?php echo $v->attachment ?></td><td>
-                        <a href="<?php echo $this->baseurl(); ?>/team/edit/id/<?php echo $v['id'] ?>"><i class="icon-plus"></i></a> |
-                        <a href="<?php echo $this->baseurl(); ?>/team/updt/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a> |
-                        <a href="<?php echo $this->baseurl(); ?>/team/del/id/<?php echo $v['id'] ?>"><i class="icon-trash"></i></a> 
-
-                    </td>
-                </tr>
+<?php echo $this->render('/navigation/teamNav.phtml'); ?>
+<div class="container" style='padding-top: 20px;padding-bottom: 20px;'>
+    <div class="hero-unit">
+        <h2>View Project(s)</h2>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    </div>
+    <?php if (isset($this->row)) {
+        ?>
+        <table class="table table-bordered">
+            <thead><tr><th>ID</th><th>Project Title</th><th>Description</th><th>Date Added</th><th>Attachment</th></tr></thead><tbody>       
                 <?php
+                foreach ($this->row as $v) {
+                    ?>
+                    <tr>
+                        <td><?php echo $v->id ?></td><td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
+                        <td><?php echo $v->date_added ?></td><td><?php echo $v->attachment ?></td>
+                    </tr>
+                    <?php
+                }
             }
-        }
-        ?>    
-    </tbody>
-</table>  
+            ?>    
+        </tbody>
+    </table>  
+    <div class="row">
+        <div class="span4">
+            <h2>Task(s)</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn" href="<?php echo $this->baseurl(); ?>/team/team">View details »</a></p>
+        </div>
+        <div class="span4">
+            <h2>Report(s)</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn" href="#">View details »</a></p>
+        </div>
+    </div>
+    <hr>
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
+</div>

@@ -36,13 +36,12 @@
         <script src="<?php echo $this->baseUrl(); ?>/Bootstrap/js/jquery.validate.min.js"></script>
         <script src="<?php echo $this->baseUrl(); ?>/Bootstrap/js/jquery.validate.js"></script>
         <script src="<?php echo $this->baseUrl(); ?>/Bootstrap/js/jquery-ui.min.js"></script>
-
         <script src="<?php echo $this->baseUrl(); ?>/Bootstrap/js/date.js"></script>
         <script src="<?php echo $this->baseUrl(); ?>/Bootstrap/js/daterangepicker.jQuery.compressed.js"></script>
         <script src="<?php echo $this->baseUrl(); ?>/Bootstrap/js/daterangepicker.jQuery.js"></script>
-        <script type="text/javascript">
+        <script type='text/javascript'>
             $(function() {
-                $('.carousel').carousel();
+                $("[rel=tooltip]").tooltip();
             });
         </script>
         <script type="text/javascript">
@@ -86,7 +85,6 @@
             }
         </style>
     </head>
-
     <body>
         <?php echo $this->layout()->content; ?>
     </body>

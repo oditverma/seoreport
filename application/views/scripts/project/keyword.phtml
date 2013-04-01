@@ -3,6 +3,7 @@
     <h3>Keyword Allocation</h3>
     <div class="front">
         <?php
+        echo $this->form;
         if (isset($this->select)) {
             ?>
         </div>
@@ -12,22 +13,23 @@
             foreach ($this->select as $v) {
                 ?>
                 <tbody><tr>
-                        <td><?php echo $v->Keyname ?></td>
+                        <td><?php echo $v->keyname ?></td>
                         <td><?php echo $v->timeadded ?></td>
                         <td><?php echo $v->pos ?></td>
                         <td><?php if ($v->pos == 1) { ?>  
-                                <a style="visibility:hidden;" href="<?php echo $this->baseurl(); ?>/project/keyup/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>|
-                                <a href="<?php echo $this->baseurl(); ?>/project/keydown/id/<?php echo $v['id'] ?>"><i class='icon-arrow-down'></i></a>
+                                <a style="visibility:hidden;" href="<?php echo $this->baseurl(); ?>/project/keyup/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>|
+                                <a href="<?php echo $this->baseurl(); ?>/project/keydown/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class='icon-arrow-down'></i></a>
+
                             <?php } else {
                                 ?>
-                                <a  href="<?php echo $this->baseurl(); ?>/project/keyup/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>|                    
-                                <a href="<?php echo $this->baseurl(); ?>/project/keydown/id/<?php echo $v['id'] ?>"><i class='icon-arrow-down'></i></a>
+                                <a  href="<?php echo $this->baseurl(); ?>/project/keyup/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>|                    
+                                <a href="<?php echo $this->baseurl(); ?>/project/keydown/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class='icon-arrow-down'></i></a>
                                 <?php
                             }
                             ?>
                         </td>
-                        <td><a href="<?php echo $this->baseurl(); ?>/project/keyupdt/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a>|                    
-                            <a href="<?php echo $this->baseurl(); ?>/project/keydel/id/<?php echo $v['id'] ?>"><i class='icon-trash'></i></a>
+                        <td><a href="<?php echo $this->baseurl(); ?>/project/keyupdt/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a>|                    
+                            <a href="<?php echo $this->baseurl(); ?>/project/keydel/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class='icon-trash'></i></a>
                         </td></tr>
                 </tbody>
                 <?php

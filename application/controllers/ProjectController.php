@@ -2,7 +2,7 @@
 
 class ProjectController extends Zend_Controller_Action {
 
-    protected $_projectFrom = Null;
+    protected $_projectForm = Null;
     protected $_projectModel = Null;
 
     protected function _getProjectModel() {
@@ -13,7 +13,7 @@ class ProjectController extends Zend_Controller_Action {
     }
 
     protected function _getProjectForm() {
-        if (!$this->_projectFrom instanceof Application_Form_ProjectForm) {
+        if (!$this->_projectForm instanceof Application_Form_ProjectForm) {
             $this->_projectForm = new Application_Form_ProjectForm();
         }
         return $this->_projectForm;
@@ -63,11 +63,12 @@ class ProjectController extends Zend_Controller_Action {
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $row = $this->_getProjectModel();
             $data = $form->getValues();
-            print_r($data);
-            die();
+            /*    echo "<pre>";
+              print_r($data);
+              die(); */
             $start = date('Y-m-d', strtotime($data['date_added']));
             $this->_getProjectModel()->insert(array('title' => $data['title'],
-                'description' => $data,
+                'description' => $data['description'],
                 'date_added' => $start,
                 'attachment' => $data['attachment'],
                 'user_id' => $data['user_id']));
@@ -91,11 +92,17 @@ class ProjectController extends Zend_Controller_Action {
     }
 
     public function keywordAction() {
-        $db = new Application_Model_keyword();
+        $project_id = $this->_getParam('id');
         $form = new Application_Form_KeywordForm();
-        $form->removeElement("update");
+        $db = new Application_Model_keyword();
+        $form->removeElement('update');
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValues();
+
+            $data['project_id'] = $project_id;
+            /*   echo "<pre>";
+              print_r($data);
+              die(); */
             $inc = $db->select()->from($db, array(new Zend_Db_Expr('max(pos)+1 as pos')));
             $rs = $db->fetchRow($inc);
             $array = $rs->toArray();
@@ -104,9 +111,10 @@ class ProjectController extends Zend_Controller_Action {
             $arr = $pos->toArray();
             $id = $arr['id'];
             $db->update($array, "id='$id'");
-            $this->_redirect('/project/keyword');
+            $this->_redirect('/project/keyword/id/' . $project_id);
         }
-        $select = $db->fetchAll('1=1', 'pos');
+        $row = new Application_Model_keyword();
+        $select = $row->fetchAll("project_id='$project_id' ", 'pos asc');
         $this->view->select = $select;
         $this->view->form = $form;
     }
@@ -116,13 +124,19 @@ class ProjectController extends Zend_Controller_Action {
         $form = new Application_Form_KeywordForm();
         if (!empty($id)) {
             $row = new Application_Model_keyword();
+            $project_id = $row->fetchRow("id='$id'");
+            $p_id=$project_id->toArray();
             $row->delete("id='$id'");
         }
         $this->view->form = $form;
-        $this->_redirect('/project/keyword');
+        $this->_redirect('/project/keyword/id/' . $p_id['project_id']);
     }
 
     public function keyupdtAction() {
+        $p_id = $this->_getParam('project_id');
+
+        echo $p_id;
+        die();
         $id = $this->_getParam('id');
         $form = new Application_Form_KeywordForm();
         $model = new Application_Model_keyword();
@@ -139,22 +153,22 @@ class ProjectController extends Zend_Controller_Action {
     }
 
     public function keyupAction() {
+        $id = $this->getParam('id');
+        $projectID = $this->_getParam('projectId');
+
         $this->_helper->viewRenderer->setNoRender();
-        $id = $this->_request->getParam('id');
         $model = new Application_Model_keyword();
         if (empty($id)) {
             throw new Zend_Exception('Id not provided!');
         }
         $row = $model->fetchRow("id='$id'");
         if (!$row) {
-            echo "<script>bootbox.alert( 'Requested page not found!');</script>";
-            $this->_redirect('project/keyword');
+            $this->_redirect('project/keyword/id/' . $projectID);
         }
         $currentDisplayOrder = $row->pos;
-        $lesserRow = $model->fetchRow(" pos< $currentDisplayOrder ", "pos desc limit 1");
+        $lesserRow = $model->fetchRow("pos< $currentDisplayOrder ", "pos desc limit 1");
         if ($currentDisplayOrder == $lesserRow->pos) {
-            echo "<script>bootbox.alert( 'Requested page not found!');</script>";
-            $this->_redirect('project/keyword');
+            $this->_redirect('project/keyword/id/' . $projectID);
         }
         if (!$lesserRow) {
             $newDisplayOrder = ($currentDisplayOrder - 1 > 1) ? $currentDisplayOrder - 1 : $currentDisplayOrder;
@@ -166,16 +180,16 @@ class ProjectController extends Zend_Controller_Action {
         try {
             $row->pos = $newDisplayOrder;
             $row->save();
-            echo "<script>bootbox.alert( 'Order changed!');</script>";
-            $this->_redirect('project/keyword');
+            $this->_redirect('project/keyword/id/' . $projectID);
         } catch (Zend_Exception $e) {
-            $error = $e->getMessage();
-            echo"<script>bootbox.alert('$error');</script>";
-            $this->_redirect('project/keyword');
+            echo $e->getMessage();
+            //echo"<script>bootbox.alert('$error');</script>";
+            $this->_redirect('project/keyword/id/' . $projectID);
         }
     }
 
     public function keydownAction() {
+
         $this->_helper->viewRenderer->setNoRender();
         $id = $this->_request->getParam('id');
         $model = new Application_Model_keyword();
@@ -201,7 +215,7 @@ class ProjectController extends Zend_Controller_Action {
         try {
             $row->pos = $newDisplayOrder;
             $row->save();
-            $this->_redirect('project/keyword');
+            $this->_redirect('project/keyword/id/');
         } catch (Zend_Exception $e) {
             echo $e->getMessage();
             $this->_redirect('project/kecyword');

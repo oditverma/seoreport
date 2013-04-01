@@ -40,6 +40,34 @@ class IndexController extends Zend_Controller_Action {
         }
     }
 
+    public function recoverAction() {
+        $form = new Application_Form_EmailForm();
+        $model = new Application_Model_admin();
+        $hash = substr(sha1(microtime()), 0, 6);
+        $arr['pass'] = $hash;
+        if ($this->_request->isPost() && $form->isValid($_POST)) {
+            $data = $form->getValues();
+            $id = $data['email'];
+            $model->update($arr, "email='$id'");
+            $smtpOptions = array('auth' => 'login',
+                'username' => 'oditverma@gmail.com',
+                'password' => 'Eddy@169318',
+                'ssl' => 'ssl',
+                'port' => 465);
+            $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $smtpOptions);
+            Zend_Mail::setDefaultTransport($tr);
+            $mail = new Zend_Mail();
+            $mail->setBodyText('Your Password has successfully changed.' . ' Your new Account password is ' . "$hash");
+            $mail->setFrom('oditverma@gmail.com', 'Odit');
+            $mail->addTo($id, 'fwd');
+            $mail->addCc('oditverma@gmail.com', 'fwd');
+            $mail->setSubject('TestSubject');
+            $mail->send($tr);
+            $this->_redirect('/index');
+        }
+        $this->view->form = $form;
+    }
+
     public function logoutAction() {
         $authAdapter = Zend_Auth::getInstance();
         $authAdapter->clearIdentity();

@@ -3,7 +3,12 @@
 class ClientController extends Zend_Controller_Action {
 
     public function init() {
-        if (!Zend_Auth::getInstance()->hasIdentity()) {
+        $auth = Zend_Auth::getInstance();
+        $type = $auth->getIdentity()->account_type;
+        if (!$auth->hasIdentity()) {
+            Zend_Auth::getInstance()->clearIdentity();
+            $this->_redirect('/index');
+        } else if ($type == 'admin' || $type == 'team') {
             Zend_Auth::getInstance()->clearIdentity();
             $this->_redirect('/index');
         }
@@ -24,7 +29,7 @@ class ClientController extends Zend_Controller_Action {
         $auth = Zend_Auth::getInstance();
         $id = $auth->getIdentity()->id;
         $db = Zend_Db_Table::getDefaultAdapter();
-        $select = $db->select()->from(array('project' => 'project'), array('project.title'))
+        $select = $db->select()->from(array('project' => 'project'), array('project.*'))
                 ->where("user_id='$id'");
         $show = $db->fetchAll($select);
         $this->view->show = $show;
