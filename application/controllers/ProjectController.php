@@ -1,5 +1,7 @@
 <?php
 
+include_once APPLICATION_PATH . '/../library/Zend/Zend/auth.php';
+
 class ProjectController extends Zend_Controller_Action {
 
     protected $_projectForm = Null;
@@ -124,7 +126,7 @@ class ProjectController extends Zend_Controller_Action {
         if (!empty($id)) {
             $row = new Application_Model_keyword();
             $project_id = $row->fetchRow("id='$id'");
-            $p_id=$project_id->toArray();
+            $p_id = $project_id->toArray();
             $row->delete("id='$id'");
         }
         $this->view->form = $form;
