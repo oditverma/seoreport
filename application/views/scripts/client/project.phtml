@@ -20,7 +20,7 @@ echo $this->render('/navigation/clientNav.phtml');
                                 <td><?php echo $v['title'] ?></td>
                                 <td><?php echo $v['description'] ?></td>
                                 <td><?php echo $v['date_added'] ?></td>
-                                <td><a href="<?php echo $this->baseurl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                                <td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
                             </tr>
                             <?php
                         }
