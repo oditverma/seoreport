@@ -131,10 +131,6 @@ class ProjectController extends Zend_Controller_Action {
     }
 
     public function keyupdtAction() {
-        $p_id = $this->_getParam('project_id');
-
-        echo $p_id;
-        die();
         $id = $this->_getParam('id');
         $form = new Application_Form_KeywordForm();
         $model = new Application_Model_keyword();
@@ -142,10 +138,8 @@ class ProjectController extends Zend_Controller_Action {
         $form->populate($result->toArray());
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValues();
-            $select = $model->update($data, "id='$id'");
-            print_r($select);
-            die();
-            $this->_redirect('/project/index');
+            $model->update($data, "id='$id'");
+            $this->_redirect('/project/keyword/id');
         }
         $this->view->form = $form;
     }
@@ -181,27 +175,26 @@ class ProjectController extends Zend_Controller_Action {
             $this->_redirect('project/keyword/id/' . $projectID);
         } catch (Zend_Exception $e) {
             echo $e->getMessage();
-            //echo"<script>bootbox.alert('$error');</script>";
             $this->_redirect('project/keyword/id/' . $projectID);
         }
     }
 
     public function keydownAction() {
-
+        $id = $this->getParam('id');
+        $projectID = $this->_getParam('projectId');
         $this->_helper->viewRenderer->setNoRender();
-        $id = $this->_request->getParam('id');
         $model = new Application_Model_keyword();
         if (empty($id)) {
             throw new Zend_Exception('Id not provided!');
         }
         $row = $model->fetchRow("id='$id'");
         if (!$row) {
-            $this->_redirect('project/keyword');
+            $this->_redirect('project/keyword/id/' . $projectID);
         }
         $currentDisplayOrder = $row->pos;
         $lesserRow = $model->fetchRow(" pos> $currentDisplayOrder ", " pos ASC limit 1");
         if ($currentDisplayOrder == $lesserRow->pos) {
-            $this->_redirect('project/keyword');
+            $this->_redirect('project/keyword/id/' . $projectID);
         }
         if (!$lesserRow) {
             $newDisplayOrder = $currentDisplayOrder + 1;
@@ -213,10 +206,10 @@ class ProjectController extends Zend_Controller_Action {
         try {
             $row->pos = $newDisplayOrder;
             $row->save();
-            $this->_redirect('project/keyword/id/');
+            $this->_redirect('project/keyword/id/' . $projectID);
         } catch (Zend_Exception $e) {
             echo $e->getMessage();
-            $this->_redirect('project/kecyword');
+            $this->_redirect('project/keyword/id/' . $projectID);
         }
     }
 

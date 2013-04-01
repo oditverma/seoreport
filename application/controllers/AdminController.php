@@ -34,6 +34,7 @@ class AdminController extends Zend_Controller_Action {
                 'account_type' => $data['account_type'],
                 'address' => $data['address'],
                 'contact' => $data['contact']));
+            $data['status'] = 1;
             $this->_redirect('/admin/index');
             $this->view->value = $value;
         }
