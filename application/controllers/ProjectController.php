@@ -1,7 +1,5 @@
 <?php
 
-include_once APPLICATION_PATH . '/../library/Zend/Zend/auth.php';
-
 class ProjectController extends Zend_Controller_Action {
 
     protected $_projectForm = Null;

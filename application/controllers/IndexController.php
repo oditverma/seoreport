@@ -11,7 +11,6 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function loginAction() {
-
         $form = new Application_Form_IndexForm();
         $this->view->form = $form;
         if ($this->_request->isPost() && $form->isValid($_POST)) {
