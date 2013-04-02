@@ -1,8 +1,29 @@
 <?php echo $this->render('navigation/teamNav.phtml') ?>
+<?php
+$auth = Zend_Auth::getInstance();
+$name = $auth->getIdentity()->name;
+?>
 <div class="container-fluid" style="padding-right: 20px;padding-left: 20px;margin-top: 20px">
     <div class="row-fluid">
         <div class="span3">
             <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <a>
+                        <img src="<?php echo $this->baseUrl(); ?>/public/Bootstrap/img/user.png" class="member-box-avatar" style="height: 50px;width: 50px;padding: 1px;margin-right: 10px;float: left;" />
+                    </a>
+                    <span>
+                        <strong>Team Section</strong>
+                        <br>
+                        <strong><span style="text-transform:capitalize;"><?php echo $name; ?></span></strong>
+                        <br>
+                        <span class="member-box-links">
+                            <a>Settings</a>
+                            |
+                            <a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a>
+                        </span>
+                    </span>
+                </ul>
+                <hr>
                 <ul class="nav nav-list">
                     <li class="nav-header">My Profile</li>
                     <li><a href="<?php echo $this->baseUrl(); ?>/team/profile"><i class="icon-edit"></i>Edit Profile</a></li>
@@ -15,12 +36,13 @@
         <div class="span9">
             <div class="hero-unit">
                 <h1>Team Section!</h1>
-                <h3 style="text-transform: capitalize;">Welcome <?php
-                    $auth = Zend_Auth::getInstance();
-                    $name = $auth->getIdentity()->name;
-                    echo $name;
-                    ?></h3>
+                <h3 style="text-transform: capitalize;">Welcome <?php echo $name; ?></h3>
             </div>
         </div>
     </div>
+</div>
+<!--div id="footer" style="background-color: #f5f5f5;height: 60px;display: block;">
+    <div class="container">
+        <p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+    </div-->
 </div>

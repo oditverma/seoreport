@@ -79,6 +79,9 @@ class TeamController extends Zend_Controller_Action {
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $row = new Application_Model_report();
             $data = $form->getValues();
+            echo "<pre>";
+            print_r($data);
+            die();
             $row->insert($data);
             $this->_redirect('/team/index');
             $this->view->data = $data;
@@ -113,6 +116,12 @@ class TeamController extends Zend_Controller_Action {
         $this->view->row = $row;
     }
 
+     public function reportAction() {
+        $model = new Application_Model_project();
+        $row = $model->fetchAll();
+        $this->view->row = $row;
+    }
+    
     /*  public function keywordAction() {
       $form = new Application_Form_KeywordForm();
       $db = new Application_Model_keyword();
