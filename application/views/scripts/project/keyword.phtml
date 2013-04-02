@@ -10,12 +10,18 @@
         <table  class="table table-bordered">
             <thead><tr><th>Keyword</th><th>Date Added</th><th>Priority</th><th>Settings</th></tr></thead>       
             <?php
+            $pos=array();
             foreach ($this->select as $v) {
                 $pos[] = $v->pos;
             }
-            $maxPos = max($pos);
-            $minPos = min($pos);
-
+            if(!empty($pos)){
+                $maxPos = max($pos);
+                $minPos = min($pos);
+            }
+            else{
+                $maxPos='';
+                $minPos='';
+            }
             foreach ($this->select as $v) {
                 ?>
                 <tbody><tr>

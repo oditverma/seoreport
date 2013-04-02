@@ -98,13 +98,16 @@ class ProjectController extends Zend_Controller_Action {
             $data = $form->getValues();
 
             $data['project_id'] = $project_id;
-            /*   echo "<pre>";
-              print_r($data);
-              die(); */
-            $inc = $db->select()->from($db, array(new Zend_Db_Expr('max(pos)+1 as pos')));
+            $inc = $db->select()->from($db, array(new Zend_Db_Expr("max(pos)+1 as pos")))->where("project_id='$project_id'");
             $rs = $db->fetchRow($inc);
             $array = $rs->toArray();
-            $db->insert($data);
+            echo "<pre>";
+            if (!empty($array['pos'])) {
+                $db->insert($data);
+            } else {
+                $data['pos'] = 1;
+                $db->insert($data);
+            }
             $pos = $db->fetchRow(null, 'id desc');
             $arr = $pos->toArray();
             $id = $arr['id'];
@@ -134,12 +137,15 @@ class ProjectController extends Zend_Controller_Action {
         $id = $this->_getParam('id');
         $form = new Application_Form_KeywordForm();
         $model = new Application_Model_keyword();
+        $project_id = $model->fetchRow("id='$id'");
+        $p_id = $project_id->toArray();
         $result = $model->fetchrow("id='$id'");
+        $form->removeElement('submit');
         $form->populate($result->toArray());
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValues();
             $model->update($data, "id='$id'");
-            $this->_redirect('/project/keyword/id');
+            $this->_redirect('/project/keyword/id/' . $p_id['project_id']);
         }
         $this->view->form = $form;
     }
@@ -219,4 +225,7 @@ class ProjectController extends Zend_Controller_Action {
 
 }
 
+/* echo "<pre>";
+  print_r($data);
+  die(); */
 ?>

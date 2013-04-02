@@ -1,14 +1,30 @@
 <?php
 echo $this->render('navigation/nav.phtml')
 ?>
-<?php 
-$auth=  Zend_Auth::getInstance();
+<?php
+$auth = Zend_Auth::getInstance();
 $name = $auth->getIdentity()->name;
 ?>
 <div class="container-fluid" style="padding-right: 20px;padding-left: 20px;margin-top: 20px;">
     <div class="row-fluid">
         <div class="span3">
-            <div class="well sidebar-nav">
+            <div class="member-box round-all" style="border: 1px solid #ddd;padding: 10px;background-color: #eee;">
+                <a>
+                    <img src="<?php echo $this->baseUrl(); ?>/public/Bootstrap/img/user.png" class="member-box-avatar" style="height: 50px;width: 50px;padding: 1px;margin-right: 10px;float: left;" />
+                </a>
+                <span>
+                    <strong>Admin Section</strong>
+                    <br>
+                    <strong><span style="text-transform:capitalize;"><?php echo $name; ?></span></strong>
+                    <br>
+                    <span class="member-box-links">
+                        <a>Settings</a>
+                        |
+                        <a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a>
+                    </span>
+                </span>
+            </div>
+            <div class="well sidebar-nav"  style="margin-top: 20px;">
                 <ul class="nav nav-list">
                     <li class="nav-header">Project</li>
                     <li><a href="<?php echo $this->baseUrl(); ?>/project/edit"><i class="icon-edit"></i>Add Project</a></li>
@@ -25,7 +41,7 @@ $name = $auth->getIdentity()->name;
         <div class="span9">
             <div class="hero-unit">
                 <h1>Admin Section!</h1>
-                <h3>Welcome <span style=" text-transform:capitalize;"><?php echo $name;?></span></h3>
+                <h3>Welcome <span style=" text-transform:capitalize;"><?php echo $name; ?></span></h3>
             </div>
             <div class="row-fluid">
 

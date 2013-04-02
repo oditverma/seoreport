@@ -15,13 +15,13 @@ echo $this->render('/navigation/teamNav.phtml');
                 <tbody>
                     <tr>
 
-                        <td><?php echo $v['task'] ?></td>
+                        <td><?php echo $v['title'] ?></td>
                         <td><?php echo $v['time_added'] ?></td>
                         <td><?php echo $v['added_by'] ?></td>
                         <td><?php echo $v['assigned_to'] ?></td>
                         <td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
                     </tr>
-                </tbody>
+                <!--</tbody>-->
 
                 <?php
             }

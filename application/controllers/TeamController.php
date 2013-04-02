@@ -21,13 +21,10 @@ class TeamController extends Zend_Controller_Action {
     }
 
     public function teamAction() {
-        if (!Zend_Auth::getInstance()->hasIdentity()) {
-            $this->_redirect('/index');
-        }
         $auth = Zend_Auth::getInstance();
         $id = $auth->getIdentity()->id;
         $db = Zend_Db_Table::getDefaultAdapter();
-        $select = $db->select()->from(array('report' => 'report'), array('report.id', 'report.task', 'report.added_by', 'report.assigned_to', 'report.time_added', 'report.attachment'))
+        $select = $db->select()->from(array('report' => 'report'), array('report.id', 'report.title', 'report.added_by', 'report.assign_to', 'report.time_added', 'report.attachment'))
                 ->join(array('project' => 'project'), 'project.id=report.project_id', array())
                 ->where("project.user_id='$id'");
         $show = $db->fetchAll($select);
@@ -35,9 +32,7 @@ class TeamController extends Zend_Controller_Action {
     }
 
     public function forgotAction() {
-        if (!Zend_Auth::getInstance()->hasIdentity()) {
-            $this->_redirect('/index');
-        }
+
         $form = new Application_Form_ForgotForm();
         $model = new Application_Model_admin();
         $auth = Zend_Auth::getInstance();
@@ -80,11 +75,7 @@ class TeamController extends Zend_Controller_Action {
     }
 
     public function editAction() {
-        if (!Zend_Auth::getInstance()->hasIdentity()) {
-            $this->_redirect('/index');
-        }
         $form = new Application_Form_TaskForm();
-        $form->removeElement('id');
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $row = new Application_Model_report();
             $data = $form->getValues();
