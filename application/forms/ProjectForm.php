@@ -6,9 +6,9 @@ class Application_Form_ProjectForm extends Zend_Form {
         $model = new Application_Model_admin();
         $row = $model->fetchAll();
         $this->setAttrib('class', 'form-signin');
-        $title = $this->createElement('text', 'title')->setRequired(true)->setAttrib('Placeholder', 'Project Title');
-        $description = $this->createElement('text', 'description')->setRequired(true)->setAttrib('Placeholder', 'Description');
-        $date_added = $this->createElement('text', 'date_added')->setAttrib('class', 'daterangepicker')->setRequired(true)->setAttrib('Placeholder', 'YYYY/MM/DD');
+        $title = $this->createElement('text', 'title')->setRequired(true)->setAttrib('Placeholder', 'Project Title')->setLabel("title");
+        $description = $this->createElement('textarea', 'description')->setRequired(true)->setAttribs(array('rows' => 5, 'cols' => 5))->setAttrib('placeholder', 'Add Description')->setLabel('Add Description');
+        $date_added = $this->createElement('text', 'date_added')->setAttrib('class', 'daterangepicker')->setRequired(true)->setAttrib('Placeholder', 'YYYY/MM/DD')->setLabel("");
         $attachment = $this->createElement('file', 'attachment')->setAttrib('Placeholder', 'Choose a file');
         $attachment->setDestination(APPLICATION_PATH . '/../public/uploads')->setRequired(true);
         $user_id = $this->createElement('select', 'user_id')->setRequired(TRUE)->setAttrib('class', 'span2');
