@@ -2,24 +2,23 @@
 <div class="container" style='padding-top: 20px;padding-bottom: 20px;'>
     <div class="hero-unit">
         <h2>View Project(s)</h2>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p>This is a template for a simple marketing or informational website . It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
     </div>
     <?php if (isset($this->row)) {
         ?>
         <table class="table table-bordered">
-            <thead><tr><th>Project Title</th><th>Description</th><th>Date Added</th><th>Attachment</th></tr></thead><tbody>       
+            <thead><tr><th>Project Title</th><th>Description</th><th>Date Added</th><th>Attachment</th></tr></thead>               
+            <?php
+            foreach ($this->row as $v) {
+                ?>
+                <tr>
+                    <td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
+                    <td><?php echo $v->date_added ?></td><td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                </tr>
                 <?php
-                foreach ($this->row as $v) {
-                    ?>
-                    <tr>
-                        <td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
-                        <td><?php echo $v->date_added ?></td><td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
-                    </tr>
-                    <?php
-                }
             }
-            ?>    
-        </tbody>
+        }
+        ?>    
     </table>  
     <div class="row">
         <div class="span4">

@@ -4,13 +4,15 @@ echo $this->render('navigation/nav.phtml')
 <?php
 $auth = Zend_Auth::getInstance();
 $name = $auth->getIdentity()->name;
+$id=$auth->getIdentity()->id;
+$logo=$auth->getIdentity()->logo;
 ?>
 <div class="container-fluid" style="padding-right: 20px;padding-left: 20px;margin-top: 20px;">
     <div class="row-fluid">
         <div class="span3">
             <div class="member-box round-all" style="border: 1px solid #ddd;padding: 10px;background-color: #eee;">
                 <a>
-                    <img src="<?php echo $this->baseUrl(); ?>/public/Bootstrap/img/user.png" class="member-box-avatar" style="height: 50px;width: 50px;padding: 1px;margin-right: 10px;float: left;" />
+                    <img src="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $logo; ?>" class="member-box-avatar" style="height: 50px;width: 50px;padding: 1px;margin-right: 10px;float: left;" />
                 </a>
                 <span>
                     <strong>Admin Section</strong>
@@ -18,7 +20,7 @@ $name = $auth->getIdentity()->name;
                     <strong><span style="text-transform:capitalize;"><?php echo $name; ?></span></strong>
                     <br>
                     <span class="member-box-links">
-                        <a>Settings</a>
+                        <a href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $id; ?>" >Settings</a>
                         |
                         <a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a>
                     </span>

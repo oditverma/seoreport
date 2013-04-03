@@ -28,13 +28,17 @@ class AdminController extends Zend_Controller_Action {
         $form = $this->_getAdminForm();
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValues();
+            $data['status'] = 1;
             $value = $this->_getAdminModel()->insert(array('name' => $data['name'],
-                'pass' => sha1($data['pass']),
+                'pass' => ($data['pass']),
                 'email' => $data['email'],
                 'account_type' => $data['account_type'],
                 'address' => $data['address'],
-                'contact' => $data['contact']));
-            $data['status'] = 1;
+                'contact' => $data['contact'],
+                'logo' => $data['logo']));
+            echo "<pre>";
+            print_r($value);
+            die();
             $this->_redirect('/admin/index');
             $this->view->value = $value;
         }

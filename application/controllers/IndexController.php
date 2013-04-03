@@ -21,7 +21,7 @@ class IndexController extends Zend_Controller_Action {
             $auth = Zend_Auth::getInstance();
             $auth->authenticate($authAdapter);
             $storage = $auth->getStorage();
-            $userInfo = $authAdapter->getResultRowObject(array('name', 'id', 'account_type', 'status', 'email', 'address'));
+            $userInfo = $authAdapter->getResultRowObject(array('name', 'id', 'account_type', 'status', 'email', 'address','logo'));
             $storage->write($userInfo);
             $type = $userInfo->account_type;
             $status = $userInfo->status;

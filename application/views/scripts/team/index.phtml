@@ -2,6 +2,7 @@
 <?php
 $auth = Zend_Auth::getInstance();
 $name = $auth->getIdentity()->name;
+$logo=$auth->getIdentity()->logo;
 ?>
 <div class="container-fluid" style="padding-right: 20px;padding-left: 20px;margin-top: 20px">
     <div class="row-fluid">
@@ -9,7 +10,7 @@ $name = $auth->getIdentity()->name;
             <div class="well sidebar-nav">
                 <ul class="nav nav-list">
                     <a>
-                        <img src="<?php echo $this->baseUrl(); ?>/public/Bootstrap/img/user.png" class="member-box-avatar" style="height: 50px;width: 50px;padding: 1px;margin-right: 10px;float: left;" />
+                        <img src="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $logo; ?>" class="member-box-avatar" style="height: 50px;width: 50px;padding: 1px;margin-right: 10px;float: left;" />
                     </a>
                     <span>
                         <strong>Team Section</strong>
