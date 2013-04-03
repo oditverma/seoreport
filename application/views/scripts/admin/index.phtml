@@ -69,10 +69,10 @@ $logo=$auth->getIdentity()->logo;
                                         }
                                         ?></td>
                                     <td><?php echo $v->contact ?></td>
-                                    <td><a href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Update Info" ><i class="icon-cog"></i></a>|
-                                        <a href="<?php echo $this->baseUrl(); ?>/admin/delete/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Delete User" ><i class='icon-trash'></i></a>|
-                                        <?php if ($v->status == 1) { ?>  <a href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Active" ><i class="icon-ok-circle"></i></a><?php } else { ?>
-                                            <a href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Unactive" ><i class="icon-ban-circle"></i></a> 
+                                    <td><a class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Update Info" ><i class="icon-cog icon-white"></i>Update</a>
+                                        <a class="btn btn-danger" href="<?php echo $this->baseUrl(); ?>/admin/delete/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Delete User" ><i class='icon-trash icon-white'></i>Delete</a>
+                                        <?php if ($v->status == 1) { ?>  <a class="btn btn-success"  href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Active" ><i class="icon-ok-circle icon-white"></i>Status</a><?php } else { ?>
+                                            <a class="btn btn-danger" href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Unactive" ><i class="icon-ban-circle icon-white"></i>Status</a> 
                                             <?php } ?>
                                     </td>
                                 </tr>
