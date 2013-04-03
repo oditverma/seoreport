@@ -2,7 +2,7 @@
 <?php
 $auth = Zend_Auth::getInstance();
 $name = $auth->getIdentity()->name;
-$logo=$auth->getIdentity()->logo;
+$logo = $auth->getIdentity()->logo;
 ?>
 <div class="container-fluid" style="padding-right: 20px;padding-left: 20px;margin-top: 20px">
     <div class="row-fluid">
@@ -29,8 +29,9 @@ $logo=$auth->getIdentity()->logo;
                     <li class="nav-header">My Profile</li>
                     <li><a href="<?php echo $this->baseUrl(); ?>/team/profile"><i class="icon-edit"></i>Edit Profile</a></li>
                     <li><a href="<?php echo $this->baseUrl(); ?>/team/forgot"><i class="icon-lock"></i>Change Password</a></li>
+                    <hr>
                     <li class="nav-header">Project</li>
-                    <li><a href="<?php echo $this->baseUrl(); ?>/team/project"><i class="icon-tasks"></i>Projects</a></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/team/project"><i class="icon-tasks"></i>View & Manage Projects</a></li>
                 </ul>
             </div>
         </div>

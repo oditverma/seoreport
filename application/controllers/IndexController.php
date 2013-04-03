@@ -7,7 +7,10 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        
+         if (!Zend_Auth::getInstance()->hasIdentity()) {
+            Zend_Auth::getInstance()->clearIdentity();
+            $this->_redirect('/index/login');
+        }
     }
 
     public function loginAction() {

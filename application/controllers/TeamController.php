@@ -76,6 +76,8 @@ class TeamController extends Zend_Controller_Action {
 
     public function editAction() {
         $form = new Application_Form_TaskForm();
+        $form->removeElement('attachment');
+         $form->removeElement('time_completed');
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $row = new Application_Model_report();
             $data = $form->getValues();
