@@ -104,13 +104,13 @@ class AdminController extends Zend_Controller_Action {
                 $select = $db->select()
                         ->from(array('report' => 'report'), array('report.title', 'report.description', 'report.attachment'))
                         ->join(array('project' => 'project'), 'project.id=report.project_id', array())
-                        ->where("project.user_id='$id' and report.date_added='$date[0]'")
-                        ->orWhere("report.date_added between '$date[0]' and '$date[1]'");
+                        ->where("project.user_id='$id' and report.time_added='$date[0]'")
+                        ->orWhere("report.time_added between '$date[0]' and '$date[1]'");
             } else {
                 $select = $db->select()
                         ->from(array('report' => 'report'), array('report.title', 'report.description', 'report.attachment'))
                         ->join(array('project' => 'project'), 'project.id=report.project_id', array())
-                        ->where("project.user_id='$id' and report.date_added='$date[0]'");
+                        ->where("project.user_id='$id' and report.time_added='$date[0]'");
             }
             /* echo $select;
               die(); */
