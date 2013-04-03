@@ -18,7 +18,7 @@ $logo=$auth->getIdentity()->logo;
                         <strong><span style="text-transform:capitalize;"><?php echo $name; ?></span></strong>
                         <br>
                         <span class="member-box-links">
-                            <a>Settings</a>
+                            <a href="<?php echo $this->baseUrl(); ?>/team/profile">Settings</a>
                             |
                             <a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a>
                         </span>
