@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>welcome to www.study.uk.com</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link href="css/datetimepicker.css" rel="stylesheet" media="screen">
+<link href="js/google-code-prettify/prettify.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Merienda' rel='stylesheet' type='text/css'>
+<script LANGUAGE="JavaScript">
+<!--
+
+var randomnumber=Math.floor(Math.random()*9);
+var randomnumber1=Math.floor(Math.random()*9);
+var result=parseInt(randomnumber) + parseInt(randomnumber1);
+
+
+function check(form2){
+
+
+
+if(form2.name.value=="")
+{alert("Please Enter Your Name");form2.name.focus();return(false);}
+
+if(form2.dob.value=="")
+{alert("Please Enter Your Date of Birth");form2.dob.focus();return(false);}
+
+
+if(form2.email.value=="")
+{alert("Please Enter Your E-Mail ID");form2.email.focus();return(false);}
+if(form2.email.value!="")
+{pass=form2.email.value.indexOf('@',0);if(pass==-1)
+{alert("not a valid email address");form2.email.focus();return(false);}}
+
+
+if(form2.contact.value=="")
+{alert("Please Enter Your Mobile Number");form2.contact.focus();return(false);}
+
+if(form2.contact.value=="")
+{
+	alert("please enter Your Contact Number");
+	form2.contact.focus();
+	return(false);
+}
+else if(isNaN(form2.contact.value))
+{
+	alert("please enter valid Contact Number ");
+	form2.contact.focus();
+	return(false);
+}
+
+
+
+if(form2.address.value=="")
+{alert("Please Enter Your Address");form2.address.focus();return(false);}
+
+if(form2.qualification.value=="")
+{alert("Please Enter Your Qualification");form2.qualification.focus();return(false);}
+
+if(form2.ielts.value=="")
+{alert("Please Enter IELTS");form2.ielts.focus();return(false);}
+
+
+
+
+
+
+
+
+
+if(form2.remarks.value=="")
+{alert("please enter Remarks");form2.remarks.focus();return(false);}
+if(form2.captcha_text.value!=result){
+	alert("please enter correct result");
+	form2.captcha_text.focus();
+	return(false);
+}
+
+}
+
+//-->
+</script>
+</head>
+
+<body style="background-image:url(imgs/bg.jpg); background-repeat:no-repeat; background-size:cover;">
+    <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+    <a class="brand" href="#">Express Student Services (UK) Ltd.</a>
+    <ul class="nav">
+    <li><a href="mailto: info@study.uk.com">Mail us</a></li>
+    </ul>
+    </div>
+    </div>
+
+
+	<div class="container" style="background-color:#FFF; padding:15px; margin-top:55px; border-radius:20px;">
+    	<div class="logo">
+        	<div align="center" style="margin-bottom:12px;"><img src="imgs/studylogo.jpg" width="201" height="173" alt="company name" /></div>
+           
+            <div align="center" ><a href="#myModal" role="button" data-toggle="modal" class="btn btn-primary btn-large">Express Student Services Form</a></div>
+            
+            
+                <!-- Button to trigger modal -->
+    <!-- Modal -->
+    <form action="http://www.study.uk.com/cgi-bin/send-mail.pl" method="POST" name="form1" onSubmit="return check(this)">
+    <input type="hidden" name="recipient" value="info@study.uk.com">
+    <input type="hidden" name="subject" value="Student Enquiry Form from our Website">
+    <input type="hidden" name="redirect" value="http://www.study.uk.com/thank.htm">
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Express Student Services</h3>
+    </div>
+    <div class="modal-body">
+    <h4>Student Enquiry Form</h4>
+            
+       
+            
+            <div style="overflow:hidden">
+                <div style="float:left; width:50%;">              
+                Name: <br />
+                <input class="tw" type="text" name="name" id="name"><br />
+                
+                Email ID: <br />
+                <input class="tw" type="text" name="email" id="email"><br />
+                
+                </div>
+                
+                <div style="float:left; width:48%;">
+                DOB: <br />
+                
+                <div class="controls input-append date form_datetime"  data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1">
+                    
+                    <input size="16" type="text" name="dob" id="dob" value="" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+
+                
+                Contact Number: <br />
+                <input class="tw" type="text" name="contact" id="contact"><br />
+                </div>
+            </div>
+            
+            <div>
+                Address: <br />
+                <textarea rows="2" class="tw" name="address" id="address"></textarea><br />
+            </div>
+            
+            
+            <div style="overflow:hidden">
+                <div style="float:left; width:50%;">              
+                Qualification: <br />
+                <input class="tw" type="text" name="qualification" id="qualification"><br />
+                </div>
+                
+                <div style="float:left; width:48%;">
+                IELTS: <br />
+                <input class="tw" type="text" name="ielts" id="ielts"><br />
+                </div>
+            </div>
+            <hr />
+            <div style="overflow:hidden">
+                <div style="float:left; width:50%;">              
+               <strong> How do you know us ?</strong> <br /><br />
+                <label class="radio"><input type="radio" name="media_source" id="TV Show" value="TV Show" checked="checked"/>TV Show</label>
+                <label class="radio"><input type="radio" name="media_source" id="Newspaper" value="Newspaper" />Newspaper</label>
+                <label class="radio"><input type="radio" name="media_source" id="Radio" value="Radio" />Radio</label>
+                <label class="radio"><input type="radio" name="media_source" id="Boards" value="Boards" />Boards</label>
+                <label class="radio"><input type="radio" name="media_source" id="Any Reference" value="Any Reference" />Other Reference</label>
+                </div>
+                
+                <div style="float:left; width:48%;">
+                <strong>Interested in Country:</strong> <br /><br />
+                		<div style="overflow:hidden">
+                        		<div style="float:left; width:45%;">
+                                <label class="radio"><input type="radio" name="country" id="UK" value="UK" checked="checked" />UK</label>
+                                <label class="radio"><input type="radio" name="country" id="Canada" value="Canada" />Canada</label>
+                                <label class="radio"><input type="radio" name="country" id="New Zealand" value="New Zealand" />New Zealand</label>
+                                <label class="radio"><input type="radio" name="country" id="Australia" value="Australia" />Australia</label>
+                                <label class="radio"><input type="radio" name="country" id="Costa Rica" value="Costa Rica" />Costa Rica</label>
+                                <label class="radio"><input type="radio" name="country" id="Singapore" value="Singapore" />Singapore</label>
+                                <label class="radio"><input type="radio" name="country" id="Malaysia" value="Malaysia" />Malaysia</label>
+                                </div>
+                                
+                        		<div style="float:left; width:45%;">
+                                <label class="radio"><input type="radio" name="country" id="Cyprus" value="Cyprus" />Cyprus</label>
+                                <label class="radio"><input type="radio" name="country" id="Holland" value="Holland" />Holland</label>
+                                <label class="radio"><input type="radio" name="country" id="Denmark" value="Denmark" />Denmark</label>
+                                <label class="radio"><input type="radio" name="country" id="Hungary" value="Hungary" />Hungary</label>
+                                <label class="radio"><input type="radio" name="country" id="Italy" value="Italy" />Italy</label>
+                                <label class="radio"><input type="radio" name="country" id="Norway" value="Norway" />Norway</label>
+                                <label class="radio"><input type="radio" name="country" id="Germany" value="Germany" />Germany</label>
+                                </div>
+                        </div>
+                        
+                        
+						
+                </div>
+                
+
+            </div>
+            
+            <hr />
+				<div style="overflow:hidden">
+                            <div style="float:left; width:50%;">              
+                            Counselor Name: <br />
+                            <input class="tw" type="text"><br />
+                            </div>
+                            
+                            <div style="float:left; width:48%;">
+                            Other Details: <br />
+                            <textarea rows="3" class="tw" name="remarks" id="remarks"></textarea><br />
+                            </div>
+           		</div>
+            
+            
+
+    </div>
+    <div class="modal-footer">
+    <button class="btn" type="Reset">Clear</button>
+    <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+    </div>
+    </form>
+    
+            
+            
+        </div>
+        
+        
+        <div class="fleft">
+        		 <!-- Tabs
+        ================================================== -->
+        <section id="tabs">
+          
+
+
+          <div><h2>Coming Soon!</h2></div>
+              <div class="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Upgrading Website!</strong> This website is Under Construction...
+    </div>
+          <div class="bs-docs-example" style="width:600px;">
+            <ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#home" data-toggle="tab">About us</a></li>
+              <li><a href="#profile" data-toggle="tab">Contact</a></li>
+              <li><a href="#branches" data-toggle="tab">Branches</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade in active" id="home">
+                <p>In the <strong>'global village'</strong> of today, everything assumes global dimensions; everything is interconnected.</p>
+                <p><strong>Express Student Services</strong> is global educational institution recruiter for many colleges in UK, Canada, and New Zealand. Education is no exception.</p>
+                <p><strong>ESS</strong> is an educational recruiter of distinction, combining excellence with innovation. ESS places a high value on providing its clients with a fulfilling educational experience in their chosen discipline. An international qualification equips students not only with vital skill sets, but also a global mindset - one that broadens the mind and allows students to easily slide into the multiethnic, multilingual workplaces of global corporations.<br />
+                  <br />
+                  The need of the times is the presence of good market facilitators who enable students and professionals to seek quality education beyond the borders.</p>
+                <p>On the one hand, there are a large number of Indians seeking an overseas degree; on the other hand, there are foreign educational institutions eyeing Indian students as possible intake. Even then only a minuscule proportion of the total student body in India actually ends up going abroad for studies every year. Clearly there is a need for better interfaces between potential students in India and education providers elsewhere in the world.</p>
+                <p>This is where we come in. The ESS works at improving awareness of foreign courses, colleges, destination countries, admission formalities, immigration procedures, providing help thereof and assuring strong support on foreign shores for Indian students or professionals and delivering greater penetration on Indian soil for foreign institutions.</p>
+                <p>I am confident that you will find a pathway to a bright future in a chosen career or profession.</p>
+                <h4>Gurinder Bhatti</h4>
+              </div>
+              
+              <div class="tab-pane fade" id="profile">
+             		 <h3>UK Office:</h3>
+                	<div style="overflow:hidden;">
+                    	
+                        <div style="float:left; width:50%;">
+                        <p>105, The Broadway, Southhall, Middlesex, UB1 1LN.</p>
+                        <strong>Tel:</strong> 020 8843 2224 &nbsp;| &nbsp;<strong>Mobile:</strong> 0750 7641 954<br />
+						<strong>Fax:</strong> 020 8843 2225 &nbsp;| &nbsp;<strong>Email:</strong> info@study.uk.com<br />
+                        </div>
+                        
+                        <div style="float:left; width:49%;">
+                        <p>4, High Street, B66 1DX, Birmingham. </p>
+						<strong>Tel:</strong> 0121-5651823 &nbsp;| &nbsp;<strong>Mobile:</strong> 0750 7641 954 <br />
+						<strong>Fax:</strong> 0121-5651803 &nbsp;| &nbsp;<strong>Email:</strong> bhatti@study.uk.com<br />
+                        </div>
+                        
+                    </div>
+                    <hr />
+                    
+                    <h3>India Office</h3>
+                    <div>
+                    <p>4th Floor, Midas Corporate Park, 37, G.T. Road, Jalandhar, Punjab</p>
+                    <strong>Tel:</strong> +91-181-2240812-13 &nbsp;| &nbsp;<strong>Fax:</strong> +91-181-4611814 <br /><strong>Mobile:</strong> +91-99883-50111 &nbsp;| &nbsp;<strong>Email:</strong> gurinder_sun@yahoo.com 
+                    </div>
+                    <hr />
+                    
+                    <h3>Australia Office</h3>
+                	<div style="overflow:hidden;">
+                    
+                        <div style="float:left; width:50%;">
+                        <p>55, Phillips Street, Opp. Crown hotel Suite 12<br /> Parramatta New South Wales </p>
+                        <strong>Tel:</strong> 0061-(2)96333444 &nbsp;| &nbsp;<strong>Fax:</strong> 0061-(2)96333444<br />
+						<strong>Mobile:</strong> 0061-405351923 <br /><strong>Email:</strong> australia@study.uk.com<br />
+                        </div>
+                        
+                        <div style="float:left; width:49%;">
+                        <p>530, Suite no 417, Level 4 Little Collins Street<br /> Melbourne 3000 </p>
+                        <strong>Tel:</strong> 0061-433759702 <br /><strong>Mobile:</strong> 0061-405351923<br />
+						<strong>Email:</strong> australia@study.uk.com <br /><br />
+                        </div>
+                    </div>
+                    
+                    
+              </div>
+              
+              
+              
+              <div class="tab-pane fade" id="branches">
+                
+                
+                <div style="overflow:hidden">
+                    <div style="float:left; width:33%;">
+                    <h3>Mohali:</h3>
+                    S.C.O. 549 C, Sector 70<br />
+                    <strong>Phone:</strong> +91-172-4975000
+                    </div>
+                    
+                    <div style="float:left; width:33%;">
+                    
+                    <h3>Jalandhar:</h3>
+                    Ground Floor, City Square<br />
+                    Near Kesar Petrol Pump<br /> B.M.C. Chowk<br />
+                    <strong>Phone:</strong> +91-181-4675000
+                    </div>
+                    
+                    <div style="float:left; width:33%;">
+                    <h3>Amrtisar:</h3>
+                    S.C.O. 76, 2nd floor<br /> City Center Near Sangam Cinema<br />
+                    <strong>Phone:</strong> +91-172-4975000
+                    </div>
+                </div>
+                <hr />
+                <div style="overflow:hidden">
+                    <div style="float:left; width:33%;">
+                    <h3>Patiala:</h3>
+                   Sukhmani Complex, First Floor<br />Opposite Punjabi University<br />
+                    <strong>Phone:</strong> +91-175- 5025000
+                    </div>
+                    
+                 
+                </div>
+                
+              </div>
+              
+            </div>
+            
+            
+            
+            
+            
+          </div>
+        </div>
+        
+    </div>
+
+ <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="js/bootstrap-affix.js"></script>
+
+    <script src="js/holder/holder.js"></script>
+    <script src="js/google-code-prettify/prettify.js"></script>
+
+    <script src="js/application.js"></script>
+
+<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0
+    });
+	/*$('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });*/
+</script>
+</body>
+</html>
