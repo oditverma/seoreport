@@ -10,10 +10,11 @@
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" media="screen">
-        <link rel="shortcut icon" href="<?php echo $this->BaseUrl(); ?>/Bootstrap/img/web 3.png">
+        <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/tooltip.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/ui.daterangepicker.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/jquery-ui.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css" media="screen">
+        <link rel="shortcut icon" href="<?php echo $this->BaseUrl(); ?>/Bootstrap/img/web 3.png">
         <!-- JavaScript Files  -->
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.js"></script>
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery-ui.js"></script>
@@ -32,6 +33,7 @@
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootbox.min.js"></script>
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-tab.js"></script>
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-typehead.js"></script>  
+        <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-tooltip.js"></script>  
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-transition.js"></script>
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-alert.js"></script>
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-tab.js"></script>
@@ -55,11 +57,9 @@
                 $('.daterangepicker').daterangepicker({dateFormat: 'yy-mm-dd'});
             });
         </script>
-        <!-- Tooltip -->
+        <!-- Tooltip  -->
         <script language="JavaScript" type="text/javascript">
-            $(function() {
-                $("[rel=tooltip]").tooltip();
-            });
+            $(".tooltip").tooltip();
         </script>
         <style type="text/css">
             body {

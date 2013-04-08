@@ -1,30 +1,37 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="brand" href="#">SEO Reports</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                       <li class="active"><a href="<?php echo $this->baseUrl();?>/admin/index" >Home</a></li>
-                    <li><a href="#" >About</a></li>
-                    <li><a href="#" >Contact</a></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/admin/index" >Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Project<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo $this->baseUrl(); ?>/project/edit">Add Project's</a></li>
+                            <li><a href="<?php echo $this->baseUrl(); ?>/project/index">View Project's</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">User<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo $this->baseUrl(); ?>/admin/edit">Add User's</a></li>
+                            <li><a href="<?php echo $this->baseUrl(); ?>/admin/index">View User's</a></li>
+                        </ul>
+                    </li>                  
                 </ul>
-                <ul class="nav" style="float:right">
+                <ul class="nav pull-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Logged in as <strong><u style=" text-transform:capitalize;"><?php
                                     $auth = Zend_Auth::getInstance();
                                     $name = $auth->getIdentity()->name;
                                     $email = $auth->getIdentity()->email;
                                     echo $name;
-                                    ?></u></strong><b class="caret"></b></a>
+                                    ?></u></strong></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><?php print("<strong style='text-transform:capitalize;'>".$name."</strong><br>".$email);?></a></li>
+                            <li><a href="#"><i class='icon-user'></i><?php print("<strong style='text-transform:capitalize;'>" . $name . "</strong><br>" . $email); ?></a></li>
                             <li class="divider"></li>
-                            <li><a href="<?php echo $this->baseUrl();?>/index/logout">Logout</a></li>
+                            <li><a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
