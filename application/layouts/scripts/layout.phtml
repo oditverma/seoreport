@@ -4,23 +4,29 @@
         <meta charset="utf-8">
         <title>Test</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <!-- CSS Style Sheets -->
+
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
-        <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/front.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" media="screen">
-        <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/jquery-ui-1.10.1.custom.css" rel="stylesheet" type="text/css" media="screen">
-        <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/jquery-ui.css" rel="stylesheet" type="text/css" media="screen">
-        <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/tooltip.css" rel="stylesheet" type="text/css" media="screen">
-        <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/ui.daterangepicker.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" media="screen">
-        <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/default.min.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/ui.daterangepicker.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/jquery-ui.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css" media="screen">
+        <!-- Icon Files -->
         <link rel="icon" href="<?php echo $this->BaseUrl(); ?>/Bootstrap/img/glyphicons-halflings-white.png" type="image/x-icon"/>
         <link rel="icon" href="<?php echo $this->BaseUrl(); ?>/Bootstrap/img/glyphicons-halflings.png" type="image/x-icon"/>
         <link rel="shortcut icon" href="<?php echo $this->BaseUrl(); ?>/Bootstrap/images/ui.png"  type="image/x-icon" />
-        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.min.js"></script>
+        <!-- JavaScript Files  -->
+        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.js"></script>
+        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery-ui.js"></script>
         <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap.js"></script>
+        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap.min.js"></script>
+        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery-ui-timepicker-addon.js"></script>
+        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery-ui-sliderAccess.js"></script>
+        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/date.js"></script>
+        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/daterangepicker.jQuery.compressed.js"></script>
+        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/daterangepicker.jQuery.js"></script>
         <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-button.js"></script>
         <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-carousel.js"></script>
         <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-dropdown.js"></script>
@@ -33,35 +39,24 @@
         <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-tab.js"></script>
         <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-modal.js"></script>
         <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-collapse.js"></script>
-        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/holder.js"></script>
-        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap.min.js"></script>
-        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.validate.min.js"></script>
-        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.ui.mouse.min.js"></script>
-        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.validate.js"></script>
-        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery-ui.min.js"></script>
-        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/date.js"></script>
-         <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/countries_en.js"></script>
-        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/daterangepicker.jQuery.compressed.js"></script>
-        <script src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/daterangepicker.jQuery.js"></script>
-        <script type='text/javascript'>
+        <!-- Datetime Picker  -->
+        <script>
             $(function() {
-                $("[rel=tooltip]").tooltip();
+                $(".datetimepicker").datetimepicker({dateFormat: 'yy-mm-dd'});
             });
         </script>
+        <!-- Date Picker  -->
+        <script>
+            $(function() {
+                $(".datepicker").datepicker({dateFormat: 'yy-mm-dd'});
+            });
+        </script>
+        <!-- Date Range Picker  -->
         <script type="text/javascript">
             $(function() {
                 $('.daterangepicker').daterangepicker({dateFormat: 'yy-mm-dd'});
             });
         </script>
-        <script>
-
-  $(function() {
-
-    $('.').datepicker();
-
-  });
-
-  </script>
         <style type="text/css">
             body {
                 padding-top: 40px;
