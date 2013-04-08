@@ -4,8 +4,8 @@ echo $this->render('navigation/nav.phtml')
 <?php
 $auth = Zend_Auth::getInstance();
 $name = $auth->getIdentity()->name;
-$id=$auth->getIdentity()->id;
-$logo=$auth->getIdentity()->logo;
+$id = $auth->getIdentity()->id;
+$logo = $auth->getIdentity()->logo;
 ?>
 <div class="container-fluid" style="padding-right: 20px;padding-left: 20px;margin-top: 20px;">
     <div class="row-fluid">
@@ -73,7 +73,7 @@ $logo=$auth->getIdentity()->logo;
                                         <a class="btn btn-danger" href="<?php echo $this->baseUrl(); ?>/admin/delete/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Delete User" ><i class='icon-trash icon-white'></i></a>
                                         <?php if ($v->status == 1) { ?>  <a class="btn btn-success"  href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Active" ><i class="icon-ok-circle icon-white"></i></a><?php } else { ?>
                                             <a class="btn btn-danger" href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" rel="tooltip" title="Unactive" ><i class="icon-ban-circle icon-white"></i>Status</a> 
-                                            <?php } ?>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                             </tbody>
