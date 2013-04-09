@@ -33,9 +33,11 @@ class ProjectController extends Zend_Controller_Action {
 
     public function deleteAction() {
         $id = $this->_getParam('id');
+        $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->layout->disableLayout();
         $form = $this->_getProjectForm();
+        $row = $this->_getProjectModel();
         if (!empty($id)) {
-            $row = $this->_getProjectModel();
             $row->delete("id='$id'");
         }
         $this->view->form = $form;
@@ -70,7 +72,7 @@ class ProjectController extends Zend_Controller_Action {
                 'date_added' => $start,
                 'attachment' => $data['attachment'],
                 'user_id' => $data['user_id']));
-            $this->_redirect('/admin/index');
+            $this->_redirect('/project/index');
             $this->view->row = $row;
         }
         $this->view->form = $form;
@@ -217,10 +219,6 @@ class ProjectController extends Zend_Controller_Action {
             echo $e->getMessage();
             $this->_redirect('project/keyword/id/' . $projectID);
         }
-    }
-
-    public function resourceAction() {
-        
     }
 
 }

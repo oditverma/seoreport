@@ -30,7 +30,7 @@
                                     <?php } ?>                                          
                                     <a href="<?php echo $this->baseUrl(); ?>/project/keyword/id/<?php echo $v['id'] ?>" class="btn btn-inverse" data-toggle="tooltip"  title="Manage keyword" ><i class="icon-tags icon-white"></i></a>
                                     <a href="<?php echo $this->baseUrl(); ?>/project/update/id/<?php echo $v['id'] ?>" class="btn btn-info"  data-toggle="tooltip"   title="Update Project" ><i class="icon-cog icon-white"></i></a>                   
-                                    <a href="<?php echo $this->baseUrl(); ?>/project/delete/id/<?php echo $v['id'] ?>" class="btn btn-danger" data-toggle="tooltip"   title="Delete Project"><i class='icon-trash icon-white'></i></a>
+                                    <a href="<?php echo $this->baseUrl(); ?>/project/delete/id/<?php echo $v['id'] ?>" onclick="del(<?php echo $v['id'] ?>)" class="btn btn-danger" data-toggle="tooltip"   title="Delete Project"><i class='icon-trash icon-white'></i></a>
                                 </td></tr>
                         </tbody>
                         <?php
@@ -43,4 +43,12 @@
 </div>
 <script language="JavaScript" type="text/javascript">
     $("#tool a[href]").tooltip();
+</script>
+
+<script language="JavaScript" type="text/javascript">
+    function del(id) {
+        if (confirm('Are you sure you want to delete it ?')) {
+            window.location = "<?php echo $this->baseUrl(); ?>/project/delete/id/" + id;
+        }
+    }
 </script>

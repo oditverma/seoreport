@@ -49,12 +49,9 @@ class AdminController extends Zend_Controller_Action {
         $id = $this->_getParam('id');
         $this->_helper->viewRenderer->setNoRender();
         $this->_helper->layout->disableLayout();
-        if (empty($id)) {
-            throw new Exception('ID not provided');
-        }
         $form = $this->_getAdminForm();
-        if (!empty($id)) {
-            $row = $this->_getAdminModel();
+        $row = $this->_getAdminModel();
+        if (!empty($id)) {    
             $row->delete("id='$id'");
         }
         $this->view->form = $form;

@@ -1,7 +1,11 @@
 <?php echo $this->render('navigation/nav.phtml'); ?>
+<?php
+$title = $this->show;
+?>
 <div class="container">
     <h3>Keyword Allocation</h3>
-    <div class="front">
+    <div class="bs-docs-example">
+        <h4 style="text-transform:  uppercase;">Campaign Name : <?php echo $title; ?> </h4>
         <?php
         echo $this->form;
         if (isset($this->select)) {
@@ -10,17 +14,16 @@
         <table  class="table table-bordered">
             <thead><tr><th>Keyword</th><th>Date Added</th><th>Priority</th><th>Settings</th></tr></thead>       
             <?php
-            $pos=array();
+            $pos = array();
             foreach ($this->select as $v) {
                 $pos[] = $v->pos;
             }
-            if(!empty($pos)){
+            if (!empty($pos)) {
                 $maxPos = max($pos);
                 $minPos = min($pos);
-            }
-            else{
-                $maxPos='';
-                $minPos='';
+            } else {
+                $maxPos = '';
+                $minPos = '';
             }
             foreach ($this->select as $v) {
                 ?>
@@ -43,7 +46,7 @@
                         </td>
                         <td>
                             <a href="<?php echo $this->baseUrl(); ?>/project/keyupdt/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a>|                    
-                            <a href="<?php echo $this->baseUrl(); ?>/project/keydel/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class='icon-trash'></i></a>
+                            <a href="#" onclick="del(<?php echo $v['id'] ?>);"><i class='icon-trash'></i></a>
                         </td></tr>
                 </tbody>
                 <?php
@@ -52,3 +55,11 @@
         ?>    
     </table>
 </div>
+<script language="JavaScript" type="text/javascript">
+                                function del(id) {
+                                    if (confirm('Are you sure you want to delete it ?')) {
+                                        window.location = "<?php echo $this->baseUrl(); ?>/project/keydel/projectId/" + id;
+
+                                    }
+                                }
+</script>

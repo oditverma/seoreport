@@ -15,8 +15,6 @@ $logo = $auth->getIdentity()->logo;
                     <img src="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $logo; ?>" class="member-box-avatar" style="height: 50px;width: 50px;padding: 1px;margin-right: 10px;float: left;" />
                 </a>
                 <span>
-                    <strong>Admin Section</strong>
-                    <br>
                     <strong><span style="text-transform:capitalize;"><?php echo $name; ?></span></strong>
                     <br>
                     <span class="member-box-links">
@@ -60,8 +58,9 @@ $logo = $auth->getIdentity()->logo;
                                         <?php if ($v->status == 1) { ?>  <a class="btn btn-success"  href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" title="Status Active" data-placement="left" ><i class="icon-ok-circle icon-white"></i></a><?php } else { ?>
                                             <a class="btn btn-danger" href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>" data-toggle="tooltip" title="Status De-active"><i class="icon-ban-circle icon-white"></i></a> 
                                         <?php } ?>
+
                                         <a class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $v['id'] ?>"  data-toggle="tooltip"  title="Update Info"><i class="icon-cog icon-white"></i></a>
-                                        <a class="btn btn-danger" href="<?php echo $this->baseUrl(); ?>/admin/delete/id/<?php echo $v['id'] ?>" title="Delete"  data-toggle="tooltip" data-placement="right" ><i class='icon-trash icon-white'></i></a>
+                                        <a class="btn btn-danger" href="#" title="Delete"  data-toggle="tooltip" data-placement="right" onclick="del(<?php echo $v['id'] ?>)" ><i class='icon-trash icon-white'></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -80,5 +79,13 @@ $logo = $auth->getIdentity()->logo;
     </footer>
 </div>
 <script language="JavaScript" type="text/javascript">
-    $("#tool a[href]").tooltip();
+                                            $("#tool a[href]").tooltip();
+</script>
+<script language="JavaScript" type="text/javascript">
+    function del(id) {
+        if (confirm('Are you sure you want to delete it ?')) {
+            window.location = "<?php echo $this->baseUrl(); ?>/admin/delete/id/" + id;
+
+        }
+    }
 </script>
