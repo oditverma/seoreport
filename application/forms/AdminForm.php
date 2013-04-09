@@ -3,7 +3,7 @@
 class Application_Form_AdminForm extends Zend_Form {
 
     public function init() {
-        $this->setAttrib('class', 'form-signin');
+        $this->setAttrib('class', 'bs-docs-example form-horizontal');
         $name = $this->createElement('text', 'name')->setAttrib('Placeholder', 'Name')->setRequired(true)->setLabel("Name :- ");
         $email = $this->createElement('text', 'email')->setRequired(true)->setAttrib('placeholder', 'E-mail')->setLabel("E-Mail :- ");
         $account_type = $this->createElement('select', 'account_type')->addMultiOptions(array('Select Role' => 'Select Type', 'Admin' => 'Admin', 'client' => 'client', 'team' => 'team'))->setAttrib('class', 'span2')->setLabel("Role :- ");

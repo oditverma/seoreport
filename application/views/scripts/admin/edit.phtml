@@ -1,3 +1,27 @@
 <?php echo $this->render('/navigation/nav.phtml') ?>
-<h2 align="center">Add New User</h2>
+<style type="text/css">
+    body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: white;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #333333;
+    }
+    form.bs-docs-example {
+        padding-bottom: 19px;
+    }
+    .bs-docs-example {
+        position: relative;
+        margin: 15px 0;
+        padding: 39px 19px 14px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    }
+</style>
+<h2 class="header">Add User</h2>
 <?php echo $this->form; ?>
