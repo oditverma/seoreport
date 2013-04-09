@@ -43,7 +43,7 @@ class ClientController extends Zend_Controller_Action {
         $auth = Zend_Auth::getInstance();
         $id = $auth->getIdentity()->id;
         $db = Zend_Db_Table::getDefaultAdapter();
-        $select = $db->select()->from(array('report' => 'report'), array('report.id', 'report.title', 'report.added_by', 'report.assigned_to', 'report.time_added', 'report.attachment'))
+        $select = $db->select()->from(array('report' => 'report'), array('report.id', 'report.title', 'report.added_by', 'report.assign_to', 'report.time_added', 'report.attachment'))
                 ->join(array('project' => 'project'), 'project.id=report.project_id', array())
                 ->where("project.user_id='$id'");
         /*  echo $select;
