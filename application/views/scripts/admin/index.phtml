@@ -43,7 +43,7 @@ $logo = $auth->getIdentity()->logo;
                         foreach ($this->data as $v) {
                             ?>
                             <tbody>
-                                <tr>
+                                <tr id="tool">
                                     <td><?php echo $v->name ?></td>
                                     <td><?php echo $v->email ?></td>
                                     <td><?php echo $v->account_type ?></td>
@@ -56,7 +56,7 @@ $logo = $auth->getIdentity()->logo;
                                         }
                                         ?></td>
                                     <td><?php echo $v->contact ?></td>
-                                    <td id="tool">
+                                    <td>
                                         <?php if ($v->status == 1) { ?>  <a class="btn btn-success"  href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" title="Status Active" data-placement="left" ><i class="icon-ok-circle icon-white"></i></a><?php } else { ?>
                                             <a class="btn btn-danger" href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>" data-toggle="tooltip" title="Status De-active"><i class="icon-ban-circle icon-white"></i></a> 
                                         <?php } ?>

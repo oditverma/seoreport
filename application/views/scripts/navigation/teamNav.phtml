@@ -9,7 +9,7 @@
             <a class="brand" href="#">Team Section</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class="active"><a href="<?php echo $this->baseUrl();?>/team/index">Home</a></li>
+                    <li class="active"><a href="<?php echo $this->baseUrl(); ?>/team/index">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
@@ -21,10 +21,11 @@
                                     $email = $auth->getIdentity()->email;
                                     echo $name;
                                     ?></u></strong><b class="caret"></b></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu pull-right">
                             <li><a href="#"><?php print("<strong style='text-transform:capitalize;'>" . $name . "</strong><br>" . $email); ?></a></li>
+                            <li><a href="<?php echo $this->baseUrl(); ?>/team/profile">Setting</a></li>
                             <li class="divider"></li>
-                            <li><a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a></li>
+                            <li class="btn btn-link pull-right"><a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a></li>
                         </ul>
                     </li>
                 </ul>

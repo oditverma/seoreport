@@ -24,13 +24,13 @@
                                     }
                                     ?></td><td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v->attachment ?>"><i class="icon-file"></i></a></td>
                                 <td>        
-                                    <?php if ($v->status == 1) { ?>   <a href="<?php echo $this->baseUrl(); ?>/project/status/id/<?php echo $v['id'] ?>" class="btn btn-success" data-toggle="tooltip" rel="tooltip" title="Status Active"><i class="icon-ok-sign icon-white"></i></a>
+                                    <?php if ($v->status == 1) { ?>   <a href="<?php echo $this->baseUrl(); ?>/project/status/id/<?php echo $v['id'] ?>" class="btn btn-success" data-toggle="tooltip" title="Status Active"  ><i class="icon-ok-sign icon-white"></i></a>
                                     <?php } else { ?>
-                                        <a href="<?php echo $this->baseUrl(); ?>/project/status/id/<?php echo $v['id'] ?>" class="btn btn-danger" data-toggle="tooltip" rel="tooltip" title="Status De-active"><i class="icon-ban-circle icon-white"></i></a>
+                                        <a href="<?php echo $this->baseUrl(); ?>/project/status/id/<?php echo $v['id'] ?>" class="btn btn-danger" data-toggle="tooltip" title="Status De-active" ><i class="icon-ban-circle icon-white"></i></a>
                                     <?php } ?>                                          
-                                    <a href="<?php echo $this->baseUrl(); ?>/project/keyword/id/<?php echo $v['id'] ?>" class="btn btn-inverse" data-toggle="tooltip" rel="tooltip" title="Manage keyword" ><i class="icon-tags icon-white"></i></a>
-                                    <a href="<?php echo $this->baseUrl(); ?>/project/update/id/<?php echo $v['id'] ?>" class="btn btn-info"  data-toggle="tooltip" rel="tooltip" title="Update Project" ><i class="icon-cog icon-white"></i></a>                   
-                                    <a href="<?php echo $this->baseUrl(); ?>/project/delete/id/<?php echo $v['id'] ?>" class="btn btn-danger" data-toggle="tooltip"  rel="tooltip" title="Delete Project"><i class='icon-trash icon-white'></i></a>
+                                    <a href="<?php echo $this->baseUrl(); ?>/project/keyword/id/<?php echo $v['id'] ?>" class="btn btn-inverse" data-toggle="tooltip"  title="Manage keyword" ><i class="icon-tags icon-white"></i></a>
+                                    <a href="<?php echo $this->baseUrl(); ?>/project/update/id/<?php echo $v['id'] ?>" class="btn btn-info"  data-toggle="tooltip"   title="Update Project" ><i class="icon-cog icon-white"></i></a>                   
+                                    <a href="<?php echo $this->baseUrl(); ?>/project/delete/id/<?php echo $v['id'] ?>" class="btn btn-danger" data-toggle="tooltip"   title="Delete Project"><i class='icon-trash icon-white'></i></a>
                                 </td></tr>
                         </tbody>
                         <?php
@@ -41,3 +41,6 @@
         </div>
     </div>
 </div>
+<script language="JavaScript" type="text/javascript">
+    $("#tool a[href]").tooltip();
+</script>

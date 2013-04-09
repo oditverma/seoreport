@@ -7,15 +7,15 @@
     <?php if (isset($this->row)) {
         ?>
         <table class="table table-bordered">
-            <thead><tr><th>Project Title</th><th>Description</th><th>Date Added</th><th>Attachment</th></tr></thead>               
+            <thead><tr><th>Project Title</th><th>Description</th><th>Date Added</th><th>Setting</th></tr></thead>               
             <?php
             foreach ($this->row as $v) {
                 ?>
-                <tr>
+                <tr id="tool">
                     <td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
                     <td><?php echo $v->date_added ?></td><td>
-                        <a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/public/uploads/" ><i class="icon-tasks icon-white">Task(s)</i></a>
-                        <a class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file icon-white"></i>File</a></td>
+                        <a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/team/report/" data-toggle="tooltip"  title="Manage Task(s)" ><i class="icon-tasks icon-white"></i></a>
+                        <a class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank" data-toggle="tooltip"  title="View Attachment"><i class="icon-file icon-white"></i></a></td>
                 </tr>
                 <?php
             }
@@ -27,3 +27,6 @@
         <p>© Company 2013</p>
     </footer>
 </div>
+<script language="JavaScript" type="text/javascript">
+    $("#tool a[href]").tooltip();
+</script>
