@@ -51,7 +51,7 @@ class AdminController extends Zend_Controller_Action {
         $this->_helper->layout->disableLayout();
         $form = $this->_getAdminForm();
         $row = $this->_getAdminModel();
-        if (!empty($id)) {    
+        if (!empty($id)) {
             $row->delete("id='$id'");
         }
         $this->view->form = $form;
@@ -83,6 +83,20 @@ class AdminController extends Zend_Controller_Action {
         }
         $model->update($arr, 'id=' . $id);
         $this->_redirect('/admin/index');
+    }
+
+    public function forgotAction() {
+
+        $form = new Application_Form_ForgotForm();
+        $model = new Application_Model_admin();
+        $auth = Zend_Auth::getInstance();
+        $id = $auth->getIdentity()->id;
+        if ($this->_request->isPost() && $form->isValid($_POST)) {
+            $pass = $form->getValues();
+            $model->update(array('pass' => $pass['pass']), "id='$id'");
+            $this->_redirect('/admin/index');
+        }
+        $this->view->form = $form;
     }
 
     public function reportAction() {
