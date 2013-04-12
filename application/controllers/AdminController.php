@@ -86,7 +86,6 @@ class AdminController extends Zend_Controller_Action {
     }
 
     public function forgotAction() {
-
         $form = new Application_Form_ForgotForm();
         $model = new Application_Model_admin();
         $auth = Zend_Auth::getInstance();
