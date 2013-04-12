@@ -60,7 +60,8 @@ $logo = $auth->getIdentity()->logo;
                                         <?php } ?>
 
                                         <a class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $v['id'] ?>"  data-toggle="tooltip"  title="Update Info"><i class="icon-cog icon-white"></i></a>
-                                        <a class="btn btn-danger" href="#" title="Delete"  data-toggle="tooltip" data-placement="right" onclick="del(<?php echo $v['id'] ?>)" ><i class='icon-trash icon-white'></i></a>
+                                        <a href="<?php echo $this->Url(array('controller' => 'Admin', 'action' => 'delete', 'id' => $v['id'])) ?>" class="btn btn-danger" 
+                                           onclick="return confirm('Do you really want to delete this?');"><i class='icon-trash icon-white'></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -79,13 +80,5 @@ $logo = $auth->getIdentity()->logo;
     </footer>
 </div>
 <script language="JavaScript" type="text/javascript">
-                                            $("#tool a[href]").tooltip();
-</script>
-<script language="JavaScript" type="text/javascript">
-    function del(id) {
-        if (confirm('Are you sure you want to delete it ?')) {
-            window.location = "<?php echo $this->baseUrl(); ?>/admin/delete/id/" + id;
-
-        }
-    }
+                                           $("#tool a[href]").tooltip();
 </script>

@@ -103,7 +103,6 @@ class ProjectController extends Zend_Controller_Action {
             $inc = $db->select()->from($db, array(new Zend_Db_Expr("max(pos)+1 as pos")))->where("project_id='$project_id'");
             $rs = $db->fetchRow($inc);
             $array = $rs->toArray();
-            echo "<pre>";
             if (!empty($array['pos'])) {
                 $db->insert($data);
             } else {
@@ -206,7 +205,7 @@ class ProjectController extends Zend_Controller_Action {
             $this->_redirect('project/keyword/id/' . $projectID);
         }
         if (!$lesserRow) {
-            $newDisplayOrder = $currentDisplayOrder;
+            $newDisplayOrder = $currentDisplayOrder+1;
         } else {
             $newDisplayOrder = $lesserRow->pos;
             $lesserRow->pos = $currentDisplayOrder;

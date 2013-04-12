@@ -46,7 +46,8 @@ $title = $this->show;
                         </td>
                         <td>
                             <a href="<?php echo $this->baseUrl(); ?>/project/keyupdt/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a>|                    
-                            <a href="#" onclick="del(<?php echo $v['id'] ?>);"><i class='icon-trash'></i></a>
+                            <a href="<?php echo $this->Url(array('controller' => 'Project', 'action' => 'keydel', 'id' => $v['id'])) ?>"  
+                               onclick="return confirm('Do you really want to delete this?');"><i class="icon-trash" title='Delete'></i></a>
                         </td></tr>
                 </tbody>
                 <?php
@@ -55,11 +56,3 @@ $title = $this->show;
         ?>    
     </table>
 </div>
-<script language="JavaScript" type="text/javascript">
-                                function del(id) {
-                                    if (confirm('Are you sure you want to delete it ?')) {
-                                        window.location = "<?php echo $this->baseUrl(); ?>/project/keydel/projectId/" + id;
-
-                                    }
-                                }
-</script>
