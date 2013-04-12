@@ -130,6 +130,10 @@ class AdminController extends Zend_Controller_Action {
         $this->view->form = $form;
     }
 
+    public function viewAction() {
+        
+    }
+
     /* Function created for Model and Form */
 
     protected function _getAdminModel() {
