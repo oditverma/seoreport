@@ -7,10 +7,7 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-         if (!Zend_Auth::getInstance()->hasIdentity()) {
-            Zend_Auth::getInstance()->clearIdentity();
-            $this->_redirect('/index/login');
-        }
+        $this->_redirect('/index/login');
     }
 
     public function loginAction() {
@@ -24,7 +21,7 @@ class IndexController extends Zend_Controller_Action {
             $auth = Zend_Auth::getInstance();
             $auth->authenticate($authAdapter);
             $storage = $auth->getStorage();
-            $userInfo = $authAdapter->getResultRowObject(array('name', 'id', 'account_type', 'status', 'email', 'address','logo'));
+            $userInfo = $authAdapter->getResultRowObject(array('name', 'id', 'account_type', 'status', 'email', 'address', 'logo'));
             $storage->write($userInfo);
             $type = $userInfo->account_type;
             $status = $userInfo->status;
@@ -73,7 +70,7 @@ class IndexController extends Zend_Controller_Action {
     public function logoutAction() {
         $authAdapter = Zend_Auth::getInstance();
         $authAdapter->clearIdentity();
-        $this->_redirect('/index');
+        $this->_redirect('/index/login');
     }
 
 }
