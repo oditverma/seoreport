@@ -61,6 +61,7 @@ class IndexController extends Zend_Controller_Action {
             $mail->addTo($id, 'fwd');
             $mail->addCc('oditverma@gmail.com', 'fwd');
             $mail->setSubject('TestSubject');
+            echo "<script>bootbox.alert('Email Sent on your Mail');</script>";
             $mail->send($tr);
 
             $this->_redirect('/index');
