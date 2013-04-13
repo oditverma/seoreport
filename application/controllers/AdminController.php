@@ -11,7 +11,7 @@ class AdminController extends Zend_Controller_Action {
         if (!$auth->hasIdentity()) {
             Zend_Auth::getInstance()->clearIdentity();
             $this->_redirect('/index');
-        } else if ($type == 'team' || $type == 'client') {
+        } else if ($type == 'Team' || $type == 'Client') {
             Zend_Auth::getInstance()->clearIdentity();
             $this->_redirect('/index');
         }

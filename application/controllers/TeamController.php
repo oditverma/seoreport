@@ -8,7 +8,7 @@ class TeamController extends Zend_Controller_Action {
         if (!$auth->hasIdentity()) {
             Zend_Auth::getInstance()->clearIdentity();
             $this->_redirect('/index');
-        } else if ($type == 'admin' || $type == 'client') {
+        } else if ($type == 'Admin' || $type == 'Client') {
             Zend_Auth::getInstance()->clearIdentity();
             $this->_redirect('/index');
         }

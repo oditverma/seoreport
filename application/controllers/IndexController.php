@@ -25,13 +25,13 @@ class IndexController extends Zend_Controller_Action {
             $storage->write($userInfo);
             $type = $userInfo->account_type;
             $status = $userInfo->status;
-            if ($type == 'admin' && $status == TRUE) {
+            if ($type == 'Admin' && $status == TRUE) {
                 $this->_redirect('/admin/index');
             }
-            if ($type == 'client' && $status == TRUE) {
+            if ($type == 'Client' && $status == TRUE) {
                 $this->_redirect('/client/index');
             }
-            if ($type == 'team' && $status == TRUE) {
+            if ($type == 'Team' && $status == TRUE) {
                 $this->_redirect('/team/index');
             } else {
                 echo "<script>bootbox.alert('Incorrect Username or Password');</script>";

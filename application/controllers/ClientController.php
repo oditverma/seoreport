@@ -8,7 +8,7 @@ class ClientController extends Zend_Controller_Action {
         if (!$auth->hasIdentity()) {
             Zend_Auth::getInstance()->clearIdentity();
             $this->_redirect('/index');
-        } else if ($type == 'admin' || $type == 'team') {
+        } else if ($type == 'Admin' || $type == 'Team') {
             Zend_Auth::getInstance()->clearIdentity();
             $this->_redirect('/index');
         }
