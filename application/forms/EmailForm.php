@@ -3,7 +3,7 @@
 class Application_Form_EmailForm extends Zend_Form {
 
     public function init() {
-        $this->setAttrib('class', 'form-signin');
+        $this->setAttrib('class', 'form-signin')->setAttrib('style','margin-top:20px;');
         $validator = new Zend_Validate_EmailAddress(Zend_Validate_Hostname::ALLOW_DNS |
                 Zend_Validate_Hostname::ALLOW_LOCAL);
         $validator->setOptions(array('domain' => FALSE))->getHostnameValidator()
@@ -17,4 +17,5 @@ class Application_Form_EmailForm extends Zend_Form {
     }
 
 }
+
 ?>
