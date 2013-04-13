@@ -50,7 +50,7 @@ class IndexController extends Zend_Controller_Action {
             $model->update($arr, "email='$id'");
             $smtpOptions = array('auth' => 'login',
                 'username' => 'oditverma@gmail.com',
-                'password' => 'Eddy@169318',
+                'password' => 'Odit4841@',
                 'ssl' => 'ssl',
                 'port' => 465);
             $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $smtpOptions);
