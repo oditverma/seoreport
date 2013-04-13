@@ -27,15 +27,12 @@ class AdminController extends Zend_Controller_Action {
             $data = $form->getValues();
             $data['status'] = 1;
             $value = $this->_getAdminModel()->insert(array('name' => $data['name'],
-                'pass' => ($data['pass']),
+                'pass' => $data['pass'],
                 'email' => $data['email'],
                 'account_type' => $data['account_type'],
                 'address' => $data['address'],
                 'contact' => $data['contact'],
                 'logo' => $data['logo']));
-            echo "<pre>";
-            print_r($value);
-            die();
             $this->_redirect('/admin/index');
             $this->view->value = $value;
         }
@@ -58,6 +55,7 @@ class AdminController extends Zend_Controller_Action {
     public function updateAction() {
         $id = $this->_getParam('id');
         $form = $this->_getAdminForm();
+        $form->removeElement('pass');
         $model = $this->_getAdminModel();
         $result = $model->fetchrow("id='$id'");
         $form->populate($result->toArray());
