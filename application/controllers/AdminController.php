@@ -18,10 +18,7 @@ class AdminController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        $form = $this->_getAdminForm();
-        $data = $this->_getAdminModel()->fetchAll();
-        $this->view->data = $data;
-        $this->view->form = $form;
+        
     }
 
     public function editAction() {
@@ -131,7 +128,10 @@ class AdminController extends Zend_Controller_Action {
     }
 
     public function viewAction() {
-        
+        $form = $this->_getAdminForm();
+        $data = $this->_getAdminModel()->fetchAll();
+        $this->view->data = $data;
+        $this->view->form = $form;
     }
 
     /* Function created for Model and Form */

@@ -1,29 +1,84 @@
-<script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.min.js"></script>
-        <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.jqplot.min.js"></script>
-        <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jqplot.donutRenderer.min.js"></script>
-        <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jqplot.pieRenderer.min.js"></script>
-        
-<script class="code" type="text/javascript">
-$(document).ready(function(){
-  var data = [
-    ['Heavy Industry', 12],['Retail', 9], ['Light Industry', 14], 
-    ['Out of home', 16],['Commuting', 7], ['Orientation', 9]
-  ];
-  var plot1 = jQuery.jqplot ('chart1', [data], 
-    { 
-      seriesDefaults: {
-        // Make this a pie chart.
-        renderer: jQuery.jqplot.PieRenderer, 
-        rendererOptions: {
-          // Put data labels on the pie slices.
-          // By default, labels show the percentage of the slice.
-          showDataLabels: true
-        }
-      }, 
-      legend: { show:true, location: 'e' }
-    }
-  );
-});
-</script>
+<?php
+echo $this->render('navigation/nav.phtml')
+?>
+<?php
+$auth = Zend_Auth::getInstance();
+$name = $auth->getIdentity()->name;
+$id = $auth->getIdentity()->id;
+$logo = $auth->getIdentity()->logo;
+?>
+<div class="container-fluid" style="margin-top: 20px;">
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="member-box round-all">
+                <a>
+                    <img src="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $logo; ?>" class="member-box-avatar" style="height: 50px;width: 50px;padding: 1px;margin-right: 10px;float: left;" />
+                </a>
+                <span>
+                    <strong><span style="text-transform:capitalize;"><?php echo $name; ?></span></strong>
+                    <br>
+                    <span class="member-box-links">
+                        <a href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $id; ?>" class='label label-success' >Settings</a>
 
-<div id="chart1" style="height:300px; width:500px;"></div>
+                        <a href="<?php echo $this->baseUrl(); ?>/index/logout" class='label label-important'>Logout</a>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="span9">
+            <div class="hero-unit">
+                <h1>Admin Section!</h1>
+                <h3>Welcome <span style=" text-transform:capitalize;"><?php echo $name; ?></span></h3>
+            </div>
+            <div class="row-fluid">
+
+                <?php
+                if (isset($this->data)) {
+                    ?>
+                    <table class="table table-bordered">
+                        <thead><tr><th>Name</th><th>Email</th><th>Account Type</th><th>Address</th><th>Status</th><th>Contact</th><th>Setting</th></tr></thead>   
+                        <?php
+                        foreach ($this->data as $v) {
+                            ?>
+                            <tbody>
+                                <tr id="tool">
+                                    <td><?php echo $v->name ?></td>
+                                    <td><?php echo $v->email ?></td>
+                                    <td><?php echo $v->account_type ?></td>
+                                    <td><?php echo $v->address ?></td>
+                                    <td><?php
+                                        if ($v->status == 0) {
+                                            echo '<span class="badge badge-important">De-active</span>';
+                                        } else {
+                                            echo '<span class="badge badge-success">Active</span>';
+                                        }
+                                        ?></td>
+                                    <td><?php echo $v->contact ?></td>
+                                    <td>
+                                        <?php if ($v->status == 1) { ?>  <a class="btn btn-success"  href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" title="Status Active" data-placement="left" ><i class="icon-ok-circle icon-white"></i></a><?php } else { ?>
+                                            <a class="btn btn-danger" href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>" data-toggle="tooltip" title="Status De-active"><i class="icon-ban-circle icon-white"></i></a> 
+                                        <?php } ?>
+
+                                        <a class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $v['id'] ?>"  data-toggle="tooltip"  title="Update Info"><i class="icon-cog icon-white"></i></a>
+                                        <a href="<?php echo $this->Url(array('controller' => 'Admin', 'action' => 'delete', 'id' => $v['id'])) ?>" class="btn btn-danger" 
+                                           onclick="return confirm('Do you really want to delete this?');"><i class='icon-trash icon-white'></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <?php
+                        }
+                    }
+                    ?>    
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
+</div>
+<script language="JavaScript" type="text/javascript">
+                                           $("#tool a[href]").tooltip();
+</script>
