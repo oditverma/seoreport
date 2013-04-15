@@ -3,10 +3,7 @@
     <div class="hero-unit">
         <h2>View Reports</h2>
     </div>
-    <form class="form-signin" method="post" style="float: left">
-        <?php echo $this->form->getElement('pickDate'); ?>
-        <?php echo $this->form->getElement('submit'); ?>
-    </form>
+ <?php echo $this->form; ?>
 
     <?php
     if (isset($this->show)) {
