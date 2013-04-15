@@ -19,7 +19,7 @@
         <!-- JavaScript Files  -->
 
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.js"></script>
-         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/date.js"></script>
+        <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/date.js"></script>
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/daterangepicker.js"></script>
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-datepicker.js"></script>
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap.js"></script>
@@ -40,42 +40,42 @@
         <!-- Date Picker  -->
         <script language="JavaScript" type="text/javascript">
             $(function() {
-                $(' .datepicker ').datepicker();
+                $('.datepicker').datepicker();
             });
         </script>
         <script language="JavaScript" type="text/javascript">
             $(function() {
-                $('.daterangepicker').daterangepicker(
-                        {
-                            ranges: {
-                                'Today': ['today', 'today'],
-                                'Yesterday': ['yesterday', 'yesterday'],
-                                'Last 7 Days': [Date.today().add({days: -6}), 'today'],
-                                'Last 30 Days': [Date.today().add({days: -29}), 'today'],
-                                'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
-                                'Last Month': [Date.today().moveToFirstDayOfMonth().add({months: -1}), Date.today().moveToFirstDayOfMonth().add({days: -1})]
-                            },
-                            format: 'yyyy-MM-dd',
-                            separator: ' - ',
-                            startDate: Date.today().add({days: -29}),
-                            endDate: Date.today(),
-                            minDate: '01/01/1990',
-                            maxDate: '12/31/2050',
-                            locale: {
-                                applyLabel: 'Submit',
-                                fromLabel: 'From',
-                                toLabel: 'To',
-                                customRangeLabel: 'Custom Range',
-                                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                                firstDay: 1
-                            },
-                            showWeekNumbers: true,
-                            buttonClasses: ['btn-danger'],
-                            dateLimit: false
-                        });
-
+                $('.daterangepicker').daterangepicker();
             });
+            /*{
+             ranges: {
+             'Today': ['today', 'today'],
+             'Yesterday': ['yesterday', 'yesterday'],
+             'Last 7 Days': [Date.today().add({days: -6}), 'today'],
+             'Last 30 Days': [Date.today().add({days: -29}), 'today'],
+             'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
+             'Last Month': [Date.today().moveToFirstDayOfMonth().add({months: -1}), Date.today().moveToFirstDayOfMonth().add({days: -1})]
+             },
+             format: 'yyyy-MM-dd',
+             separator: ' - ',
+             startDate: Date.today().add({days: -29}),
+             endDate: Date.today(),
+             minDate: '01/01/1990',
+             maxDate: '12/31/2050',
+             locale: {
+             applyLabel: 'Submit',
+             fromLabel: 'From',
+             toLabel: 'To',
+             customRangeLabel: 'Custom Range',
+             daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+             monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+             firstDay: 1
+             },
+             showWeekNumbers: true,
+             buttonClasses: ['btn-danger'],
+             dateLimit: false
+             });*/
+
         </script>
         <style type="text/css">
             body {
