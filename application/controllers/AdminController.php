@@ -55,7 +55,6 @@ class AdminController extends Zend_Controller_Action {
     public function updateAction() {
         $id = $this->_getParam('id');
         $form = $this->_getAdminForm();
-        $form->removeElement('pass');
         $model = $this->_getAdminModel();
         $result = $model->fetchrow("id='$id'");
         $form->populate($result->toArray());
