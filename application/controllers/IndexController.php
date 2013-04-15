@@ -56,7 +56,7 @@ class IndexController extends Zend_Controller_Action {
             $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $smtpOptions);
             Zend_Mail::setDefaultTransport($tr);
             $mail = new Zend_Mail();
-            $mail->setBodyText('Your Password has successfully changed.' . ' Your new Account password is ' . "<b><u style='text-color:red;'>$hash</u></b>");
+            $mail->setBodyText('Your Password has successfully changed.' . ' Your new Account password is ' . "$hash");
             $mail->setFrom('oditverma@gmail.com', 'Odit');
             $mail->addTo($id, 'fwd');
             $mail->addCc('oditverma@gmail.com', 'fwd');
