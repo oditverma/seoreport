@@ -2,10 +2,9 @@
 echo $this->render('navigation/nav.phtml')
 ?>
 <?php
-$auth = Zend_Auth::getInstance();
-$name = $auth->getIdentity()->name;
-$id = $auth->getIdentity()->id;
-$logo = $auth->getIdentity()->logo;
+$name = Zend_Auth::getInstance()->getIdentity()->name;
+$id = Zend_Auth::getInstance()->getIdentity()->id;
+$logo = Zend_Auth::getInstance()->getIdentity()->logo;
 ?>
 <div class="container-fluid" style="margin-top: 20px;">
     <div class="row-fluid">
@@ -80,5 +79,5 @@ $logo = $auth->getIdentity()->logo;
     </footer>
 </div>
 <script language="JavaScript" type="text/javascript">
-                                           $("#tool a[href]").tooltip();
+                                               $("#tool a[href]").tooltip();
 </script>
