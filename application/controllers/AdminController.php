@@ -27,6 +27,8 @@ class AdminController extends Zend_Controller_Action {
             $data = $form->getValues();
             $data['status'] = 1;
             $value = $this->_getAdminModel()->insert(array('name' => $data['name'],
+                'gender'=>$data['gender'],
+                'dob' => $data['dob'],
                 'pass' => $data['pass'],
                 'email' => $data['email'],
                 'account_type' => $data['account_type'],

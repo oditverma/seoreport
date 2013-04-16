@@ -1,7 +1,43 @@
 <?php echo $this->render('/navigation/nav.phtml') ?>
 <div class="container">
     <h2 class="header">Add User</h2>
-    <div class="bs-docs-example">
-        <?php echo $this->form; ?>
+    <div id="windowTitleDialog" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" aria-hidden="true" style="display:  none;">
+        <div class="modal-header">
+            <a href="#" class="close" data-dismiss="modal">×</a>
+            <h3>Please enter a new title for this window.</h3>
+        </div>
+        <div class="modal-body">
+            <div class="divDialogElements">
+                <input class="xlarge" id="xlInput" name="xlInput" type="file">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" onclick="closeDialog();">Cancel</a>
+            <a href="#" class="btn btn-primary" onclick="okClicked();">OK</a>
+        </div>
     </div>
+
+    <div class="bs-docs-example">
+        <form method="post">
+            <table><tr><td><?php echo $this->form->getElement('name'); ?></td>
+                    <td><?php echo $this->form->getElement('gender'); ?></td> </tr> 
+                <tr><td><?php echo $this->form->getElement('dob'); ?></td>
+                    <td><?php echo $this->form->getElement('email'); ?></td></tr> 
+                <tr><td><?php echo $this->form->getElement('password'); ?></td>
+                    <td><?php echo $this->form->getElement('pass'); ?></td></tr> 
+                <tr><td> <?php echo $this->form->getElement('account_type'); ?></td>
+                    <td><?php echo $this->form->getElement('contact'); ?></td></tr>
+                <tr>   <td><?php echo $this->form->getElement('address'); ?></td>
+                </tr>
+                <tr><td><div class="divButtons">
+                            <?php echo $this->form->getElement('submit'); ?>
+                        </div></td></tr> 
+            </table>
+        </form>
+    </div>
+
+    <hr>
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
 </div>
