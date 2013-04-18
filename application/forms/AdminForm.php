@@ -19,8 +19,7 @@ class Application_Form_AdminForm extends Zend_Form {
         $logo->setDestination(APPLICATION_PATH . '/../public/uploads')
                 ->setLabel("Logo : ")
                 ->setRequired(true);
-        $submit = $this->createElement('submit', 'submit')->setAttrib('class', 'btn btn-info btn-large');
-        $submit->setAttrib('data-toggle', 'modal')->setAttrib('href', '#windowTitleDialog');
+        $submit = $this->createElement('submit', 'submit')->setAttrib('class', 'btn btn-info');
         $this->addElements(array($name, $gender, $birthdate, $pass, $password, $email, $account_type, $address, $contact, $logo, $submit));
     }
 

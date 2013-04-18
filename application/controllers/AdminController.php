@@ -26,8 +26,11 @@ class AdminController extends Zend_Controller_Action {
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValues();
             $data['status'] = 1;
+            /*echo "<pre>";
+            print_r($data);
+            die();*/
             $value = $this->_getAdminModel()->insert(array('name' => $data['name'],
-                'gender'=>$data['gender'],
+                'gender' => $data['gender'],
                 'dob' => $data['dob'],
                 'pass' => $data['pass'],
                 'email' => $data['email'],
@@ -35,6 +38,7 @@ class AdminController extends Zend_Controller_Action {
                 'address' => $data['address'],
                 'contact' => $data['contact'],
                 'logo' => $data['logo']));
+
             $this->_redirect('/admin/index');
             $this->view->value = $value;
         }
