@@ -8,6 +8,7 @@
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/jquery-ui.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/datepicker.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/daterangepicker.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" media="screen">
@@ -17,7 +18,6 @@
         <link href="<?php echo $this->BaseUrl(); ?>/Bootstrap/css/jquery.jqplot.min.css" rel="stylesheet" type="text/css" media="screen">
         <link rel="shortcut icon" href="<?php echo $this->BaseUrl(); ?>/Bootstrap/img/web3.png">
         <!-- JavaScript Files  -->
-
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.js"></script>
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/date.js"></script>
         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/daterangepicker.js"></script>
@@ -107,5 +107,22 @@
     </head>
     <body>
         <?php echo $this->layout()->content; ?>
+         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.min.js">
+        </script> 
+        <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-datetimepicker.min.js">
+        </script>
+        <script language="JavaScript" type="text/javascript">
+            $(function() {
+                $('.bootstrap-datetimepicker-widget').bootstrap-datetimepicker-widget();
+            });
+        </script>  
+        <div id="StartDate" class="input-append date">
+            <input type="text" class="bootstrap-datetimepicker-widget " />
+            <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+            </span>
+        </div>
+       
+        
     </body>
 </html>
