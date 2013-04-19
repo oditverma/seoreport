@@ -106,23 +106,6 @@
         </style>
     </head>
     <body>
-        <?php echo $this->layout()->content; ?>
-         <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.min.js">
-        </script> 
-        <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap-datetimepicker.min.js">
-        </script>
-        <script language="JavaScript" type="text/javascript">
-            $(function() {
-                $('.bootstrap-datetimepicker-widget').bootstrap-datetimepicker-widget();
-            });
-        </script>  
-        <div id="StartDate" class="input-append date">
-            <input type="text" class="bootstrap-datetimepicker-widget " />
-            <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-            </span>
-        </div>
-       
-        
+        <?php echo $this->layout()->content; ?>        
     </body>
 </html>
