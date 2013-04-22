@@ -21,6 +21,7 @@ class ClientController extends Zend_Controller_Action {
         }
     }
 
+   
     public function projectAction() {
         if (!Zend_Auth::getInstance()->hasIdentity()) {
 

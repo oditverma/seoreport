@@ -31,11 +31,11 @@ $id = Zend_Auth::getInstance()->getIdentity()->id;
                                     $email = Zend_Auth::getInstance()->getIdentity()->email;
                                     echo $name;
                                     ?></u></strong></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $id; ?>"><i class='icon-user'></i><?php print("<strong style='text-transform:capitalize;'>" . $name . "</strong><br>" . $email); ?></a></li>
-                            <li><a href="<?php echo $this->baseUrl(); ?>/admin/forgot"><i class='icon-lock'></i>Change Password !</a></li>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $id; ?>"><?php print("<strong style='text-transform:capitalize;'>" . $name . "</strong><br>" . $email); ?></a></li>
+                            <li><a href="<?php echo $this->baseUrl(); ?>/admin/forgot">Change Password !</a></li>
                             <li class="divider"></li>
-                            <li><a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a></li>
+                            <li class="btn btn-link pull-right"><a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a></li>
                         </ul>
                     </li>
                 </ul>

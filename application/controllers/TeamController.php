@@ -124,6 +124,12 @@ class TeamController extends Zend_Controller_Action {
         $row = $model->fetchAll();
         $this->view->row = $row;
     }
+     public function logoutAction() {
+        $authAdapter = Zend_Auth::getInstance();
+        $authAdapter->clearIdentity();
+        $this->_redirect('/index/login');
+    }
+
     
     /*  public function keywordAction() {
       $form = new Application_Form_KeywordForm();

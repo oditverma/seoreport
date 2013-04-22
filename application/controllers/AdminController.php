@@ -160,6 +160,11 @@ class AdminController extends Zend_Controller_Action {
         }
         return $this->_adminForm;
     }
+        public function logoutAction() {
+        $authAdapter = Zend_Auth::getInstance();
+        $authAdapter->clearIdentity();
+        $this->_redirect('/index/login');
+    }
 
     /* $row = new Application_Model_admin();
       $data = $row->fetchAll();
