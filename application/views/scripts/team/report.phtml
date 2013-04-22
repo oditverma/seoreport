@@ -1,15 +1,15 @@
 <?php echo $this->render('/navigation/teamNav.phtml') ?>
-<script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.min.js"></script>
 <div class="container" style="padding-right: 20px;padding-left: 20px;margin-top: 20px">
-    <h2>View Reports</h2>
+    <div class="row-fluid">
+        <h2>View Reports</h2>
 
-    <?php
-    if (isset($this->show)) {
+        <?php
+        //  if (isset($this->show)) {
         ?>
         <table class="table table-bordered">
             <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
             <?php
-            foreach ($this->show as $v) {
+            foreach ($this->row as $v) {
                 ?>
                 <tbody>
                     <tr>
@@ -21,7 +21,12 @@
 
                 <?php
             }
-        }
-        ?>
-    </table>
+            //   }
+            ?>
+        </table>
+    </div>
+    <hr>
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
 </div>

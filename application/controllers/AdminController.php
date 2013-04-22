@@ -103,7 +103,9 @@ class AdminController extends Zend_Controller_Action {
             Zend_Auth::getInstance()->clearIdentity();
             $this->_redirect('/index');
         }
+
         $form = new Application_Form_ReportForm();
+ $form->removeElement('title');
         $auth = Zend_Auth::getInstance();
         $id = $auth->getIdentity()->id;
         if ($this->_request->isPost() && $form->isValid($_POST)) {

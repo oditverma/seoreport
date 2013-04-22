@@ -119,6 +119,7 @@ class TeamController extends Zend_Controller_Action {
     }
 
      public function reportAction() {
+         
         $model = new Application_Model_project();
         $row = $model->fetchAll();
         $this->view->row = $row;

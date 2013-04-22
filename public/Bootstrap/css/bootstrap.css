@@ -2005,6 +2005,7 @@ table {
     background-color: transparent;
     border-collapse: collapse;
     border-spacing: 0;
+    background-color: #ffffff;
 }
 
 .table {
@@ -2043,7 +2044,7 @@ table {
 }
 
 .table .table {
-    background-color: #ffffff;
+    background-color: white;
 }
 
 .table-condensed th,

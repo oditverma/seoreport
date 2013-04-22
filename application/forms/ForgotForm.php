@@ -3,6 +3,7 @@
 class Application_Form_ForgotForm extends Zend_Form {
 
     public function init() {
+        
         $confirmpass = $this->createElement('password', 'confirmpass')->setRequired(TRUE)->setAttrib('Placeholder', 'New Password')
                 ->addValidator('StringLength', FALSE, array(4));
         $pass = $this->createElement('password', 'pass')->setRequired(TRUE)->setAttrib('Placeholder', 'Confirm Password')->addValidator('StringLength', false, array(4))
