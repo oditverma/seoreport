@@ -1,5 +1,5 @@
 <?php echo $this->render('/navigation/teamNav.phtml'); ?>
-<div class="container" style='padding-top: 20px;padding-bottom: 20px;'>
+<div class="container-fluid" style='padding-top: 20px;padding-bottom: 20px;'>
     <h2>View Project(s)</h2>
     <h4>This is a template for a simple marketing or informational website . It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</h4>
     <?php if (isset($this->row)) {
@@ -12,7 +12,7 @@
                 <tr id="tool">
                     <td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
                     <td><?php echo $v->date_added ?></td><td>
-                        <a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/team/report/" data-toggle="tooltip"  title="Manage Task(s)" ><i class="icon-tasks icon-white"></i></a>
+                        <a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/team/report/id/<?php echo $v['id'] ?>" data-toggle="tooltip"  title="Manage Task(s)" ><i class="icon-tasks icon-white"></i></a>
                         <a class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank" data-toggle="tooltip"  title="View Attachment"><i class="icon-file icon-white"></i></a></td>
                 </tr>
                 <?php

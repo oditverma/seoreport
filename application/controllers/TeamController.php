@@ -49,8 +49,8 @@ class TeamController extends Zend_Controller_Action {
         $id = $this->_getParam('id');
         $form = new Application_Form_TaskForm();
         $form->removeElement('pass');
-        $model = new Application_Model_admin();
-        $result = $model->fetchrow("id='$id'");
+        $model = new Application_Model_report();
+        $result = $model->fetchAll("project_id='$id'");
         $form->populate($result->toArray());
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValues();
@@ -77,13 +77,10 @@ class TeamController extends Zend_Controller_Action {
     public function editAction() {
         $form = new Application_Form_TaskForm();
         $form->removeElement('attachment');
-         $form->removeElement('time_completed');
+        $form->removeElement('time_completed');
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $row = new Application_Model_report();
             $data = $form->getValues();
-            echo "<pre>";
-            print_r($data);
-            die();
             $row->insert($data);
             $this->_redirect('/team/index');
             $this->view->data = $data;
@@ -118,19 +115,19 @@ class TeamController extends Zend_Controller_Action {
         $this->view->row = $row;
     }
 
-     public function reportAction() {
-         
-        $model = new Application_Model_project();
-        $row = $model->fetchAll();
+    public function reportAction() {
+        $id = $this->_getParam('id');
+        $model = new Application_Model_report();
+        $row = $model->fetchAll("project_id='$id'");
         $this->view->row = $row;
     }
-     public function logoutAction() {
+
+    public function logoutAction() {
         $authAdapter = Zend_Auth::getInstance();
         $authAdapter->clearIdentity();
         $this->_redirect('/index/login');
     }
 
-    
     /*  public function keywordAction() {
       $form = new Application_Form_KeywordForm();
       $db = new Application_Model_keyword();
