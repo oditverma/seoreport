@@ -12,7 +12,7 @@ $title = $this->show;
             ?>
         </div>
         <table  class="table table-bordered">
-            <thead><tr><th>Keyword</th><th>Date Added</th><th>Priority</th><th>Settings</th></tr></thead>       
+            <thead><tr><th>Keyword</th><th>Date Added</th><th>Order</th><th>Priority</th><th>Settings</th></tr></thead>       
             <?php
             $pos = array();
             foreach ($this->select as $v) {
@@ -30,6 +30,7 @@ $title = $this->show;
                 <tbody><tr>
                         <td><?php echo $v->keyname ?></td>
                         <td><?php echo $v->timeadded ?></td>
+                        <td><?php echo $v->pos ?></td>
                         <td><?php if ($v->pos == $minPos) { ?>  
                                 <a style="visibility:hidden;" href="<?php echo $this->baseUrl(); ?>/project/keyup/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>|
                                 <a href="<?php echo $this->baseUrl(); ?>/project/keydown/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class='icon-arrow-down'></i></a>

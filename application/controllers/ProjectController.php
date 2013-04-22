@@ -175,13 +175,8 @@ class ProjectController extends Zend_Controller_Action {
             $newDisplayOrder = $lesserRow->pos;
             $lesserRow->pos = $currentDisplayOrder;
             $lesserRow->save();
-        }
-        try {
             $row->pos = $newDisplayOrder;
             $row->save();
-            $this->_redirect('project/keyword/id/' . $projectID);
-        } catch (Zend_Exception $e) {
-            echo $e->getMessage();
             $this->_redirect('project/keyword/id/' . $projectID);
         }
     }
@@ -200,16 +195,14 @@ class ProjectController extends Zend_Controller_Action {
             $this->_redirect('project/keyword/id/' . $projectID);
         }
         $currentDisplayOrder = $row->pos;
-        $lesserRow = $model->fetchRow(" pos >". $currentDisplayOrder , " pos ASC limit 1");
-        if ($currentDisplayOrder == $lesserRow->pos) {
-            $this->_redirect('project/keyword/id/' . $projectID);
-        }
-        if (!$lesserRow) {
-            $newDisplayOrder = $currentDisplayOrder+1;
-        } else {
+        $lesserRow = $model->fetchRow(" pos >" . $currentDisplayOrder, " pos ASC limit 1");
+        $newDisplayOrder = $currentDisplayOrder + 1;
+        if ($currentDisplayOrder != $lesserRow->pos) {
             $newDisplayOrder = $lesserRow->pos;
             $lesserRow->pos = $currentDisplayOrder;
             $lesserRow->save();
+        } else {
+            $this->_redirect('project/keyword/id/' . $projectID);
         }
         try {
             $row->pos = $newDisplayOrder;
