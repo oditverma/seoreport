@@ -26,9 +26,6 @@ class AdminController extends Zend_Controller_Action {
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValues();
             $data['status'] = 1;
-            /*echo "<pre>";
-            print_r($data);
-            die();*/
             $value = $this->_getAdminModel()->insert(array('name' => $data['name'],
                 'gender' => $data['gender'],
                 'dob' => $data['dob'],
@@ -38,7 +35,21 @@ class AdminController extends Zend_Controller_Action {
                 'address' => $data['address'],
                 'contact' => $data['contact'],
                 'logo' => $data['logo']));
-
+            $smtpOptions = array('auth' => 'login',
+                'username' => 'oditverma@gmail.com',
+                'password' => 'Odit4841@',
+                'ssl' => 'ssl',
+                'port' => 465);
+            $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $smtpOptions);
+            Zend_Mail::setDefaultTransport($tr);
+            $mail = new Zend_Mail();
+            $mail->setBodyText("You Account has been created and you user name is :  ".$data['name'].'  and your password is : '.$data['pass']);
+            $mail->setFrom('oditverma@gmail.com', 'Odit');
+            $mail->addTo($data ['email'], 'fwd');
+            $mail->addCc('oditverma@gmail.com', 'fwd');
+            $mail->setSubject('Testing Subject');
+            echo "<script>bootbox.alert('Email Message has been sent on your Mail');</script>";
+            $mail->send($tr);
             $this->_redirect('/admin/index');
             $this->view->value = $value;
         }
@@ -105,7 +116,7 @@ class AdminController extends Zend_Controller_Action {
         }
 
         $form = new Application_Form_ReportForm();
- $form->removeElement('title');
+        $form->removeElement('title');
         $auth = Zend_Auth::getInstance();
         $id = $auth->getIdentity()->id;
         if ($this->_request->isPost() && $form->isValid($_POST)) {
