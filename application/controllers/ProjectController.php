@@ -190,32 +190,30 @@ class ProjectController extends Zend_Controller_Action {
         $id = $this->getParam('id');
         $projectID = $this->_getParam('projectId');
         $model = new Application_Model_keyword();
+        $row = $model->fetchRow("id='$id'");
+        if (empty($id) || !$row) {
+            throw new Zend_Exception('Id not provided!');
+            $this->_redirect('project/keyword/id/' . $projectID);
+        }
 
-        /*        if (empty($id)) {
-          throw new Zend_Exception('Id not provided!');
-          }
-          $row = $model->fetchRow("id='$id'");
-          if (!$row) {
-          $this->_redirect('project/keyword/id/' . $projectID);
-          }
-          $currentDisplayOrder = $row->pos;
-          $lesserRow = $model->fetchRow(" pos >" . $currentDisplayOrder, " pos ASC limit 1");
-          $newDisplayOrder = $currentDisplayOrder + 1;
-          if ($currentDisplayOrder != $lesserRow->pos) {
-          $newDisplayOrder = $lesserRow->pos;
-          $lesserRow->pos = $currentDisplayOrder;
-          $lesserRow->save();
-          } else {
-          $this->_redirect('project/keyword/id/' . $projectID);
-          }
-          try {
-          $row->pos = $newDisplayOrder;
-          $row->save();
-          $this->_redirect('project/keyword/id/' . $projectID);
-          } catch (Zend_Exception $e) {
-          echo $e->getMessage();
-          $this->_redirect('project/keyword/id/' . $projectID);
-          } */
+        $row->toArray();
+        $currentLine = $row->pos;
+        $lastRow = $model->fetchRow("pos >" . $currentLine . " and project_id='$projectID'", " pos ASC limit 1");
+        $lastRow->toArray();
+        if ($currentLine == $lastRow) {
+            throw new Zend_Exception('Wrong swap!');
+            $this->_redirect('project/keyword/id/' . $projectID);
+        }
+        if (!$lastRow) {
+            $newOrder = $currentLine + 1;
+        } else {
+            $newOrder = $lastRow['pos'];
+            $lastRow['pos'] = $currentLine;
+            $lastRow->save();
+        }
+        $row->pos = $newOrder;
+        $row->save();
+        $this->_redirect('project/keyword/id/' . $projectID);
     }
 
 }
