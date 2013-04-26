@@ -23,8 +23,8 @@ class IndexController extends Zend_Controller_Action {
             $storage = $auth->getStorage();
             $userInfo = $authAdapter->getResultRowObject(array('name', 'id', 'account_type', 'status', 'email', 'address', 'logo'));
             $storage->write($userInfo);
-            $type = $userInfo['account_type'];
-            $status = $userInfo['status'];
+            $type = $userInfo->account_type;
+            $status = $userInfo->status;
             if ($type == 'Admin' && $status == TRUE) {
                 $this->_redirect('/admin/index');
             }
