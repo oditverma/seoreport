@@ -1,11 +1,12 @@
 <?php echo $this->render('navigation/nav.phtml'); ?>
 <?php
-$title = $this->show;
+$title = $this->data;
+$title->toArray();
 ?>
 <div class="container">
     <h3>Keyword Allocation</h3>
     <div class="bs-docs-example">
-        <h4 style="text-transform:  uppercase;">Campaign Name : <?php echo $title; ?> </h4>
+        <h4 style="text-transform:  uppercase;">Campaign Name : <?php print_r($title[0]['title']); ?> </h4>
         <?php
         echo $this->form;
         if (isset($this->select)) {
