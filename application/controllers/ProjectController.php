@@ -160,28 +160,51 @@ class ProjectController extends Zend_Controller_Action {
         $this->_helper->viewRenderer->setNoRender();
         $this->_helper->layout->disableLayout();
         $model = new Application_Model_keyword();
-        if (empty($id)) {
-            throw new Zend_Exception('Id not provided!');
-        }
         $row = $model->fetchRow("id='$id'");
-        if (!$row) {
+        if (empty($id) || !$row) {
+            throw new Zend_Exception('Id not provided!');
             $this->_redirect('project/keyword/id/' . $projectID);
         }
-        $currentDisplayOrder = $row->pos;
-        $lesserRow = $model->fetchRow("pos< $currentDisplayOrder ", "pos desc limit 1");
-        if ($currentDisplayOrder == $lesserRow->pos) {
+        $row->toArray();
+        $currentLine = $row->pos;
+        $lastRow = $model->fetchRow("pos <" . $currentLine . " and project_id='$projectID'", " pos DESC limit 1");
+        $lastRow->toArray();
+        if ($currentLine == $lastRow) {
+            throw new Zend_Exception('Wrong swap!');
             $this->_redirect('project/keyword/id/' . $projectID);
         }
-        if (!$lesserRow) {
-            $newDisplayOrder = ($currentDisplayOrder - 1 > 1) ? $currentDisplayOrder - 1 : $currentDisplayOrder;
+        if (!$lastRow) {
+            $newOrder = ($currentLine - 1 > 1) ? $currentLine - 1 : $currentLine;
         } else {
-            $newDisplayOrder = $lesserRow->pos;
-            $lesserRow->pos = $currentDisplayOrder;
-            $lesserRow->save();
-            $row->pos = $newDisplayOrder;
-            $row->save();
-            $this->_redirect('project/keyword/id/' . $projectID);
+            $newOrder = $lastRow['pos'];
+            $lastRow['pos'] = $currentLine;
+            $lastRow->save();
         }
+        $row->pos = $newOrder;
+        $row->save();
+        $this->_redirect('project/keyword/id/' . $projectID);
+        /* if (empty($id)) {
+          throw new Zend_Exception('Id not provided!');
+          }
+          $row = $model->fetchRow("id='$id'");
+          if (!$row) {
+          $this->_redirect('project/keyword/id/' . $projectID);
+          }
+          $currentDisplayOrder = $row->pos;
+          $lesserRow = $model->fetchRow("pos< $currentDisplayOrder ", "pos desc limit 1");
+          if ($currentDisplayOrder == $lesserRow->pos) {
+          $this->_redirect('project/keyword/id/' . $projectID);
+          }
+          if (!$lesserRow) {
+          $newDisplayOrder = ($currentDisplayOrder - 1 > 1) ? $currentDisplayOrder - 1 : $currentDisplayOrder;
+          } else {
+          $newDisplayOrder = $lesserRow->pos;
+          $lesserRow->pos = $currentDisplayOrder;
+          $lesserRow->save();
+          $row->pos = $newDisplayOrder;
+          $row->save();
+          $this->_redirect('project/keyword/id/' . $projectID);
+          } */
     }
 
     public function keydownAction() {
@@ -195,7 +218,6 @@ class ProjectController extends Zend_Controller_Action {
             throw new Zend_Exception('Id not provided!');
             $this->_redirect('project/keyword/id/' . $projectID);
         }
-
         $row->toArray();
         $currentLine = $row->pos;
         $lastRow = $model->fetchRow("pos >" . $currentLine . " and project_id='$projectID'", " pos ASC limit 1");
