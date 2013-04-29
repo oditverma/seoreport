@@ -6,9 +6,8 @@ class AdminController extends Zend_Controller_Action {
     protected $_adminForm = Null;
 
     public function init() {
-        $auth = Zend_Auth::getInstance();
-        $type = $auth->getIdentity()->account_type;
-        if (!$auth->hasIdentity()) {
+        $type = Zend_Auth::getInstance()->getIdentity()->account_type;
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
             Zend_Auth::getInstance()->clearIdentity();
             $this->_redirect('/index');
         } else if ($type == 'Team' || $type == 'Client') {
@@ -43,7 +42,7 @@ class AdminController extends Zend_Controller_Action {
             $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $smtpOptions);
             Zend_Mail::setDefaultTransport($tr);
             $mail = new Zend_Mail();
-            $mail->setBodyText("You Account has been created and you user name is :  ".$data['name'].'  and your password is : '.$data['pass']);
+            $mail->setBodyText("You Account has been created and you user name is :  " . $data['name'] . '  and your password is : ' . $data['pass']);
             $mail->setFrom('oditverma@gmail.com', 'Odit');
             $mail->addTo($data ['email'], 'fwd');
             $mail->addCc('oditverma@gmail.com', 'fwd');
@@ -110,11 +109,6 @@ class AdminController extends Zend_Controller_Action {
     }
 
     public function reportAction() {
-        if (!Zend_Auth::getInstance()->hasIdentity()) {
-            Zend_Auth::getInstance()->clearIdentity();
-            $this->_redirect('/index');
-        }
-
         $form = new Application_Form_ReportForm();
         $form->removeElement('title');
         $auth = Zend_Auth::getInstance();
@@ -160,7 +154,8 @@ class AdminController extends Zend_Controller_Action {
         }
         return $this->_adminForm;
     }
-        public function logoutAction() {
+
+    public function logoutAction() {
         $authAdapter = Zend_Auth::getInstance();
         $authAdapter->clearIdentity();
         $this->_redirect('/index/login');

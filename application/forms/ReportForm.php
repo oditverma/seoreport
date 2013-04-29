@@ -14,6 +14,7 @@ class Application_Form_ReportForm extends Zend_Form {
         }
         $title->addMultiOption('', 'Select Project');
         $title->addMultiOptions($arr);
+
         $submit = $this->createElement('submit', 'submit')->setAttrib('class', 'btn btn-info');
         $this->addElements(array($pickDate, $title, $submit));
     }
