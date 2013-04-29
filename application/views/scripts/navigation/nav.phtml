@@ -34,10 +34,11 @@ echo $name;
 ?></u></strong></a>
                         <ul class="dropdown-menu pull-right">
 
-                            <li> <a>
+                            <li> 
+                                <a href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $id; ?>"> 
                                     <img src="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $logo; ?>" class="member-box-avatar" style="height: 50px;width: 50px;padding: 1px;margin-right: 10px;float: left;" />
-                                </a>
-                                <a href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $id; ?>"><?php print("<strong style='text-transform:capitalize;'>" . $name . "</strong><br>" . $email); ?></a></li>
+                                    <?php print("<strong style='text-transform:capitalize;'>" . $name . "</strong><br>" . $email); ?>
+                                </a></li>
                             <li><a href="<?php echo $this->baseUrl(); ?>/admin/forgot">Change Password !</a></li>
                             <li class="divider"></li>
                             <li class="btn btn-link pull-right"><a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a></li>
@@ -48,17 +49,3 @@ echo $name;
         </div>
     </div>
 </div>
-<!--div class="member-box round-all">
-                <a>
-                    <img src="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $logo; ?>" class="member-box-avatar" style="height: 50px;width: 50px;padding: 1px;margin-right: 10px;float: left;" />
-                </a>
-                <span>
-                    <strong><span style="text-transform:capitalize;"><?php echo $name; ?></span></strong>
-                    <br>
-                    <span class="member-box-links">
-                        <a href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $id; ?>" class='label label-success' >Settings</a>
-
-                        <a href="<?php echo $this->baseUrl(); ?>/index/logout" class='label label-important'>Logout</a>
-                    </span>
-                </span>
-            </div-->
