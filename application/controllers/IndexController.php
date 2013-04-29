@@ -63,7 +63,6 @@ class IndexController extends Zend_Controller_Action {
             $mail->setSubject('TestSubject');
             echo "<script>bootbox.alert('Email Sent on your Mail');</script>";
             $mail->send($tr);
-
             $this->_redirect('/index');
         }
         $this->view->form = $form;
