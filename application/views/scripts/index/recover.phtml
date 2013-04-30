@@ -1,6 +1,60 @@
 <?php
-
 echo $this->render('/navigation/adminNav.phtml');
-echo $this->form;
 ?>
-     
+<script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.min.js" ></script>
+<script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/verimail.jquery.js" ></script>
+<script language="JavaScript" type="text/javascript" >
+    $(document).ready(function(){
+        $("input#email").verimail({
+            denyTempEmailDomains: true,
+            messageElement: "p#status-message"
+        });
+    });
+</script>
+<form method="post" class="form-signin" style="margin-top:20px;">
+    <div id="content" class="container" >
+
+        <div id="email-container" >
+
+            <span class="ac"></span>
+
+            <p class="ac" >
+                <?php echo $this->form->getElement('email'); ?>
+            </p>
+            <p class="ac" id="status-message"></p>               
+            <?php echo $this->form->getElement('submit'); ?>
+
+
+        </div>
+
+    </div>
+</form>
+<style type="text/css">
+    div#email-container > span {
+        margin-bottom: 30px;
+    }
+
+    input#email.verimail-success {
+        background: transparent url('<?php echo $this->BaseUrl(); ?>/Bootstrap/img/icons/success.png') no-repeat center right;
+    }
+    input#email.verimail-error {
+        background: transparent url('<?php echo $this->BaseUrl(); ?>/Bootstrap/img/icons/error.png') no-repeat center right;
+    }
+    input#email.verimail-pending {
+        background: transparent url('<?php echo $this->BaseUrl(); ?>/Bootstrap/img/icons/pending.gif') no-repeat center right;
+    }
+
+    p#status-message span.success {
+        color: green;
+    }
+    p#status-message span.error {
+        color: red;
+    }
+    p#status-message span.correction {
+        font-weight: bold;
+    }
+</style>
+
+<script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/bootstrap.min.js" ></script>
+<script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.isotope.min.js" ></script>
+<script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/functions.min.js" ></script>
