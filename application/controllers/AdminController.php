@@ -110,7 +110,7 @@ class AdminController extends Zend_Controller_Action {
 
     public function reportAction() {
         $form = new Application_Form_ReportForm();
-        $form->removeElement('title');
+        //$form->removeElement('title');
         $auth = Zend_Auth::getInstance();
         $id = $auth->getIdentity()->id;
         if ($this->_request->isPost() && $form->isValid($_POST)) {
