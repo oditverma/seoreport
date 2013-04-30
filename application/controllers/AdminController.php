@@ -110,19 +110,21 @@ class AdminController extends Zend_Controller_Action {
 
     public function reportAction() {
         $form = new Application_Form_ReportForm();
-        $auth = Zend_Auth::getInstance();
-        $id = $auth->getIdentity()->id;
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValue('pickDate');
+            $p_id = $form->getValue('title');
             $db = Zend_Db_Table::getDefaultAdapter();
             $date = explode(' - ', $data);
             if (!empty($date[1])) {
                 $select = $db->select()
                         ->from(array('report' => 'report'), array('report.title', 'report.description', 'report.attachment'))
                         ->join(array('project' => 'project'), 'project.id=report.project_id', array())
-                        ->where("project.user_id='$id' and report.time_added='$date[0]'")
-                        ->orWhere("report.time_added between '$date[0]' and '$date[1]'");
+                        ->where("report.project_id='$p_id'")
+                        ->where("report.time_added between '$date[0]' and '$date[1]'");
             }
+            /*echo "<pre>";
+            echo $select;
+            die();*/
             $show = $db->fetchAll($select);
             $this->view->show = $show;
         }

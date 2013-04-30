@@ -10,7 +10,7 @@ class Application_Form_ReportForm extends Zend_Form {
         $title = $this->createElement('select', 'title')
                         ->setRequired(TRUE)->setLabel("Campaign Name :- ");
         foreach ($data as $a) {
-            $arr[$a->title] = $a->title;
+            $arr[$a->id] = $a->title;
         }
         $title->addMultiOption('', 'Select Project');
         $title->addMultiOptions($arr);
