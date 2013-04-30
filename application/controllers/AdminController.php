@@ -110,7 +110,6 @@ class AdminController extends Zend_Controller_Action {
 
     public function reportAction() {
         $form = new Application_Form_ReportForm();
-        //$form->removeElement('title');
         $auth = Zend_Auth::getInstance();
         $id = $auth->getIdentity()->id;
         if ($this->_request->isPost() && $form->isValid($_POST)) {
@@ -124,8 +123,6 @@ class AdminController extends Zend_Controller_Action {
                         ->where("project.user_id='$id' and report.time_added='$date[0]'")
                         ->orWhere("report.time_added between '$date[0]' and '$date[1]'");
             }
-            /* echo $select;
-              die(); */
             $show = $db->fetchAll($select);
             $this->view->show = $show;
         }
