@@ -1,29 +1,37 @@
 <?php echo $this->render('/navigation/nav.phtml') ?>
-<div class="container" style='padding-top: 20px;padding-bottom: 20px;'>
+<div class="container" style='padding-top: 20px;padding-bottom: 20px;margin-top: 20px;'>
 
-    <h2>View Reports</h2>
-
-    <?php echo $this->form; ?>
-
-    <?php
-    if (isset($this->show)) {
-        ?>
-        <table class="table table-bordered">
-            <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
+    <h3>Reports</h3>
+    <hr style="border-color: #ccc;">
+    <div class="row-fluid">
+        <div class="span3">
+            <?php echo $this->form; ?>
+        </div>
+        <div class="span9">
             <?php
-            foreach ($this->show as $v) {
+            if (isset($this->show)) {
                 ?>
-                <tbody>
-                    <tr>
-                        <td><?php echo $v['title'] ?></td>
-                        <td><?php echo $v['description'] ?></td>
-                        <td><a href="<?php echo $this->BaseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
-                    </tr>
-                </tbody>
+                <table class="table table-bordered">
+                    <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
+                    <?php
+                    foreach ($this->show as $v) {
+                        ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $v['title'] ?></td>
+                                <td><?php echo $v['description'] ?></td>
+                                <td><a href="<?php echo $this->BaseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                            </tr>
+                        </tbody>
 
-                <?php
-            }
-        }
-        ?>
-
+                        <?php
+                    }
+                }
+                ?>
+        </div>
+    </div>
+    <hr>
+    <div class="footer">
+        <p>© Company 2013</p>
+    </div>
 </div>
