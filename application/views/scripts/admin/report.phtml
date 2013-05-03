@@ -11,16 +11,16 @@
             <?php
             if (isset($this->show)) {
                 ?>
-                <table class="table table-bordered">
+                <table class="table table-condensed">
                     <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
                     <?php
                     foreach ($this->show as $v) {
                         ?>
                         <tbody>
                             <tr>
-                                <td><?php echo $v['title'] ?></td>
-                                <td><?php echo $v['description'] ?></td>
-                                <td><a href="<?php echo $this->BaseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                                <td><?php echo $v['title']; ?></td>
+                                <td><?php echo $v['description']; ?></td>
+                                <td><a href="<?php echo $this->BaseUrl(); ?>/public/uploads/<?php echo $v['attachment']; ?>" target="blank"><i class="icon-file"></i></a></td>
                             </tr>
                         </tbody>
 
@@ -29,9 +29,5 @@
                 }
                 ?>
         </div>
-    </div>
-    <hr>
-    <div class="footer">
-        <p>© Company 2013</p>
     </div>
 </div>

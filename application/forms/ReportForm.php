@@ -3,7 +3,7 @@
 class Application_Form_ReportForm extends Zend_Form {
 
     public function init() {
-        $this->setAttrib('class', 'bs-docs-example')->setAttrib('style', 'float:left');
+        $this->setAttrib('class', 'form-signin')->setAttrib('style', 'float:left');
         $row = new Application_Model_project();
         $data = $row->fetchAll();
         $pickDate = $this->createElement('text', 'pickDate')->setAttrib('class', 'daterangepicker')->setAttrib('placeholder', 'Select Date')->setLabel("Select Date :- ")->setRequired(TRUE);
