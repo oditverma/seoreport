@@ -1,5 +1,5 @@
 <?php echo $this->render('/navigation/nav.phtml'); ?>
-<div class="container" style="margin-top: 20px;">
+<div class="container" style="margin-top: 20px;padding-top: 20px;padding-bottom: 20px;">
     <div class="row-fluid">
         <div class="heading">
             <h2>Project Section</h2>
@@ -17,12 +17,12 @@
                         <tbody><tr>
                                 <td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
                                 <td><?php echo $v->date_added ?></td><td><?php
-                if ($v->status == 0) {
-                    echo '<span class="badge badge-important">De-active</span>';
-                } else {
-                    echo '<span class="badge badge-success">Active</span>';
-                }
-                        ?></td><td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v->attachment ?>"><i class="icon-file"></i></a></td>
+                                    if ($v->status == 0) {
+                                        echo '<span class="badge badge-important">De-active</span>';
+                                    } else {
+                                        echo '<span class="badge badge-success">Active</span>';
+                                    }
+                                    ?></td><td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v->attachment ?>"><i class="icon-file"></i></a></td>
                                 <td>        
                                     <?php if ($v->status == 1) { ?>   <a href="<?php echo $this->baseUrl(); ?>/project/status/id/<?php echo $v['id'] ?>" class="btn btn-success" data-toggle="tooltip" title="Status Active"  ><i class="icon-ok-sign icon-white"></i></a>
                                     <?php } else { ?>
@@ -43,7 +43,11 @@
             </table>
         </div>
     </div>
+    <hr>
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
 </div>
 <script language="JavaScript" type="text/javascript">
-    $("#tool a[href]").tooltip();
+                                   $("#tool a[href]").tooltip();
 </script>

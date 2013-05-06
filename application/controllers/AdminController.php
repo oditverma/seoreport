@@ -122,9 +122,9 @@ class AdminController extends Zend_Controller_Action {
                         ->where("report.project_id='$p_id'")
                         ->where("report.time_added between '$date[0]' and '$date[1]'");
             }
-            /* echo "<pre>";
-              echo $select;
-              die(); */
+            if(!empty($p_id)){
+                
+            }
             $show = $db->fetchAll($select);
             $this->view->show = $show;
         }
