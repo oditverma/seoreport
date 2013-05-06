@@ -3,8 +3,6 @@ echo $this->render('navigation/nav.phtml')
 ?>
 <?php
 $name = Zend_Auth::getInstance()->getIdentity()->name;
-//$id = Zend_Auth::getInstance()->getIdentity()->id;
-//$logo = Zend_Auth::getInstance()->getIdentity()->logo;
 ?>
 <div class="container" style="margin-top: 20px;padding-top: 20px;padding-bottom: 20px;">
     <div class="row-fluid">
@@ -12,7 +10,7 @@ $name = Zend_Auth::getInstance()->getIdentity()->name;
             <h1>Admin Section!</h1>
             <h3>Welcome <span style=" text-transform:capitalize;"><?php echo $name; ?></span></h3>
         </div>
-        <div class="row">
+        <div class="row-fluid">
             <?php
             if (isset($this->data)) {
                 ?>
@@ -28,25 +26,23 @@ $name = Zend_Auth::getInstance()->getIdentity()->name;
                                 <td><?php echo $v->account_type ?></td>
                                 <td><?php echo $v->address ?></td>
                                 <td><?php
-                if ($v->status == 0) {
-                    echo '<span class="badge badge-important">De-active</span>';
-                } else {
-                    echo '<span class="badge badge-success">Active</span>';
-                }
-                        ?></td>
+                                    if ($v->status == 0) {
+                                        echo '<span class="badge badge-important">De-active</span>';
+                                    } else {
+                                        echo '<span class="badge badge-success">Active</span>';
+                                    }
+                                    ?></td>
                                 <td><?php echo $v->contact ?></td>
                                 <td>
                                     <?php if ($v->status == 1) { ?>  <a class="btn btn-success"  href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" title="Status Active" data-placement="left" ><i class="icon-ok-circle icon-white"></i></a><?php } else { ?>
                                         <a class="btn btn-danger" href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>" data-toggle="tooltip" title="Status De-active"><i class="icon-ban-circle icon-white"></i></a> 
                                     <?php } ?>
-
                                     <a class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $v['id'] ?>"  data-toggle="tooltip"  title="Update Info"><i class="icon-cog icon-white"></i></a>
                                     <a href="<?php echo $this->Url(array('controller' => 'Admin', 'action' => 'delete', 'id' => $v['id'])) ?>" class="btn btn-danger" data-toggle="tooltip"  title="Delete" data-placement="right"
                                        onclick="return confirm('Do you really want to delete this?');"><i class='icon-trash icon-white'></i></a>
                                 </td>
                             </tr>
                         </tbody>
-
                         <?php
                     }
                 }
@@ -60,5 +56,5 @@ $name = Zend_Auth::getInstance()->getIdentity()->name;
     </footer>
 </div>
 <script language="JavaScript" type="text/javascript">
-    $("#tool a[href]").tooltip();
+                                   $("#tool a[href]").tooltip();
 </script>

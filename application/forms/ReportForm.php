@@ -6,9 +6,9 @@ class Application_Form_ReportForm extends Zend_Form {
         $this->setAttrib('class', 'form-signin')->setAttrib('style', 'float:left');
         $row = new Application_Model_project();
         $data = $row->fetchAll();
-        $pickDate = $this->createElement('text', 'pickDate')->setAttrib('class', 'daterangepicker')->setAttrib('placeholder', 'Select Date')->setLabel("Select Date :- ")->setRequired(TRUE);
+        $pickDate = $this->createElement('text', 'pickDate')->setAttrib('class', 'daterangepicker')->setAttrib('placeholder', 'Select Date')->setLabel("Select Date :- ");
         $title = $this->createElement('select', 'title')
-                        ->setRequired(TRUE)->setLabel("Campaign Name :- ");
+                ->setLabel("Campaign Name :- ");
         foreach ($data as $a) {
             $arr[$a->id] = $a->title;
         }

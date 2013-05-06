@@ -119,11 +119,13 @@ class AdminController extends Zend_Controller_Action {
                 $select = $db->select()
                         ->from(array('report' => 'report'), array('report.title', 'report.description', 'report.attachment'))
                         ->join(array('project' => 'project'), 'project.id=report.project_id', array())
-                        ->where("report.project_id='$p_id'")
                         ->where("report.time_added between '$date[0]' and '$date[1]'");
             }
-            if(!empty($p_id)){
-                
+            if (!empty($p_id)) {
+                $select = $db->select()
+                        ->from(array('report' => 'report'), array('report.title', 'report.description', 'report.attachment'))
+                        ->join(array('project' => 'project'), 'project.id=report.project_id', array())
+                        ->where("report.project_id='$p_id'");                
             }
             $show = $db->fetchAll($select);
             $this->view->show = $show;
