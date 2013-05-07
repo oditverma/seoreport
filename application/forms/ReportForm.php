@@ -18,7 +18,7 @@ class Application_Form_ReportForm extends Zend_Form {
         foreach ($data as $a) {
             $arr[$a->id] = $a->title;
         }
-        $title->addMultiOption('', 'Select Project');
+        $title->addMultiOption('','Select Project');
         $title->addMultiOptions($arr);
         $client = $this->createElement('select', 'account_type')
                 ->setLabel("Client Name : ");

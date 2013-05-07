@@ -113,6 +113,7 @@ class AdminController extends Zend_Controller_Action {
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValue('pickDate');
             $p_id = $form->getValue('title');
+            $c_id = $form->getValue('account_type');
             $db = Zend_Db_Table::getDefaultAdapter();
             $date = explode(' - ', $data);
             if (!empty($date[1])) {
@@ -125,7 +126,14 @@ class AdminController extends Zend_Controller_Action {
                 $select = $db->select()
                         ->from(array('report' => 'report'), array('report.title', 'report.description', 'report.attachment'))
                         ->join(array('project' => 'project'), 'project.id=report.project_id', array())
-                        ->where("report.project_id='$p_id'");                
+                        ->where("report.project_id='$p_id'");
+            }
+            if (!empty($c_id)) {
+                $select = $db->select()
+                        ->from(array('report' => 'report'), array('report.title', 'report.description', 'report.attachment'))
+                        ->join(array('project' => 'project'), 'project.id=report.project_id', array())
+                        ->join(array('user' => 'user'), 'user.id=project.user_id', array())
+                        ->where("user.id = '$c_id'");
             }
             $show = $db->fetchAll($select);
             $this->view->show = $show;
@@ -171,6 +179,7 @@ class AdminController extends Zend_Controller_Action {
       $data = $form->getValues();
       $row = new Application_Model_country();
       $row->insert($data);
+
       $this->view->data = $data;
       }
       if (isset($_POST['del'])) {
