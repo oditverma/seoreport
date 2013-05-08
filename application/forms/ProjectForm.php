@@ -10,7 +10,7 @@ class Application_Form_ProjectForm extends Zend_Form {
         $date_added = $this->createElement('text', 'date_added')->setAttrib('class', 'datepicker')->setRequired(true)->setAttrib('Placeholder', 'YYYY/MM/DD')->setLabel("Date Added : ");
         $attachment = $this->createElement('file', 'attachment')->setAttrib('Placeholder', 'Choose a file')->setLabel("Attachment : ");
         $attachment->setDestination(APPLICATION_PATH . '/../public/uploads')->setRequired(true);
-        $user_id = $this->createElement('select', 'user_id')->setRequired(TRUE)->setAttrib('class', 'span2')->setLabel("Assign to : ");
+        $user_id = $this->createElement('select', 'user_id')->setRequired(TRUE)->setLabel("Assign to : ");
         foreach ($row as $r) {
             $arr[$r->id] = $r->name;
         }
