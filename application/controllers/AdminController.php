@@ -98,8 +98,7 @@ class AdminController extends Zend_Controller_Action {
     public function forgotAction() {
         $form = new Application_Form_ForgotForm();
         $model = new Application_Model_admin();
-        $auth = Zend_Auth::getInstance();
-        $id = $auth->getIdentity()->id;
+        $id = Zend_Auth::getInstance()->getIdentity()->id;
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $pass = $form->getValues();
             $model->update(array('pass' => $pass['pass']), "id='$id'");

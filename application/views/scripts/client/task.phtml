@@ -1,30 +1,36 @@
 <?php echo $this->render('/navigation/clientNav.phtml') ?>
-<div class="container">
-    <div class="hero-unit">
-        <h2>View Tasks</h2>
-    </div>
-    <?php
-    if (isset($this->show)) {
-        ?>
-        <table class="table table-bordered">
-            <thead><tr><th>ID</th><th>Title</th><th>Time Added</th><th>Added by</th><th>Assigned to</th><th>File</th></tr></thead>   
-            <?php
-            foreach ($this->show as $v) {
-                ?>
-                <tbody>
-                    <tr>
-                        <td><?php echo $v['id'] ?></td>
-                        <td><?php echo $v['title'] ?></td>
-                        <td><?php echo $v['time_added'] ?></td>
-                        <td><?php echo $v['added_by'] ?></td>
-                        <td><?php echo $v['assign_to'] ?></td>
-                        <td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
-                    </tr>
-                </tbody>
-
+<div class="container" style="padding-right: 20px;padding-left: 20px;margin-top: 20px">
+    <div class="row-fluid">
+        <div class="heading">
+            <h2>View Tasks</h2>
+        </div>
+        <?php
+        if (isset($this->show)) {
+            ?>
+            <table class="table table-bordered">
+                <thead><tr><th>ID</th><th>Title</th><th>Time Added</th><th>Added by</th><th>Assigned to</th><th>File</th></tr></thead>   
                 <?php
+                foreach ($this->show as $v) {
+                    ?>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $v['id'] ?></td>
+                            <td><?php echo $v['title'] ?></td>
+                            <td><?php echo $v['time_added'] ?></td>
+                            <td><?php echo $v['added_by'] ?></td>
+                            <td><?php echo $v['assign_to'] ?></td>
+                            <td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                        </tr>
+                    </tbody>
+
+                    <?php
+                }
             }
-        }
-        ?>    
-    </table>   
+            ?>    
+        </table>   
+    </div>
+    <hr>
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
 </div>

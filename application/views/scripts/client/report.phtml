@@ -1,26 +1,32 @@
 <?php echo $this->render('/navigation/clientNav.phtml'); ?>
-<div class="container">
-    <h2>View Reports</h2>
-    <?php echo $this->form; ?>
-    <?php
-    if (isset($this->show)) {
-        ?>
-        <table class="table table-bordered">
-            <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
-            <tbody>        
-                <?php
-                foreach ($this->show as $v) {
-                    ?>
-                    <tr>
-                        <td><?php echo $v['title'] ?></td>
-                        <td><?php echo $v['description'] ?></td>
-                        <td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
-                    </tr>
-                    <?php
-                }
-            }
+<div class="container" style="margin-top: 20px;padding-top: 20px;padding-bottom: 20px;">
+    <div class="row-fluid">
+        <h2>View Reports</h2>
+        <?php echo $this->form; ?>
+        <?php
+        if (isset($this->show)) {
             ?>
-        </tbody>
+            <table class="table table-bordered">
+                <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
+                <tbody>        
+                    <?php
+                    foreach ($this->show as $v) {
+                        ?>
+                        <tr>
+                            <td><?php echo $v['title'] ?></td>
+                            <td><?php echo $v['description'] ?></td>
+                            <td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+            </tbody>
 
-    </table>
+        </table>
+    </div>
+    <hr>
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
 </div>

@@ -2,20 +2,16 @@
 
 class Application_Form_ProfileForm extends Zend_Form {
 
-    public $elementDecorators = array('ViewHelper', 'Description', 'Errors', array(array('data' => 'HtmlTag'),
-            array('tag' => 'td')), array('Label', array('tag' => 'td')), array(array('row' => 'HtmlTag'), array('tag' => 'tr')));
-    public $buttonDecorators = array('ViewHelper', array(array('data' => 'HtmlTag'),
-            array('tag' => 'td', 'class' => 'element')), array(array('Label' => 'HtmlTag'), array('tag' => 'td', 'placement' => 'prepend')), array(array('row' => 'HtmlTag'), array('tag' => 'tr')));
-
     public function init() {
-        $this->setAttrib('class', 'bs-docs-example')->setAttrib('style', 'float:left');
-        $id = $this->createElement('text', 'id', array('decorators' => $this->elementDecorators))->setRequired(TRUE)->setLabel('Id : ')->addValidator('int')->setAttrib('placeholder', 'ID')->setAttrib('readonly', 'true');
-        $name = $this->createElement('text', 'name', array('decorators' => $this->elementDecorators))->setLabel('Name :')->setRequired(TRUE)->setAttrib('placeholder', 'Name');
-        $email = $this->createElement('text', 'email', array('decorators' => $this->elementDecorators))->setLabel('Email :')->setRequired(TRUE)->setAttrib('placeholder', 'Email');
-        $address = $this->createElement('textarea', 'address', array('decorators' => $this->elementDecorators))->setRequired(TRUE)->setAttrib('rows', '5')->setAttrib('cols', '5')->setLabel('Address')->setAttrib('placeholder', 'Edit Address');
-        $submit = $this->createElement('submit', 'submit', array('decorators' => $this->buttonDecorators))->setAttrib('class', 'btn btn-info');
-        $this->addElements(array($id, $name, $email, $address, $submit));
-        $this->setDecorators(array('FormElements', array(array('data' => 'HtmlTag'), array('tag' => 'table')), 'Form'));
+        $email = $this->createElement('text', 'email')->setLabel('Email :')->setRequired(TRUE)->setAttrib('placeholder', 'Email')->setAttrib('readonly', 'true')->setAttrib('required', 'required');
+        $name = $this->createElement('text', 'name')->setLabel('Name :')->setRequired(TRUE)->setAttrib('placeholder', 'Name');
+        $address = $this->createElement('textarea', 'address')->setRequired(TRUE)->setAttrib('rows', '5')->setAttrib('cols', '5')->setLabel('Address')->setAttrib('placeholder', 'Edit Address');
+        $logo = new Zend_Form_Element_File('logo');
+        $logo->setDestination(APPLICATION_PATH . '/../public/uploads')
+                ->setLabel("Logo : ")
+                ->setRequired(true);
+        $submit = $this->createElement('submit', 'submit')->setAttrib('class', 'btn btn-info');
+        $this->addElements(array($email, $name, $address, $logo,$submit));
     }
 
 }

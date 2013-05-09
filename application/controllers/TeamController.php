@@ -89,9 +89,6 @@ class TeamController extends Zend_Controller_Action {
     }
 
     public function profileAction() {
-        if (!Zend_Auth::getInstance()->hasIdentity()) {
-            $this->_redirect('/index');
-        }
         $auth = Zend_auth::getInstance();
         $id = $auth->getIdentity()->id;
         $form = new Application_Form_ProfileForm();
@@ -107,9 +104,6 @@ class TeamController extends Zend_Controller_Action {
     }
 
     public function projectAction() {
-        if (!Zend_Auth::getInstance()->hasIdentity()) {
-            $this->_redirect('/index');
-        }
         $model = new Application_Model_project();
         $row = $model->fetchAll();
         $this->view->row = $row;
