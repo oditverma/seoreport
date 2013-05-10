@@ -21,7 +21,6 @@ class Application_Form_AdminForm extends Zend_Form {
                 ->setRequired(true);
         $submit = $this->createElement('submit', 'submit')->setAttrib('class', 'btn btn-info');
         $this->addElements(array($name, $gender, $birthdate, $email, $pass, $password, $account_type, $address, $contact, $logo, $submit));
-        $this->setDecorators(array('FormElements', array(array('tag' => 'HtmlTag'), array('tag' => 'div', 'class' => 'bs-docs-example', 'style' => 'float:left;')), 'Form'));
     }
 
 }
