@@ -6,13 +6,15 @@ $title->toArray();
 <div class="container" style="margin-top: 20px;padding-top: 20px;padding-bottom: 20px;">
     <div class="row-fluid">
         <h3>Keyword Allocation</h3>
-        <div class="bs-docs-example">
+          <hr style="border-color: #ccc;"/>
+               <div class="bs-docs-example">
             <h4 style="text-transform:  uppercase;">Campaign Name : <?php print_r($title[0]['title']); ?> </h4>
             <?php
             echo $this->form;
             if (isset($this->select)) {
                 ?>
-            </div>
+       
+               </div>
             <table  class="table table-bordered">
                 <thead><tr><th>Keyword</th><th>Date Added</th><th>Priority</th><th>Settings</th></tr></thead>       
                 <?php
