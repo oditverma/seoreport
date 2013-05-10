@@ -12,7 +12,7 @@ class Application_Form_AdminForm extends Zend_Form {
         $password = $this->createElement('password', 'pass')->setRequired(TRUE)->setLabel("Confirm Password : ")->setAttrib('Placeholder', 'Confirm Password')->addValidator('StringLength', false, array(4))
                 ->addValidator('Identical', false, array('token' => 'password', 'messages' => 'Password do not Match !'));
         $account_type = $this->createElement('select', 'account_type')
-                        ->setRequired(TRUE)->addMultiOptions(array('Select Role' => 'Select Type', 'Admin' => 'Admin', 'Client' => 'Client', 'Team' => 'Team'))->setAttrib('class', 'span2')->setLabel("Role : ");
+                        ->setRequired(TRUE)->addMultiOptions(array('Select Role' => 'Select Type', 'Admin' => 'Admin', 'Client' => 'Client', 'Team' => 'Team'))->setLabel("Role : ");
         $address = $this->createElement('textarea', 'address')->setRequired(true)->setAttribs(array('rows' => 5, 'cols' => 5))->setAttrib('placeholder', 'Add Address')->setLabel("Address : ");
         $contact = $this->createElement('text', 'contact')->setAttrib('placeholder', '000-000-0000')->setRequired(true)->setLabel("Contact : ");
         $logo = new Zend_Form_Element_File('logo');
