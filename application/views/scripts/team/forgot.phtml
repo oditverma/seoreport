@@ -1,7 +1,8 @@
 <?php echo $this->render('navigation/teamNav.phtml') ?>
-<div class="container-fluid" style='padding-top: 20px;padding-bottom: 20px;'>
-    <div style="margin-top: 10px;" class="row-fluid">
+<div class="container-fluid" style='margin-top: 20px;padding-top: 20px;padding-bottom: 20px;'>
+    <div class="row-fluid">
         <h3>Change Password</h3>
+         <hr style="border-color: #ccc;"/>
         <form class="bs-docs-example" method="post" style="float: left;">
             <?php echo $this->form->getElement('code'); ?>
             <?php echo $this->form->getElement('confirmpass'); ?>

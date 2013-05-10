@@ -63,9 +63,6 @@ class ProjectController extends Zend_Controller_Action {
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $row = $this->_getProjectModel();
             $data = $form->getValues();
-            /*    echo "<pre>";
-              print_r($data);
-              die(); */
             $start = date('Y-m-d', strtotime($data['date_added']));
             $this->_getProjectModel()->insert(array('title' => $data['title'],
                 'description' => $data['description'],
@@ -98,9 +95,6 @@ class ProjectController extends Zend_Controller_Action {
         $form->removeElement('update');
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValues('keyname');
-            //echo "<pre>";
-            echo(explode(',',$data));
-            die();
             $data['project_id'] = $project_id;
             $inc = $db->select()->from($db, array(new Zend_Db_Expr("max(pos)+1 as pos")))->where("project_id='$project_id'");
             $rs = $db->fetchRow($inc);
@@ -185,28 +179,6 @@ class ProjectController extends Zend_Controller_Action {
         $row->pos = $newOrder;
         $row->save();
         $this->_redirect('project/keyword/id/' . $projectID);
-        /* if (empty($id)) {
-          throw new Zend_Exception('Id not provided!');
-          }
-          $row = $model->fetchRow("id='$id'");
-          if (!$row) {
-          $this->_redirect('project/keyword/id/' . $projectID);
-          }
-          $currentDisplayOrder = $row->pos;
-          $lesserRow = $model->fetchRow("pos< $currentDisplayOrder ", "pos desc limit 1");
-          if ($currentDisplayOrder == $lesserRow->pos) {
-          $this->_redirect('project/keyword/id/' . $projectID);
-          }
-          if (!$lesserRow) {
-          $newDisplayOrder = ($currentDisplayOrder - 1 > 1) ? $currentDisplayOrder - 1 : $currentDisplayOrder;
-          } else {
-          $newDisplayOrder = $lesserRow->pos;
-          $lesserRow->pos = $currentDisplayOrder;
-          $lesserRow->save();
-          $row->pos = $newDisplayOrder;
-          $row->save();
-          $this->_redirect('project/keyword/id/' . $projectID);
-          } */
     }
 
     public function keydownAction() {
