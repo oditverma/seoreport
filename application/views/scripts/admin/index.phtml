@@ -1,32 +1,20 @@
 <?php
-echo $this->render('navigation/nav.phtml')
+echo $this->render('navigation/nav.phtml');
+$name = Zend_Auth::getInstance()->getIdentity()->name;
 ?>
-<script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.jqplot.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jqplot.donutRenderer.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jqplot.pieRenderer.min.js"></script>
+<div class="container" style="margin-top: 20px;padding-top: 20px;padding-bottom: 20px;">
+    <div class="row-fluid">
+        <div class="heading">
+            <h1>Admin Section!</h1>
+            <h3 style=" text-transform:capitalize;">Welcome <?php echo $name; ?></h3>
+        </div>
+    </div>
 
-<script class="code" type="text/javascript">
-    $(document).ready(function() {
-        var data = [
-            ['Heavy Industry', 12], ['Retail', 9], ['Light Industry', 14],
-            ['Out of home', 16], ['Commuting', 7], ['Orientation', 9]
-        ];
-        var plot1 = jQuery.jqplot('chart1', [data],
-                {
-                    seriesDefaults: {
-                        // Make this a pie chart.
-                        renderer: jQuery.jqplot.PieRenderer,
-                        rendererOptions: {
-                            // Put data labels on the pie slices.
-                            // By default, labels show the percentage of the slice.
-                            showDataLabels: true
-                        }
-                    },
-                    legend: {show: true, location: 'e'}
-                }
-        );
-    });
-</script>
+    <div class="row-fluid" style="height: 500px;">
+    </div>
 
-<div id="chart1" style="height:300px; width:500px;"></div>
+    <hr>
+    <footer class="footer">
+        <p>© Company 2013</p>
+    </footer>
+</div>

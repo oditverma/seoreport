@@ -98,16 +98,18 @@ class ProjectController extends Zend_Controller_Action {
         $form->removeElement('update');
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValues('keyname');
-            $keyword = explode(' - ', $data);
+            //echo "<pre>";
+            echo(explode(',',$data));
+            die();
             $data['project_id'] = $project_id;
             $inc = $db->select()->from($db, array(new Zend_Db_Expr("max(pos)+1 as pos")))->where("project_id='$project_id'");
             $rs = $db->fetchRow($inc);
             $array = $rs->toArray();
             if (!empty($array['pos'])) {
-                $db->insert($keyword[0]);
+                $db->insert($data);
             } else {
-                $data['pos'] = 1;
-                $db->insert($keyword[0]);
+                $data['pos'] = 0;
+                $db->insert($data);
             }
             $pos = $db->fetchRow(null, 'id desc');
             $arr = $pos->toArray();

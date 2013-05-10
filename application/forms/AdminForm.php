@@ -2,6 +2,14 @@
 
 class Application_Form_AdminForm extends Zend_Form {
 
+   /* public $elementDecorators = array(array('ViewHelper')
+        , array('tag' => 'HtmlTag', array('tag' => 'span', 'class' => 'add-on'), array('tag' => 'HtmlTag', array('tag' => 'i', 'class' => 'icon-cog')))
+        , array(array('tag' => 'HtmlTag'),array('class' => 'controls'),'class' => 'input-prepend'));
+    public $fileDecorators = array('File', 'Errors', array(array('data' => 'HtmlTag'), array('tag' => 'td')),
+        array('Label', array('tag' => 'th')), array(array('row' => 'HtmlTag'), array('tag' => 'tr')));
+    public $buttonDecorators = array('ViewHelper', array(array('data' => 'HtmlTag'), array('tag' => 'td', 'class' => 'element')),
+        array(array('Label' => 'HtmlTag'), array('tag' => 'td', 'placement' => 'prepend')), array(array('row' => 'HtmlTag'), array('tag' => 'tr')));*/
+
     public function init() {
         $arr = array('Male' => 'Male', 'Female' => 'Female');
         $name = $this->createElement('text', 'name')->setAttrib('Placeholder', 'Name')->setRequired(true)->setLabel("Name : ");
@@ -20,7 +28,8 @@ class Application_Form_AdminForm extends Zend_Form {
                 ->setLabel("Logo : ")
                 ->setRequired(true);
         $submit = $this->createElement('submit', 'submit')->setAttrib('class', 'btn btn-info');
-        $this->addElements(array($name, $gender, $birthdate, $pass, $password, $email, $account_type, $address, $contact, $logo, $submit));
+        $this->addElements(array($name, $gender, $birthdate, $email, $pass, $password, $account_type, $address, $contact, $logo, $submit));
+        $this->setDecorators(array('FormElements', array(array('tag' => 'HtmlTag'), array('tag' => 'div','class'=>'bs-docs-example','style'=>'float:left;')), 'Form'));
     }
 
 }

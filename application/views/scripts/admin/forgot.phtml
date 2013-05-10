@@ -1,7 +1,8 @@
 <?php echo $this->render('navigation/nav.phtml') ?>
 <div class="container" style='padding-top: 20px;padding-bottom: 20px;'>
-    <div style="margin-top: 10px;">
-        <h3 align="center">Change Password</h3>
+    <div class="row-fluid">
+        <h3 align="center" style="text-decoration: underline;">Change Password</h3>
+        
         <form class="form-signin" method="post">
             <?php echo $this->form->getElement('code'); ?>
             <?php echo $this->form->getElement('confirmpass'); ?>

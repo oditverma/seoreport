@@ -21,7 +21,6 @@ class ClientController extends Zend_Controller_Action {
         }
     }
 
-   
     public function projectAction() {
         if (!Zend_Auth::getInstance()->hasIdentity()) {
 
@@ -64,7 +63,7 @@ class ClientController extends Zend_Controller_Action {
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValue('pickDate');
             $db = Zend_Db_Table::getDefaultAdapter();
-            $date = explode(' - ', $data);
+            $date = explode(' , ', $data);
             if (!empty($date[1])) {
                 $select = $db->select()
                         ->from(array('report' => 'report'), array('report.title', 'report.description', 'report.attachment'))

@@ -12,16 +12,15 @@
             foreach ($this->row as $v) {
                 ?>
                 <tbody>
-                    <tr>
+                    <tr id="tool">
                         <td><?php echo $v['title']; ?></td>
                         <td><?php echo $v['description']; ?></td>
-                        <td><a href="<?php echo $this->BaseUrl(); ?>/public/uploads/<?php echo $v['attachment']; ?>" target="blank"><i class="icon-file"></i></a>
-                        <a href="<?php echo $this->BaseUrl(); ?>/team/updt/id/<?php echo $v['id']; ?>" ><i class="icon-cog"></i></a>
+                        <td>
+                            <a class="btn btn-warning" data-toggle="tooltip"  title="Update Info" href="<?php echo $this->BaseUrl(); ?>/team/updt/id/<?php echo $v['id']; ?>" ><i class="icon-cog icon-white"></i></a>
+                            <a class="btn btn-info" data-toggle="tooltip"  title="Attachment" href="<?php echo $this->BaseUrl(); ?>/public/uploads/<?php echo $v['attachment']; ?>" target="blank"><i class="icon-file icon-white"></i></a>
                         </td>
-                    
                     </tr>
                 </tbody>
-
                 <?php
             }
             //   }
@@ -33,3 +32,6 @@
         <p>© Company 2013</p>
     </footer>
 </div>
+<script language="JavaScript" type="text/javascript">
+    $("#tool a[href]").tooltip();
+</script>

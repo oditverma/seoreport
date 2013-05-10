@@ -29,7 +29,7 @@ $title->toArray();
                 }
                 foreach ($this->select as $v) {
                     ?>
-                    <tbody><tr>
+                    <tbody><tr id="tool">
                             <td><?php echo $v->keyname ?></td>
                             <td><?php echo $v->timeadded ?></td>
                             <td><?php echo $v->pos ?></td>
@@ -48,9 +48,9 @@ $title->toArray();
                                 ?>
                             </td>
                             <td>
-                                <a href="<?php echo $this->baseUrl(); ?>/project/keyupdt/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-cog"></i></a>|                    
-                                <a href="<?php echo $this->Url(array('controller' => 'Project', 'action' => 'keydel', 'id' => $v['id'])) ?>"  
-                                   onclick="return confirm('Do you really want to delete this?');"><i class="icon-trash" title='Delete'></i></a>
+                                <a class="btn btn-warning" href="<?php echo $this->baseUrl(); ?>/project/keyupdt/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-cog icon-white"></i></a>            
+                                <a class="btn btn-danger" href="<?php echo $this->Url(array('controller' => 'Project', 'action' => 'keydel', 'id' => $v['id'])) ?>"  
+                                   onclick="return confirm('Do you really want to delete this?');"><i class="icon-trash icon-white" title='Delete'></i></a>
                             </td></tr>
                     </tbody>
                     <?php

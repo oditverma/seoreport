@@ -48,10 +48,13 @@ class TeamController extends Zend_Controller_Action {
     public function updtAction() {
         $id = $this->_getParam('id');
         $form = new Application_Form_TaskForm();
-        $form->removeElement('pass');
         $model = new Application_Model_report();
         $result = $model->fetchAll("project_id='$id'");
         $form->populate($result->toArray());
+        /* echo "<pre>";
+          print_r($result->toArray());
+          echo $form;
+          die(); */
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValues();
             $model->update($data, "id='$id'");
@@ -142,7 +145,6 @@ class TeamController extends Zend_Controller_Action {
       $this->view->select = $select;
       $this->view->form = $form;
       }
-
       public function keydelAction() {
       $id = $this->_getParam('id');
       $form = new Application_Form_KeywordForm();
@@ -153,7 +155,6 @@ class TeamController extends Zend_Controller_Action {
       $this->view->form = $form;
       $this->_redirect('/team/keyword');
       }
-
       public function keyupdtAction() {
       $id = $this->_getParam('id');
       $model = new Application_Model_keyword();
@@ -167,7 +168,6 @@ class TeamController extends Zend_Controller_Action {
       }
       $this->view->form = $form;
       }
-
       public function keyupAction() {
       $this->_helper->viewRenderer->setNoRender();
       $id = $this->_request->getParam('id');
@@ -201,7 +201,6 @@ class TeamController extends Zend_Controller_Action {
       $this->_redirect('team/keyword');
       }
       }
-
       public function keydownAction() {
       $this->_helper->viewRenderer->setNoRender();
       $id = $this->_request->getParam('id');
