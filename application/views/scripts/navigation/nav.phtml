@@ -1,7 +1,3 @@
-<?php
-$id = Zend_Auth::getInstance()->getIdentity()->id;
-$logo = Zend_Auth::getInstance()->getIdentity()->logo;
-?>
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
@@ -28,15 +24,14 @@ $logo = Zend_Auth::getInstance()->getIdentity()->logo;
                 <ul class="nav pull-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Logged in as <strong><u style=" text-transform:capitalize;"><?php
-$name = Zend_Auth::getInstance()->getIdentity()->name;
-$email = Zend_Auth::getInstance()->getIdentity()->email;
-echo $name;
-?></u></strong></a>
+                                    $name = Zend_Auth::getInstance()->getIdentity()->name;
+                                    $email = Zend_Auth::getInstance()->getIdentity()->email;
+                                    echo $name;
+                                    ?></u></strong></a>
                         <ul class="dropdown-menu pull-right">
 
                             <li> 
-                                <a href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $id; ?>"> 
-                                    <img src="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $logo; ?>" class="member-box-avatar" style="height: 50px;width: 50px;padding: 1px;margin-right: 10px;float: left;" />
+                                <a href="#myModal" data-toggle="modal">
                                     <?php print("<strong style='text-transform:capitalize;'>" . $name . "</strong><br>" . $email); ?>
                                 </a></li>
                             <li><a href="<?php echo $this->baseUrl(); ?>/admin/forgot">Change Password !</a></li>
@@ -49,3 +44,21 @@ echo $name;
         </div>
     </div>
 </div>
+<div id="myModal" class="modal hide">
+    <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">×</a>
+
+    </div>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" onclick="closeDialog();">Cancel</a>
+    </div>
+</div>
+<script language="JavaScript" type="text/javascript">
+            function closeDialog() {
+                $('#myModal').modal('hide');
+            }
+            ;
+</script>

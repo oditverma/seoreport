@@ -3,28 +3,32 @@
     <div class="row-fluid">
         <h2>View Reports</h2>
         <hr style="border-color: #ccc;"/>
-        <?php echo $this->form; ?>
-        <?php
-        if (isset($this->show)) {
-            ?>
-            <table class="table table-bordered">
-                <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
-                <tbody>        
-                    <?php
-                    foreach ($this->show as $v) {
-                        ?>
-                        <tr>
-                            <td><?php echo $v['title'] ?></td>
-                            <td><?php echo $v['description'] ?></td>
-                            <td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
-                        </tr>
-                        <?php
-                    }
-                }
+        <div class="span3">
+            <?php echo $this->form; ?>
+        </div>
+        <div class="span9">
+            <?php
+            if (isset($this->show)) {
                 ?>
-            </tbody>
+                <table class="table table-bordered">
+                    <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
+                    <tbody>        
+                        <?php
+                        foreach ($this->show as $v) {
+                            ?>
+                            <tr>
+                                <td><?php echo $v['title'] ?></td>
+                                <td><?php echo $v['description'] ?></td>
+                                <td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank"><i class="icon-file"></i></a></td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    ?>
+                </tbody>
 
-        </table>
+            </table>
+        </div>
     </div>
     <hr>
     <footer>

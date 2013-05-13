@@ -21,7 +21,7 @@
                                     echo $name;
                                     ?></u></strong><b class="caret"></b></a>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="#"><?php print("<strong style='text-transform:capitalize;'>" . $name . "</strong><br>" . $email); ?></a></li>
+                            <li><a href="#myModal" data-toggle="modal"><?php print("<strong style='text-transform:capitalize;'>" . $name . "</strong><br>" . $email); ?></a></li>
                             <li class="divider"></li>
                             <li><a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a></li>
                         </ul>
@@ -31,3 +31,21 @@
         </div>
     </div>
 </div>
+<div id="myModal" class="modal hide">
+    <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">×</a>
+
+    </div>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" onclick="closeDialog();">Cancel</a>
+    </div>
+</div>
+<script language="JavaScript" type="text/javascript">
+            function closeDialog() {
+                $('#myModal').modal('hide');
+            }
+            ;
+</script>

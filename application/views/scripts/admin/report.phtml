@@ -1,6 +1,5 @@
 <?php echo $this->render('/navigation/nav.phtml') ?>
 <div class="container" style='padding-top: 20px;padding-bottom: 20px;margin-top: 20px;'>
-
     <h3>Reports</h3>
     <hr style="border-color: #ccc;"/>
     <div class="row-fluid">
@@ -14,24 +13,34 @@
                 ?>
                 <table class="table table-bordered table-striped">
                     <thead><tr><th>Name</th><th>Description</th><th>File</th></tr></thead>   
-                    <?php
-                    foreach ($this->show as $v) {
-                        ?>
-                        <tbody>
+                    <tbody>
+                        <?php
+                        foreach ($this->show as $v) {
+                            ?>
                             <tr>
                                 <td><?php echo $v['title']; ?></td>
                                 <td><?php echo $v['description']; ?></td>
-                                <td><a href="<?php echo $this->BaseUrl(); ?>/public/uploads/<?php echo $v['attachment']; ?>" target="blank"><i class="icon-file"></i></a></td>
+                                <td>
+                                    <a href="<?php echo $this->BaseUrl(); ?>/public/uploads/<?php echo $v['attachment']; ?>" target="blank">
+                                        <i class="icon-file"></i>
+                                    </a>
+                                </td>
                             </tr>
-                        </tbody>
-
-                        <?php
+                            <?php
+                        }
                     }
-                }
-                ?>
+                    ?>
+            <!--tr><td colspan="3"></td></tr-->
+                </tbody>
             </table>
         </div>
     </div>
     <hr>
     <footer class="footer"><p>@ Company 2013</p></footer>
 </div>
+<!--div class="bs-docs-example">
+    <ul class="pager">
+        <li><a href="#">Previous</a></li>
+        <li><a href="#">Next</a></li>
+    </ul>
+</div-->
