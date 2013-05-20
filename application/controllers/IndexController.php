@@ -21,7 +21,7 @@ class IndexController extends Zend_Controller_Action {
             $auth = Zend_Auth::getInstance();
             $auth->authenticate($authAdapter);
             $storage = $auth->getStorage();
-            $userInfo = $authAdapter->getResultRowObject(array('name', 'id', 'account_type', 'status', 'email', 'address', 'logo'));
+            $userInfo = $authAdapter->getResultRowObject(array('name', 'id', 'account_type', 'status', 'email', 'address', 'logo', 'contact'));
             $storage->write($userInfo);
             $type = $userInfo->account_type;
             $status = $userInfo->status;
@@ -34,7 +34,7 @@ class IndexController extends Zend_Controller_Action {
             if ($type == 'Team' && $status == TRUE) {
                 $this->_redirect('/team/index');
             } else {
-                echo "<script>bootbox.alert('Incorrect Username or Password');</script>";
+                echo "<script language='JavaScript' type='text/javascript'>bootbox.alert('Incorrect Username or Password');</script>";
             }
         }
     }

@@ -4,31 +4,33 @@ echo $this->render('/navigation/adminNav.phtml');
 <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/jquery.min.js" ></script>
 <script language="JavaScript" type="text/javascript" src="<?php echo $this->BaseUrl(); ?>/Bootstrap/js/verimail.jquery.js" ></script>
 <script language="JavaScript" type="text/javascript" >
-    $(document).ready(function(){
+    $(document).ready(function() {
         $("input#email").verimail({
             denyTempEmailDomains: true,
             messageElement: "p#status-message"
         });
     });
 </script>
-<form method="post" class="form-signin" style="margin-top:20px;">
-    <div id="content" class="container" >
-
-        <div id="email-container" >
-
-            <span class="ac"></span>
-
-            <p class="ac" >
-                <?php echo $this->form->getElement('email'); ?>
-            </p>
-            <p class="ac" id="status-message"></p>               
-            <?php echo $this->form->getElement('submit'); ?>
-
-
-        </div>
-
+<div class="container" style="margin-top: 20px;padding-top: 20px;padding-bottom: 20px;">
+    <div class="row-fluid">
+        <h2 align="center" class="heading">Forgot Password</h2>
+        <form method="post" class="form-signin" style="margin-top:20px;">
+            <div id="content" class="container">
+                <div id="email-container">
+                    <span class="ac"></span>
+                    <p class="ac" ><?php echo $this->form->getElement('email'); ?></p>
+                    <p class="ac" id="status-message"></p>               
+                    <?php echo $this->form->getElement('submit'); ?>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+    <div class="row-fluid" style="height: 150px;"></div>
+    <hr>
+    <footer class="footer">
+        <p>© Company 2013</p>
+    </footer>
+</div>
 <style type="text/css">
     div#email-container > span {
         margin-bottom: 30px;

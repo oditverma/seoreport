@@ -6,15 +6,29 @@
         <?php if (isset($this->row)) {
             ?>
             <table class="table table-bordered">
-                <thead><tr><th>Project Title</th><th>Description</th><th>Date Added</th><th>Setting</th></tr></thead>               
+                <thead><tr><th>Project Title</th><th>Description</th><th>Date Added</th><th>Settings</th></tr></thead>               
                 <?php
                 foreach ($this->row as $v) {
                     ?>
+                    <div id="myModal1" class="modal hide">
+                        <div class="modal-header">
+                            <a href="#" class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+                        </div>
+                        <div class="modal-body">
+                            Project Title : <?php echo $v->title; ?>
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
                     <tr id="tool">
-                        <td><?php echo $v->title ?></td><td><?php echo $v->description ?></td>
+                        <td><a href="<?php echo $this->baseUrl()."/team/project/" . $v['id']."/#myModal1"; ?>" data-toggle="modal"><?php echo $v->title; ?></a>
+                        </td><td><?php echo $v->description; ?></td>
                         <td><?php echo $v->date_added ?></td><td>
-                            <a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/team/report/id/<?php echo $v['id'] ?>" data-toggle="tooltip"  title="Manage Task(s)" ><i class="icon-tasks icon-white"></i></a>
-                            <a class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v['attachment'] ?>" target="blank" data-toggle="tooltip"  title="View Attachment"><i class="icon-file icon-white"></i></a></td>
+                            <a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/team/report/id/<?php echo $v['id']; ?>" data-toggle="tooltip"  title="New Task" ><i class="icon-plus icon-white"></i></a>
+                            <a class="btn btn-warning" data-toggle="tooltip"  title="Update Info" href="<?php echo $this->BaseUrl(); ?>/team/updt/id/<?php echo $v['id']; ?>" ><i class="icon-cog icon-white"></i></a>
+                            <a class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/team/report/id/<?php echo $v['id']; ?>" data-toggle="tooltip"  title="Manage Task(s)" ><i class="icon-tasks icon-white"></i></a>
+                        </td>
                     </tr>
                     <?php
                 }
@@ -28,5 +42,12 @@
     </footer>
 </div>
 <script language="JavaScript" type="text/javascript">
+    function closeDialog() {
+        $('#myModal1').modal('hide');
+    }
+    ;
     $("#tool a[href]").tooltip();
+</script>
+<script language="JavaScript" type="text/javascript">
+
 </script>

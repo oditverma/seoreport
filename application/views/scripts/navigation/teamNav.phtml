@@ -16,13 +16,15 @@
                 <ul class="nav" style="float:right">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Logged in as <strong><u style=" text-transform:capitalize;"><?php
-                                    $auth = Zend_Auth::getInstance();
-                                    $name = $auth->getIdentity()->name;
-                                    $email = $auth->getIdentity()->email;
+                                    $name = Zend_Auth::getInstance()->getIdentity()->name;
+                                    $email = Zend_Auth::getInstance()->getIdentity()->email;
+                                    $logo = Zend_Auth::getInstance()->getIdentity()->logo;
+                                    $address = Zend_Auth::getInstance()->getIdentity()->address;
+                                    $contact = Zend_Auth::getInstance()->getIdentity()->contact;
                                     echo $name;
                                     ?></u></strong><b class="caret"></b></a>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="#myModal" data-toggle="modal"><?php print("<strong style='text-transform:capitalize;'>" . $name . "</strong><br>" . $email); ?></a></li>
+                            <li><a href="#myModal" data-toggle="modal"><?php print("<strong style='text-transform:capitalize;'>" . $name . "</strong><br>"); ?></a></li>
                             <li><a href="<?php echo $this->baseUrl(); ?>/team/profile">Setting</a></li>
                             <li class="divider"></li>
                             <li class="btn btn-link pull-right"><a href="<?php echo $this->baseUrl(); ?>/index/logout">Logout</a></li>
@@ -35,19 +37,22 @@
 </div>
 <div id="myModal" class="modal hide">
     <div class="modal-header">
-        <a href="#" class="close" data-dismiss="modal">×</a>
+        <a href="#" class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
 
     </div>
     <div class="modal-body">
-
-    </div>
-    <div class="modal-footer">
-        <a href="#" class="btn" onclick="closeDialog();">Cancel</a>
+        <span class="avatar hidden-phone">
+            <img class="avatar" style="float: left;" src="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $logo; ?>">
+            <span class="span soften" style='text-transform:capitalize;'>Name : <?php print("$name"); ?></span><br><br>
+            <span class="span soften">Email : <?php print("$email"); ?></span><br><br>
+            <span class="span soften">Address : <?php print("$address"); ?></span><br><br>
+            <span class="span soften">Contact : <?php print("$contact"); ?></span><br><br>
+        </span>
     </div>
 </div>
 <script language="JavaScript" type="text/javascript">
-            function closeDialog() {
-                $('#myModal').modal('hide');
-            }
-            ;
+    function closeDialog() {
+        $('#myModal').modal('hide');
+    }
+    ;
 </script>

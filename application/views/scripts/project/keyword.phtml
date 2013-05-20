@@ -5,16 +5,15 @@ $title->toArray();
 ?>
 <div class="container" style="margin-top: 20px;padding-top: 20px;padding-bottom: 20px;">
     <div class="row-fluid">
-        <h3>Keyword Allocation</h3>
-          <hr style="border-color: #ccc;"/>
-               <div class="bs-docs-example">
-            <h4 style="text-transform:  uppercase;">Campaign Name : <?php print_r($title[0]['title']); ?> </h4>
+        <span style="font-size: 32px;">Keyword Allocation</span>
+        <hr style="border-color: #ccc;"/>
+        <div class="bs-docs-example">
+            <span style="text-transform:  uppercase;font-size: 24px;">Campaign Name : <?php print_r($title[0]['title']); ?> </span>
             <?php
             echo $this->form;
             if (isset($this->select)) {
                 ?>
-       
-               </div>
+            </div>
             <table  class="table table-bordered">
                 <thead><tr><th>Keyword</th><th>Date Added</th><th>Priority</th><th>Settings</th></tr></thead>       
                 <?php
@@ -35,15 +34,15 @@ $title->toArray();
                             <td><?php echo $v->keyname ?></td>
                             <td><?php echo $v->timeadded ?></td>
                             <td><?php if ($v->pos == $minPos) { ?>  
-                                    <a style="visibility:hidden;" href="<?php echo $this->baseUrl(); ?>/project/keyup/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>|
+                                    <a style="visibility:hidden;" href="<?php echo $this->baseUrl(); ?>/project/keyup/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>
                                     <a href="<?php echo $this->baseUrl(); ?>/project/keydown/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class='icon-arrow-down'></i></a>
                                 <?php } else if ($v->pos == $maxPos) {
                                     ?>
-                                    <a  href="<?php echo $this->baseUrl(); ?>/project/keyup/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>|                    
+                                    <a  href="<?php echo $this->baseUrl(); ?>/project/keyup/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>                    
                                     <a style="visibility:hidden;" href="<?php echo $this->baseUrl(); ?>/project/keydown/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class='icon-arrow-down'></i></a>
                                 <?php } else {
                                     ?>
-                                    <a  href="<?php echo $this->baseUrl(); ?>/project/keyup/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>|                    
+                                    <a  href="<?php echo $this->baseUrl(); ?>/project/keyup/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-arrow-up"></i></a>                  
                                     <a href="<?php echo $this->baseUrl(); ?>/project/keydown/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class='icon-arrow-down'></i></a>
                                 <?php }
                                 ?>

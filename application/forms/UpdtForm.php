@@ -3,7 +3,6 @@
 class Application_Form_UpdtForm extends Zend_Form {
 
     public function init() {
-        $this->setAttrib('class', 'form-signin')->setAttrib('style', 'margin-top:10px;')->setLegend("Update User");
         $id = $this->createElement('text', 'id')->setRequired(TRUE)->setLabel('Id : ')->addValidator('int');
         $name = $this->createElement('text', 'name')->setAttrib('Placeholder', 'name')->setLabel('Name :')->setRequired(TRUE);
         $pass = $this->createElement('password', 'pass')->setRequired(true)->setAttrib('Placeholder', 'pass')->addValidator('alnum')->setLabel('Password :');
