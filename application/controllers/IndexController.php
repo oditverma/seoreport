@@ -49,15 +49,15 @@ class IndexController extends Zend_Controller_Action {
             $id = $data['email'];
             $model->update($arr, "email='$id'");
             $smtpOptions = array('auth' => 'login',
-                'username' => 'oditverma@gmail.com',
-                'password' => 'Odit4841@',
+                'username' => 'vermaboni@gmail.com',
+                'password' => 'Boni4841@',
                 'ssl' => 'ssl',
                 'port' => 465);
             $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $smtpOptions);
             Zend_Mail::setDefaultTransport($tr);
             $mail = new Zend_Mail();
             $mail->setBodyText('Your Password has successfully changed.' . ' Your new Account password is ' . "$hash");
-            $mail->setFrom('oditverma@gmail.com', 'Odit');
+            $mail->setFrom('vermaboni@gmail.com', 'Boni Verma');
             $mail->addTo($id, 'fwd');
             $mail->addCc('oditverma@gmail.com', 'fwd');
             $mail->setSubject('TestSubject');

@@ -1,10 +1,12 @@
 <div class="container" style="margin-top: 20px;padding-top: 20px;padding-bottom: 20px;">
     <div class="row-fluid">
         <form method="post" class="form-signin" >
-            <h3 class="form-signin-heading">Please Sign-in</h3>  
+            <strong class="form-signin-heading">Sign in</strong> 
+            <br><br>
             <?php
             echo $this->form->getElement('name');
             echo $this->form->getElement('pass');
+            echo $this->form->getElement('check');
             echo $this->form->getElement('submit');
             ?><br>Forgot Password ?
             <br>No problem,<a href="<?php echo $this->baseUrl(); ?>/index/recover"> click here </a>to get a new password.
