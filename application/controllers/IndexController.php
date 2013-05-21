@@ -25,8 +25,7 @@ class IndexController extends Zend_Controller_Action {
             $storage->write($userInfo);
             $type = $userInfo->account_type;
             $status = $userInfo->status;
-            if ($type == 'Admin' && $status == TRUE || isset($_GET['check']) && $_GET['check']==true) {
-                $_SESSION['/admin/index'] = true;
+            if ($type == 'Admin' && $status == TRUE) {
                 $this->_redirect('/admin/index');
             }
             if ($type == 'Client' && $status == TRUE) {
