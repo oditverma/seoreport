@@ -8,4 +8,4 @@ RewriteCond %{REQUEST_FILENAME} -d
  RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
-RewriteRule ^(.+)$ /$1.php [L,QSA]
+RewriteRule ^(.+)$ /index.php [L,QSA]
