@@ -104,7 +104,7 @@ class ProjectController extends Zend_Controller_Action {
                     return $launch;
                 }
 
-                $key = multiexplode(array(",", ".", "|", ":", ";"), $data1);
+                $key = multiexplode(array(",", ".", "|", ":", ";", "/", "?", "-", "_"), $data1);
             }
 
             $inc = $db->select()->from($db, array(new Zend_Db_Expr("max(pos)+1 as pos")))->where("project_id='$project_id'");
