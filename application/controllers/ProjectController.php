@@ -104,20 +104,27 @@ class ProjectController extends Zend_Controller_Action {
                     return $launch;
                 }
 
-                $key = multiexplode(array(",", ".", "|", ":"), $data1);
+                $key = multiexplode(array(",", ".", "|", ":", ";"), $data1);
             }
 
             $inc = $db->select()->from($db, array(new Zend_Db_Expr("max(pos)+1 as pos")))->where("project_id='$project_id'");
             $rs = $db->fetchRow($inc);
             $array = $rs->toArray();
-            if ($array['pos'] == 0 || $array['pos'] == NULL) {
+            if ($array['pos'] == 0 && count($key) == 1) {
                 $data['project_id'] = $project_id;
                 $db->insert($data);
-            }
-            if (!empty($array['pos'])) {
+            } else if (count($key) > 1 && $array['pos'] == 0) {
+                $array['pos'] = 0;
                 foreach ($key as $val) {
-                    $key1['pos'] = $array['pos']++;
                     $key1['keyname'] = $val;
+                    $key1['pos'] = $array['pos']++;
+                    $key1['project_id'] = $project_id;
+                    $db->insert($key1);
+                }
+            } else if ($array['pos'] > 0) {
+                foreach ($key as $val) {
+                    $key1['keyname'] = $val;
+                    $key1['pos'] = $array['pos']++;
                     $key1['project_id'] = $project_id;
                     $db->insert($key1);
                 }
