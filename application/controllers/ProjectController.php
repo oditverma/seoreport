@@ -94,20 +94,33 @@ class ProjectController extends Zend_Controller_Action {
         $db = new Application_Model_keyword();
         $form->removeElement('update');
         if ($this->_request->isPost() && $form->isValid($_POST)) {
-            $data = $form->getValue('keyname');
-            $key = explode(",", $data);
-            echo "<pre>";
-            print_r($key);
-            die();
-            $data['project_id'] = $project_id;
+            $data = $form->getValues('keyname');
+            $data1 = implode($data);
+            if (!empty($data)) {
+
+                function multiexplode($delimiters, $string) {
+                    $ready = str_replace($delimiters, $delimiters[0], $string);
+                    $launch = explode($delimiters[0], $ready);
+                    return $launch;
+                }
+
+                $key = multiexplode(array(",", ".", "|", ":"), $data1);
+            }
+
             $inc = $db->select()->from($db, array(new Zend_Db_Expr("max(pos)+1 as pos")))->where("project_id='$project_id'");
             $rs = $db->fetchRow($inc);
             $array = $rs->toArray();
+            if ($array['pos'] == 0 || $array['pos'] == NULL) {
+                $data['project_id'] = $project_id;
+                $db->insert($data);
+            }
             if (!empty($array['pos'])) {
-                $db->insert($key);
-            } else {
-                $data['pos'] = 1;
-                $db->insert($key);
+                foreach ($key as $val) {
+                    $key1['pos'] = $array['pos']++;
+                    $key1['keyname'] = $val;
+                    $key1['project_id'] = $project_id;
+                    $db->insert($key1);
+                }
             }
             $pos = $db->fetchRow(null, 'id desc');
             $arr = $pos->toArray();
