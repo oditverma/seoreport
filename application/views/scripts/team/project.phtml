@@ -22,10 +22,10 @@
                         </div>
                     </div>
                     <tr id="tool">
-                        <td><a href="<?php echo $this->baseUrl()."/team/project/" . $v['id']."/#myModal1"; ?>" data-toggle="modal"><?php echo $v->title; ?></a>
+                        <td><a href="<?php echo $this->baseUrl() . "/team/project/" . $v['id'] . "/#myModal1"; ?>" data-toggle="modal"><?php echo $v->title; ?></a>
                         </td><td><?php echo $v->description; ?></td>
                         <td><?php echo $v->date_added ?></td><td>
-                            <a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/team/report/id/<?php echo $v['id']; ?>" data-toggle="tooltip"  title="New Task" ><i class="icon-plus icon-white"></i></a>
+                            <a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/team/edit/id/<?php echo $v['id']; ?>" data-toggle="tooltip"  title="New Task" ><i class="icon-plus icon-white"></i></a>
                             <a class="btn btn-warning" data-toggle="tooltip"  title="Update Info" href="<?php echo $this->BaseUrl(); ?>/team/updt/id/<?php echo $v['id']; ?>" ><i class="icon-cog icon-white"></i></a>
                             <a class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/team/report/id/<?php echo $v['id']; ?>" data-toggle="tooltip"  title="Manage Task(s)" ><i class="icon-tasks icon-white"></i></a>
                         </td>
