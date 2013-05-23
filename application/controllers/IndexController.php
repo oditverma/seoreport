@@ -36,6 +36,7 @@ class IndexController extends Zend_Controller_Action {
             } else {
                 echo "<script language='JavaScript' type='text/javascript'>bootbox.alert('Incorrect Username or Password');</script>";
             }
+            
         }
     }
 

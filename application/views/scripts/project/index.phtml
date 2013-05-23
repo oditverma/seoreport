@@ -3,7 +3,7 @@
     <div class="row-fluid">
         <div class="heading">
             <h2>Project Section</h2>
-             <hr style="border-color: #ccc;"/>
+            <hr style="border-color: #ccc;"/>
         </div>
 
         <div class="row-fluid">
@@ -25,9 +25,9 @@
                                     }
                                     ?></td><td><a href="<?php echo $this->baseUrl(); ?>/public/uploads/<?php echo $v->attachment ?>"><i class="icon-file"></i></a></td>
                                 <td>        
-                                    <?php if ($v->status == 1) { ?>   <a href="<?php echo $this->baseUrl(); ?>/project/status/id/<?php echo $v['id'] ?>" class="btn btn-success" data-toggle="tooltip" title="Status Active"  ><i class="icon-ok-sign icon-white"></i></a>
+                                    <?php if ($v->status == 1) { ?>   <a href="<?php echo $this->baseUrl(); ?>/project/status/id/<?php echo $v['id'] ?>" class="btn btn-danger" data-toggle="tooltip" title="Status Active"  ><i class="icon-ban-circle icon-white"></i></a>
                                     <?php } else { ?>
-                                        <a href="<?php echo $this->baseUrl(); ?>/project/status/id/<?php echo $v['id'] ?>" class="btn btn-danger" data-toggle="tooltip" title="Status De-active" ><i class="icon-ban-circle icon-white"></i></a>
+                                        <a href="<?php echo $this->baseUrl(); ?>/project/status/id/<?php echo $v['id'] ?>" class="btn btn-success" data-toggle="tooltip" title="Status De-active" ><i class="icon-ok-sign icon-white"></i></a>
                                     <?php } ?>                                          
                                     <a href="<?php echo $this->baseUrl(); ?>/project/keyword/id/<?php echo $v['id'] ?>" class="btn btn-inverse" data-toggle="tooltip"  title="Manage keyword" ><i class="icon-tags icon-white"></i></a>
                                     <a href="<?php echo $this->baseUrl(); ?>/project/update/id/<?php echo $v['id'] ?>" class="btn btn-warning"  data-toggle="tooltip"   title="Update Project" ><i class="icon-cog icon-white"></i></a>                   
