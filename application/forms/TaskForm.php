@@ -8,7 +8,7 @@ class Application_Form_TaskForm extends Zend_Form {
         $add = $this->createElement('text', 'added_by')->setAttrib('placeholder', 'Added By')->setLabel('Added By :- ')->setRequired(true);
         $assign = $this->createElement('text', 'assign_to')->setAttrib('placeholder', 'Assign To')->setLabel('Assign To :- ')->setRequired(true);
         $time_added = $this->createElement('text', 'time_added')->setAttrib('placeholder', 'yyyy/MM/dd HH:mm:ss PP')->setAttrib('data-format', 'yyyy/MM/dd HH:mm:ss PP')
-                        ->setLabel('Time Added :- ')->setDecorators(array('ViewHelper'));
+                        ->setDecorators(array('ViewHelper'));
         $time_completed = $this->createElement('text', 'time_completed')->setAttrib('placeholder', 'yyyy/MM/dd HH:mm:ss PP')
                 ->setAttrib('data-format', 'yyyy/MM/dd HH:mm:ss PP')->setDecorators(array('ViewHelper'));
         $file = new Zend_Form_Element_File('attachment');
