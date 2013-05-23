@@ -48,8 +48,8 @@ $title->toArray();
                                 ?>
                             </td>
                             <td>
-                                <a class="btn btn-warning" href="<?php echo $this->baseUrl(); ?>/project/keyupdt/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-cog icon-white"></i></a>            
-                                <a class="btn btn-danger" href="<?php echo $this->Url(array('controller' => 'Project', 'action' => 'keydel', 'id' => $v['id'])) ?>"  
+                                <a class="btn btn-warning" data-toggle="tooltip"  title="Update keyword" href="<?php echo $this->baseUrl(); ?>/project/keyupdt/projectId/<?php echo $v['project_id'] ?>/id/<?php echo $v['id'] ?>"><i class="icon-cog icon-white"></i></a>            
+                                <a class="btn btn-danger" data-toggle="tooltip"  title="Delete Keyword" href="<?php echo $this->Url(array('controller' => 'Project', 'action' => 'keydel', 'id' => $v['id'])) ?>"  
                                    onclick="return confirm('Do you really want to delete this?');"><i class="icon-trash icon-white" title='Delete'></i></a>
                             </td></tr>
                     </tbody>
@@ -64,3 +64,6 @@ $title->toArray();
         <p>© Company 2013</p>
     </footer>
 </div>
+<script language="JavaScript" type="text/javascript">
+                               $("#tool a[href]").tooltip();
+</script>
