@@ -8,14 +8,21 @@ $title->toArray();
         <span style="font-size: 32px;">Keyword Allocation</span>
         <hr style="border-color: #ccc;"/>
         <div class="bs-docs-example">
-            <span style="text-transform:  uppercase;font-size: 24px;">Campaign Name : <?php print_r($title[0]['title']); ?> </span>
-            <form mehtod="post">
-                <?php echo $this->form->getElement('keyname'); ?>
-                <p class="muted">Please separate keywords using (" , " or " - ")</p>
-                <?php echo $this->form->getElement('submit'); ?>
-            </form>
-            <?php if (isset($this->select)) {
-                ?>
+            <div class="row-fluid">
+                <div class="span4">
+                    <span style="text-transform:  uppercase;font-size: 24px;">Campaign Name : <?php print_r($title[0]['title']); ?> </span>
+                    <?php echo $this->form; ?>
+                    <?php if (isset($this->select)) {
+                        ?>
+                    </div>
+                    <div class="span8">
+                        <p style="float:left;margin-left:1em"> 
+                            <img src="<?php echo $this->BaseUrl(); ?>/images/key.jpg" width="300" height="250" style="margin-top: -10px;">
+                        </p>
+                        <p style="font-size: 16px;"><strong>Keywords</strong> are the most important SEO element for every search engine, they are what search strings are matched against. Choosing the right keywords to optimize for is thus the first and most crucial step to a successful SEO campaign. If you fail on this very first step, the road ahead is very bumpy and most likely you will only waste your time and money. There are many ways to determine which keywords to optimize for and usually the final list of them is made after a careful analysis of what the online population is searching for, which keywords have your competitors chosen and above all - which are the keywords that you feel describe your site best.</p>
+
+                    </div>
+                </div>    
             </div>
             <table  class="table table-bordered">
                 <thead><tr><th>Keyword</th><th>Date Added</th><th>Priority</th><th>Settings</th></tr></thead>       
@@ -68,5 +75,8 @@ $title->toArray();
     </footer>
 </div>
 <script language="JavaScript" type="text/javascript">
-                               $("#tool a[href]").tooltip();
+                                       $("#tool a[href]").tooltip();
+</script>
+<script language="JavaScript" type="text/javascript">
+    $("#keyname").popover();
 </script>

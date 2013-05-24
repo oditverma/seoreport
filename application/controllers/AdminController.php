@@ -92,7 +92,7 @@ class AdminController extends Zend_Controller_Action {
             $arr = array('status' => '1');
         }
         $model->update($arr, 'id=' . $id);
-        $this->_redirect('/admin/index');
+        $this->_redirect('/admin/view');
     }
 
     public function forgotAction() {

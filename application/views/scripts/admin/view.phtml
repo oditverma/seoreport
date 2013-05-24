@@ -35,11 +35,11 @@ $name = Zend_Auth::getInstance()->getIdentity()->name;
                                     ?></td>
                                 <td><?php echo $v->contact ?></td>
                                 <td>
-                                    <?php if ($v->status == 1) { ?>  <a class="btn btn-success"  href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" title="Status Active" data-placement="left" ><i class="icon-ok-circle icon-white"></i></a><?php } else { ?>
-                                        <a class="btn btn-danger" href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>" data-toggle="tooltip" title="Status De-active"><i class="icon-ban-circle icon-white"></i></a> 
+                                    <?php if ($v->status == 1) { ?>  <a class="btn btn-danger"  href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>"  data-toggle="tooltip" title="Status Active" ><i class="icon-ban-circle icon-white"></i></a><?php } else { ?>
+                                        <a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/admin/status/id/<?php echo $v['id'] ?>" data-toggle="tooltip" title="Status De-active"><i class="icon-ok-circle icon-white"></i></a> 
                                     <?php } ?>
                                     <a class="btn btn-warning" href="<?php echo $this->baseUrl(); ?>/admin/update/id/<?php echo $v['id'] ?>"  data-toggle="tooltip"  title="Update Info"><i class="icon-cog icon-white"></i></a>
-                                    <a href="<?php echo $this->Url(array('controller' => 'Admin', 'action' => 'delete', 'id' => $v['id'])) ?>" class="btn btn-danger" data-toggle="tooltip"  title="Delete" data-placement="right"
+                                    <a href="<?php echo $this->Url(array('controller' => 'Admin', 'action' => 'delete', 'id' => $v['id'])) ?>" class="btn btn-danger" data-toggle="tooltip"  title="Delete"
                                        onclick="return confirm('Do you really want to delete this?');"><i class='icon-trash icon-white'></i></a>
                                 </td>
                             </tr>

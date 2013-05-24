@@ -18,7 +18,7 @@ class Application_Form_ReportForm extends Zend_Form {
         foreach ($data as $a) {
             $arr[$a->id] = $a->title;
         }
-        $title->addMultiOption('','Select Project');
+        $title->addMultiOption('', 'Select Project');
         $title->addMultiOptions($arr);
         $client = $this->createElement('select', 'account_type')
                 ->setLabel("Client Name : ");
@@ -29,7 +29,7 @@ class Application_Form_ReportForm extends Zend_Form {
                 ->addMultiOptions($array);
 
         $submit = $this->createElement('submit', 'submit')->setAttrib('class', 'btn btn-info');
-        $this->addElements(array($pickDate, $title, $client, $submit));
+        $this->addElements(array($client, $pickDate, $title, $submit));
     }
 
 }
