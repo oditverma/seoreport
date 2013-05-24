@@ -1,9 +1,8 @@
 <?php
 
 class Application_Form_IndexForm extends Zend_Form {
-
-    public $elementDecorators = array('ViewHelper', 'Description', 'Errors', array(array('data' => 'HtmlTag'),
-            array('tag' => 'td')), array('Label', array('tag' => 'td')), array(array('row' => 'HtmlTag'), array('tag' => 'tr')));
+    /*  public $elementDecorators = array('ViewHelper', 'Description', 'Errors', array(array('data' => 'HtmlTag'),
+      array('tag' => 'td')), array('Label', array('tag' => 'td')), array(array('row' => 'HtmlTag'), array('tag' => 'tr'))); */
 
     public function init() {
         $name = $this->createElement('text', 'name')->setRequired(true)->setAttrib('class', 'input-block-level')->setLabel("Username");

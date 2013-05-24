@@ -9,9 +9,12 @@ $title->toArray();
         <hr style="border-color: #ccc;"/>
         <div class="bs-docs-example">
             <span style="text-transform:  uppercase;font-size: 24px;">Campaign Name : <?php print_r($title[0]['title']); ?> </span>
-            <?php
-            echo $this->form;
-            if (isset($this->select)) {
+            <form mehtod="post">
+                <?php echo $this->form->getElement('keyname'); ?>
+                <p class="muted">Please separate keywords using (" , " or " - ")</p>
+                <?php echo $this->form->getElement('submit'); ?>
+            </form>
+            <?php if (isset($this->select)) {
                 ?>
             </div>
             <table  class="table table-bordered">
