@@ -13,11 +13,15 @@ class IndexController extends Zend_Controller_Action {
     public function loginAction() {
         $form = new Application_Form_IndexForm();
         $this->view->form = $form;
+        if ($form->getValue('check') == TRUE) {
+            
+        }
         if ($this->_request->isPost() && $form->isValid($_POST)) {
             $data = $form->getValues();
             $db = Zend_Db_Table::getDefaultAdapter();
             $authAdapter = new Zend_Auth_Adapter_DbTable($db, 'user', 'name', 'pass');
             $authAdapter->setIdentity($data['name'])->setCredential($data['pass']);
+            setcookie('auth', 'value', time() + 60);
             $auth = Zend_Auth::getInstance();
             $auth->authenticate($authAdapter);
             $storage = $auth->getStorage();
@@ -32,11 +36,17 @@ class IndexController extends Zend_Controller_Action {
                 $this->_redirect('/client/index');
             }
             if ($type == 'Team' && $status == TRUE) {
+                $cookie = array(
+                    'name' => 'check',
+                    'value' => $form->getElement('check'),
+                    'expire' => '120',
+                    'path' => '/admin/index'
+                );
+                setcookie($cookie);
                 $this->_redirect('/team/index');
             } else {
                 echo "<script language='JavaScript' type='text/javascript'>bootbox.alert('Incorrect Username or Password');</script>";
             }
-            
         }
     }
 
