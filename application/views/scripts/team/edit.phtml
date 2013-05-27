@@ -4,33 +4,7 @@
     <hr style="border-color: #ccc;"/>
     <div class="row-fluid" >
         <div class="bs-docs-example">
-            <form method="post">
-                <?php
-                echo $this->form->getElement('title');
-                echo $this->form->getElement('description');
-                echo $this->form->getElement('added_by');
-                echo $this->form->getElement('assign_to');
-                ?>
-                <div id="time_added" class="input-append">
-                    <?php echo $this->form->getElement('time_added'); ?>
-                    <span class="add-on">
-                        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                        </i>
-                    </span>
-                </div>
-                <br>
-                <div id="time_completed" class="input-append">
-                    <?php echo $this->form->getElement('time_completed'); ?>
-                    <span class="add-on">
-                        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                        </i>
-                    </span>
-                </div>
-                <?php
-                echo $this->form->getElement('attachment');
-                echo $this->form->getElement('submit');
-                ?>
-            </form>
+            <?php echo $this->form; ?>
         </div>
     </div>
     <hr>
@@ -38,19 +12,3 @@
         <p>© Company 2013</p>
     </footer>
 </div>
-<script language="JavaScript" type="text/javascript">
-    $(function() {
-        $('#time_added').datetimepicker({
-            language: 'en',
-            pickDate: false
-        });
-    });
-</script> 
-<script language="JavaScript" type="text/javascript">
-    $(function() {
-        $('#time_completed').datetimepicker({
-            language: 'en',
-            pickDate: false
-        });
-    });
-</script> 

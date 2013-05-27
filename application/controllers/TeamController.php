@@ -32,7 +32,6 @@ class TeamController extends Zend_Controller_Action {
     }
 
     public function forgotAction() {
-
         $form = new Application_Form_ForgotForm();
         $model = new Application_Model_admin();
         $auth = Zend_Auth::getInstance();
@@ -74,13 +73,14 @@ class TeamController extends Zend_Controller_Action {
     }
 
     public function editAction() {
+        $id = $this->_getParam('id');
         $form = new Application_Form_TaskForm();
-        if ($this->_request->isPost() && $form->isValid($_POST)) {
-            $row = new Application_Model_report();
+        if ($this->_request->isPost()) {
             $data = $form->getValues();
-            $row->insert($data);
-            $this->_redirect('/team/index');
-            $this->view->data = $data;
+            $data['project_id'] = $id;
+            echo '<pre>';
+            print_r($data);
+            exit();
         }
         $this->view->form = $form;
     }
