@@ -28,7 +28,7 @@
                                     $email = Zend_Auth::getInstance()->getIdentity()->email;
                                     $logo = Zend_Auth::getInstance()->getIdentity()->logo;
                                     $address = Zend_Auth::getInstance()->getIdentity()->address;
-                                    $contact = Zend_Auth::getInstance()->getIdentity()->contact;
+                                    //$contact = Zend_Auth::getInstance()->getIdentity()->contact;
                                     echo $name;
                                     ?></u></strong></a>
                         <ul class="dropdown-menu pull-right">
@@ -57,7 +57,7 @@
             <span class="span soften" style='text-transform:capitalize;'>Name : <?php print("$name"); ?></span><br><br>
             <span class="span soften">Email : <?php print("$email"); ?></span><br><br>
             <span class="span soften">Address : <?php print("$address"); ?></span><br><br>
-            <span class="span soften">Contact : <?php print("$contact"); ?></span><br><br>
+            
         </span>
     </div>
     <div class="modal-footer">

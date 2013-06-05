@@ -19,7 +19,6 @@ class TeamController extends Zend_Controller_Action {
             $this->_redirect('/index');
         }
     }
-
     public function teamAction() {
         $auth = Zend_Auth::getInstance();
         $id = $auth->getIdentity()->id;
@@ -80,7 +79,7 @@ class TeamController extends Zend_Controller_Action {
             $data['project_id'] = $id;
             echo '<pre>';
             print_r($data);
-            exit();
+            die();
         }
         $this->view->form = $form;
     }

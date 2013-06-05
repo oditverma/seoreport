@@ -3,7 +3,7 @@
 class Application_Form_TaskForm extends Zend_Form {
 
     public function init() {
-        $name = $this->createElement('text', 'title')
+        $title = $this->createElement('text', 'title')
                 ->setAttrib('Placeholder', 'Title')
                 ->setLabel('Title : ');
         $description = $this->createElement('textarea', 'description')
@@ -27,7 +27,7 @@ class Application_Form_TaskForm extends Zend_Form {
         $file->setDestination(APPLICATION_PATH . '/../public/uploads');
         $submit = $this->createElement('submit', 'submit')
                 ->setAttrib('class', 'btn btn-primary');
-        $this->addElements(array($name, $description, $add, $assign, $time_added, $time_completed, $file, $submit));
+        $this->addElements(array($title, $description, $add, $assign, $time_added, $time_completed, $file, $submit));
     }
 
 }

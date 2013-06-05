@@ -236,6 +236,10 @@ class ProjectController extends Zend_Controller_Action {
         $this->_redirect('project/keyword/id/' . $projectID);
     }
 
+    public function viewAction() {
+        
+    }
+
 }
 
 /* echo "<pre>";

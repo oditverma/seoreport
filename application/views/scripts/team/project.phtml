@@ -10,19 +10,8 @@
                 <?php
                 foreach ($this->row as $v) {
                     ?>
-                    <div id="myModal1" class="modal hide">
-                        <div class="modal-header">
-                            <a href="#" class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
-                        </div>
-                        <div class="modal-body">
-                            Project Title : <?php echo $v->title; ?>
-                        </div>
-                        <div class="modal-footer">
-
-                        </div>
-                    </div>
                     <tr id="tool">
-                        <td><a href="<?php echo $this->baseUrl() . "/team/project/" . $v['id'] . "/#myModal1"; ?>" data-toggle="modal"><?php echo $v->title; ?></a>
+                        <td><a href="<?php echo $this->baseUrl() . "/project/view/id/" . $v['id']; ?>"><?php echo $v->title; ?></a>
                         </td><td><?php echo $v->description; ?></td>
                         <td><?php echo $v->date_added ?></td><td>
                             <a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/team/edit/id/<?php echo $v['id']; ?>" data-toggle="tooltip"  title="New Task" ><i class="icon-plus icon-white"></i></a>
@@ -42,12 +31,5 @@
     </footer>
 </div>
 <script language="JavaScript" type="text/javascript">
-    function closeDialog() {
-        $('#myModal1').modal('hide');
-    }
-    ;
     $("#tool a[href]").tooltip();
-</script>
-<script language="JavaScript" type="text/javascript">
-
 </script>
